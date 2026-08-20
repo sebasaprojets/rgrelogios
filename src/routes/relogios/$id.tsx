@@ -14,6 +14,7 @@ export const Route = createFileRoute("/relogios/$id")({
 
 function ProductDetail() {
   const { id } = Route.useParams();
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const fetchProducts = useServerFn(getProducts);
 
   const { data: product, isLoading } = useQuery({
@@ -46,6 +47,14 @@ function ProductDetail() {
       <WhatsAppButton 
         message={`Olá! Tenho interesse no relógio ${product.brand} ${product.name}. Gostaria de mais informações.`}
       />
+      
+      {isCheckoutOpen && (
+        <CheckoutModal 
+          isOpen={isCheckoutOpen} 
+          onClose={() => setIsCheckoutOpen(false)} 
+          product={product} 
+        />
+      )}
       
       <div className="max-w-7xl mx-auto">
         <a href="/#relógios" className="inline-flex items-center gap-2 text-[#C5A059] hover:text-[#D4B473] transition-colors mb-12 uppercase text-xs font-bold tracking-widest">
@@ -117,8 +126,11 @@ function ProductDetail() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
-              <button className="flex-1 bg-[#C5A059] text-[#00050A] py-4 rounded font-bold hover:bg-[#D4B473] transition-all uppercase text-sm tracking-widest flex items-center justify-center gap-2">
-                <MessageCircle size={18} /> Tenho Interesse
+              <button 
+                onClick={() => setIsCheckoutOpen(true)}
+                className="flex-1 bg-[#C5A059] text-[#00050A] py-4 rounded font-bold hover:bg-[#D4B473] transition-all uppercase text-sm tracking-widest flex items-center justify-center gap-2"
+              >
+                <ShoppingCart size={18} /> Comprar Agora
               </button>
               <button className="flex-1 border border-[#C5A059] text-[#C5A059] py-4 rounded font-bold hover:bg-[#C5A059]/10 transition-all uppercase text-sm tracking-widest">
                 Falar com Especialista
