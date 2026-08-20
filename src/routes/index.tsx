@@ -331,10 +331,11 @@ function Index() {
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <input type="text" placeholder="Seu Nome" className="w-full p-4 bg-[#00050A] border border-[#C5A059]/20 rounded text-[#E5D3B3] placeholder-[#E5D3B3]/30" />
                     <input type="text" placeholder="Seu WhatsApp" className="w-full p-4 bg-[#00050A] border border-[#C5A059]/20 rounded text-[#E5D3B3] placeholder-[#E5D3B3]/30" />
-                    <select className="w-full p-4 bg-[#00050A] border border-[#C5A059]/20 rounded text-[#E5D3B3]">
-                        <option>Reparação</option>
-                        <option>Manutenção</option>
-                        <option>Restauração</option>
+                    <select name="service" required className="w-full p-4 bg-[#00050A] border border-[#C5A059]/20 rounded text-[#E5D3B3] outline-none focus:border-[#C5A059]">
+                        <option value="Reparação">Reparação</option>
+                        <option value="Manutenção">Manutenção</option>
+                        <option value="Restauração">Restauração</option>
+                        <option value="Avaliação">Avaliação</option>
                     </select>
                     <textarea placeholder="Descrição do problema" className="w-full p-4 bg-[#00050A] border border-[#C5A059]/20 rounded text-[#E5D3B3] min-h-[150px] placeholder-[#E5D3B3]/30"></textarea>
                     <button type="submit" className="w-full bg-[#C5A059] text-[#00050A] py-4 rounded font-bold hover:bg-[#D4B473] transition-all flex justify-center items-center gap-2">
