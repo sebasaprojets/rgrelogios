@@ -22,6 +22,8 @@ import {
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import logoAsset from "@/assets/logo.jpeg.asset.json";
 import storefrontAsset from "@/assets/storefront.jpeg.asset.json";
+import heroVideoAsset from "@/assets/hero-watch.mp4.asset.json";
+import heroPosterAsset from "@/assets/hero-poster.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
