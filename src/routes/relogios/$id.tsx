@@ -3,8 +3,10 @@ import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { getProducts } from "@/lib/api.functions";
 import { motion } from "framer-motion";
-import { ChevronLeft, MessageCircle, Shield, Clock, Award } from "lucide-react";
+import { ChevronLeft, MessageCircle, Shield, Clock, Award, ShoppingCart } from "lucide-react";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { CheckoutModal } from "@/components/CheckoutModal";
+import { useState } from "react";
 
 export const Route = createFileRoute("/relogios/$id")({
   component: ProductDetail,
