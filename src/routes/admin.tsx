@@ -53,15 +53,17 @@ function AdminPanel() {
         
         <nav className="space-y-2 flex-1">
           {[
-            { label: 'Dashboard', icon: LayoutDashboard, active: true },
+            { label: 'Dashboard', icon: LayoutDashboard },
             { label: 'Produtos', icon: Package },
+            { label: 'Pedidos', icon: ShoppingCart },
             { label: 'Solicitações', icon: MessageSquare },
             { label: 'Avaliações', icon: Star },
             { label: 'Configurações', icon: Settings },
           ].map((item) => (
             <button 
               key={item.label}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded text-sm font-medium transition-colors ${item.active ? 'bg-[#C5A059] text-[#00050A]' : 'text-[#E5D3B3]/60 hover:text-[#C5A059] hover:bg-[#C5A059]/5'}`}
+              onClick={() => setActiveTab(item.label)}
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded text-sm font-medium transition-colors ${activeTab === item.label ? 'bg-[#C5A059] text-[#00050A]' : 'text-[#E5D3B3]/60 hover:text-[#C5A059] hover:bg-[#C5A059]/5'}`}
             >
               <item.icon size={18} />
               {item.label}
