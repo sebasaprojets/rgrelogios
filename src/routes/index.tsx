@@ -20,6 +20,8 @@ import {
   Send
 } from "lucide-react";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import logoAsset from "@/assets/logo.jpeg.asset.json";
+import storefrontAsset from "@/assets/storefront.jpeg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
