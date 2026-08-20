@@ -249,9 +249,12 @@ function Index() {
                         <span className="text-[#C5A059] font-bold">
                           {watch.price ? `R$ ${watch.price.toLocaleString()}` : "Sob Consulta"}
                         </span>
-                        <button className="text-[10px] font-bold uppercase tracking-widest text-[#E5D3B3]/60 hover:text-[#C5A059] transition-colors border-b border-[#C5A059]/20 pb-1">
+                        <a 
+                          href={`/relogios/${watch.id}`}
+                          className="text-[10px] font-bold uppercase tracking-widest text-[#E5D3B3]/60 hover:text-[#C5A059] transition-colors border-b border-[#C5A059]/20 pb-1"
+                        >
                           Ver Detalhes
-                        </button>
+                        </a>
                       </div>
                     </div>
                   </motion.div>
