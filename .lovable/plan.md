@@ -1,27 +1,26 @@
-# Plano de Melhoria Visual: Estabilidade do Hero e Legibilidade Mobile
+# Plano de Otimização e Simplificação da Experiência do Cliente
 
-Corrigir a trepidação do vídeo do Hero e otimizar a legibilidade do texto em dispositivos móveis.
+O objetivo deste plano é simplificar o site da **RG Relógios**, removendo funcionalidades não essenciais e otimizando a conversão através do redirecionamento direto para o WhatsApp na seção de serviços de relojoaria.
 
-## Problemas Identificados
-- **Trepidação do Vídeo:** O vídeo atual apresenta instabilidade visual (provavelmente devido a um loop imperfeito ou efeito de zoompan mal configurado).
-- **Legibilidade Mobile:** O texto dourado sobre o fundo animado dificulta a leitura em telas pequenas, apesar das melhorias anteriores.
+## Alterações Propostas
 
-## Ações Propostas
-
-### 1. Estabilização do Fundo (Hero)
-- Substituir o vídeo por uma imagem macro de alta resolução de um relógio luxuoso com um efeito de "zoom suave" via CSS (transform: scale) em vez de vídeo processado, garantindo 0 trepidação e performance máxima.
-- Alternativamente, se o vídeo for mantido, usar uma versão com bitrate otimizado e loop perfeito.
-
-### 2. Otimização de Legibilidade Mobile
-- Aumentar ainda mais o contraste no mobile usando um gradiente escuro mais denso na base do texto.
-- Ajustar o `line-height` e o `letter-spacing` do título no mobile para melhorar a escaneabilidade.
-- Adicionar um leve `text-shadow` escuro para destacar o texto dourado.
-
-### 3. Ajustes Técnicos
-- Atualizar `src/routes/index.tsx` com as novas classes de estilo.
-- Garantir que o `poster` do vídeo seja de alta qualidade e carregue instantaneamente.
+### UI & UX
+- **Remoção do Google Maps**: Ocultar a seção ou o componente que exibe o mapa interativo na página inicial e de contato.
+- **Remoção do Catálogo**: Desabilitar a visualização da grade de produtos/catálogo de relógios para focar nos serviços.
+- **Redirecionamento Condicional para WhatsApp**:
+    - Alterar o comportamento dos 4 botões de serviço na seção de relojoaria.
+    - Em vez de abrir um formulário interno, cada botão abrirá o WhatsApp com uma mensagem pré-preenchida dinâmica.
+    - Exemplo: Ao clicar em "Manutenção", a mensagem será "Quero uma manutenção de Manutenção".
 
 ## Detalhes Técnicos
-- **CSS Transitions:** Usar animações de hardware (transform/opacity) para o efeito de zoom.
-- **Tailwind:** Utilizar classes como `bg-gradient-to-b from-black/20 via-black/60 to-black/90` para o overlay.
-- **Responsividade:** Aplicar `text-[2.5rem]` no mobile para o H2 em vez de `text-3xl` se necessário para melhor ajuste.
+
+### Frontend (React/TanStack Router)
+- **src/routes/index.tsx**:
+    - Comentar ou remover a renderização do grid de produtos e da seção/botão do Google Maps.
+    - Atualizar a lista de serviços para incluir uma função de clique que utiliza `window.open` com o link `https://wa.me/5541992399650?text=...`.
+    - Implementar a lógica de mensagem dinâmica: `"Quero uma manutenção de " + service.title`.
+- **Limpeza de Navegação**: Remover links para "Catálogo" ou "Relógios" no Header e Footer para manter a consistência.
+
+### Validação
+- Testar cada um dos 4 botões de serviço para garantir que o redirecionamento e a mensagem personalizada funcionem corretamente em dispositivos móveis e desktop.
+- Verificar se não há referências quebradas ou espaços vazios deixados pela remoção do mapa e catálogo.
