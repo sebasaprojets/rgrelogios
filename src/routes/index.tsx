@@ -163,7 +163,7 @@ function Index() {
               playsInline 
               className="w-full h-full object-cover opacity-60"
             >
-              <source src="https://assets.mixkit.co/videos/preview/mixkit-watchmaker-repairing-a-pocket-watch-34440-large.mp4" type="video/mp4" />
+              <source src="https://assets.mixkit.co/videos/preview/mixkit-repairing-the-inside-of-a-clock-34438-large.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
             <div className="absolute inset-0 bg-gradient-to-b from-[#00050A]/80 via-[#00050A]/40 to-[#00050A]" />
