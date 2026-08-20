@@ -307,31 +307,46 @@ function Index() {
           </div>
           
           <div className="max-w-7xl mx-auto px-8 relative z-10 flex flex-col lg:flex-row items-center gap-16">
-            <div className="lg:w-1/2">
+            <div className="lg:w-5/12">
               <h2 className="text-sm font-bold tracking-[0.3em] text-[#C5A059] uppercase mb-4">Herança & Tradição</h2>
               <h3 className="text-4xl md:text-6xl font-serif text-[#E5D3B3] mb-8 leading-tight">Relógios que carregam histórias</h3>
-              <p className="text-lg text-[#E5D3B3]/60 mb-10 leading-relaxed font-light">
+              <p className="text-lg text-[#E5D3B3]/70 mb-10 leading-relaxed font-light">
                 Descubra peças antigas e vintage selecionadas para colecionadores e apaixonados por relojoaria. 
                 Cada relógio possui sua própria história, personalidade e valor inestimável.
               </p>
-              <div className="flex flex-col sm:flex-row gap-6">
-                <button className="bg-[#C5A059] text-[#00050A] px-10 py-4 rounded font-bold hover:bg-[#D4B473] transition-all uppercase text-sm tracking-widest">
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button className="bg-[#C5A059] text-[#00050A] px-8 py-4 rounded font-bold hover:bg-[#D4B473] transition-all uppercase text-xs tracking-[0.2em] shadow-lg shadow-[#C5A059]/10">
                   Explorar Relógios Antigos
                 </button>
-                <button className="border border-[#C5A059]/40 text-[#C5A059] px-10 py-4 rounded font-bold hover:bg-[#C5A059]/10 transition-all uppercase text-sm tracking-widest">
+                <button className="border border-[#C5A059]/40 text-[#C5A059] px-8 py-4 rounded font-bold hover:bg-[#C5A059]/10 transition-all uppercase text-xs tracking-[0.2em]">
                   Avaliar Meu Antigo
                 </button>
               </div>
             </div>
-            <div className="lg:w-1/2 grid grid-cols-2 gap-4">
-              <div className="space-y-4 mt-12">
-                <img src="https://images.unsplash.com/photo-1509048191080-d2984bad6ad5?auto=format&fit=crop&q=80&w=800" className="rounded-lg shadow-2xl grayscale hover:grayscale-0 transition-all duration-700" alt="Vintage Watch 1" />
-                <img src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?auto=format&fit=crop&q=80&w=800" className="rounded-lg shadow-2xl grayscale hover:grayscale-0 transition-all duration-700" alt="Vintage Watch 2" />
+            
+            <div className="lg:w-7/12 relative h-[500px] w-full mt-12 lg:mt-0">
+              {/* Grid de Imagens Sofisticado */}
+              <div className="absolute top-0 right-0 w-3/4 h-[85%] z-10 overflow-hidden rounded-lg shadow-2xl border border-[#C5A059]/10 group">
+                <img 
+                  src="https://images.unsplash.com/photo-1547996160-81dfa63595dd?auto=format&fit=crop&q=80&w=1200" 
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105" 
+                  alt="Relógio Vintage de Luxo" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A101A]/80 to-transparent opacity-60" />
               </div>
-              <div className="space-y-4">
-                <img src="https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=80&w=800" className="rounded-lg shadow-2xl grayscale hover:grayscale-0 transition-all duration-700" alt="Vintage Watch 3" />
-                <img src="https://images.unsplash.com/photo-1547996160-81dfa63595dd?auto=format&fit=crop&q=80&w=800" className="rounded-lg shadow-2xl grayscale hover:grayscale-0 transition-all duration-700" alt="Vintage Watch 4" />
+              
+              <div className="absolute bottom-0 left-0 w-1/2 h-3/4 z-20 overflow-hidden rounded-lg shadow-2xl border border-[#C5A059]/20 group">
+                <img 
+                  src="https://images.unsplash.com/photo-1509048191080-d2984bad6ad5?auto=format&fit=crop&q=80&w=800" 
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105" 
+                  alt="Mecanismo de Precisão" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-tr from-[#0A101A]/60 to-transparent opacity-40" />
               </div>
+
+              {/* Elementos Decorativos de Design */}
+              <div className="absolute -top-6 -right-6 w-32 h-32 border border-[#C5A059]/20 rounded-full animate-[spin_20s_linear_infinite] z-0" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[#C5A059]/5 blur-[120px] rounded-full z-0" />
             </div>
           </div>
         </section>
