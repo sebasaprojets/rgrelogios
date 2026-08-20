@@ -64,3 +64,56 @@ export const submitServiceRequest = createServerFn({ method: "POST" })
     if (error) throw new Error(error.message);
     return { success: true };
   });
+
+export const createOrder = createServerFn({ method: "POST" })
+  .inputValidator((data) => z.object({
+    customer_name: z.string().min(2),
+    customer_email: z.string().email(),
+    customer_whatsapp: z.string().optional(),
+    items: z.array(z.any()),
+    total_amount: z.number(),
+    payment_method: z.string(),
+    shipping_address: z.string().optional(),
+  }).parse(data))
+  .handler(async ({ data }) => {
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { error } = await supabaseAdmin
+      .from("orders" as any)
+      .insert([{
+        customer_name: data.customer_name,
+        customer_email: data.customer_email,
+        customer_whatsapp: data.customer_whatsapp ?? undefined,
+        items: data.items,
+        total_amount: data.total_amount,
+        payment_method: data.payment_method,
+        shipping_address: data.shipping_address ?? undefined,
+        status: "pending"
+      } as any]);
+      
+    if (error) throw new Error(error.message);
+    return { success: true };
+  });
+
+export const getOrders = createServerFn({ method: "GET" })
+  .handler(async () => {
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { data: orders, error } = await supabaseAdmin
+      .from("orders" as any)
+      .select("*")
+      .order("created_at", { ascending: false });
+      
+    if (error) throw new Error(error.message);
+    return orders as any[];
+  });
+
+export const getServiceRequests = createServerFn({ method: "GET" })
+  .handler(async () => {
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { data: requests, error } = await supabaseAdmin
+      .from("service_requests")
+      .select("*")
+      .order("created_at", { ascending: false });
+      
+    if (error) throw new Error(error.message);
+    return requests;
+  });

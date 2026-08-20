@@ -156,20 +156,22 @@ function Index() {
             Relógios selecionados, peças especiais e serviços especializados para quem valoriza precisão, história e exclusividade.
           </p>
           <div className="flex flex-col md:flex-row gap-6">
-            <motion.button 
+            <motion.a 
+              href="#relógios"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="border border-[#C5A059] text-[#C5A059] px-10 py-4 rounded text-lg font-medium hover:bg-[#C5A059]/10 transition-all"
+              className="border border-[#C5A059] text-[#C5A059] px-10 py-4 rounded text-lg font-medium hover:bg-[#C5A059]/10 transition-all flex items-center justify-center"
             >
               Ver Relógios
-            </motion.button>
-            <motion.button 
+            </motion.a>
+            <motion.a 
+              href="#serviços"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-[#C5A059] text-[#00050A] px-10 py-4 rounded text-lg font-bold hover:bg-[#D4B473] transition-all"
+              className="bg-[#C5A059] text-[#00050A] px-10 py-4 rounded text-lg font-bold hover:bg-[#D4B473] transition-all flex items-center justify-center"
             >
               Solicitar Avaliação
-            </motion.button>
+            </motion.a>
           </div>
           
           <div className="mt-20 flex gap-12 text-[#E5D3B3]/60 text-sm tracking-widest uppercase">
@@ -327,14 +329,15 @@ function Index() {
             <div className="bg-[#0A101A] p-10 rounded-xl border border-[#C5A059]/20 shadow-2xl">
                 <h3 className="text-3xl font-serif text-[#C5A059] mb-8">Solicite uma avaliação do seu relógio</h3>
                 <form onSubmit={handleSubmit} className="space-y-6">
-                    <input type="text" placeholder="Seu Nome" className="w-full p-4 bg-[#00050A] border border-[#C5A059]/20 rounded text-[#E5D3B3] placeholder-[#E5D3B3]/30" />
-                    <input type="text" placeholder="Seu WhatsApp" className="w-full p-4 bg-[#00050A] border border-[#C5A059]/20 rounded text-[#E5D3B3] placeholder-[#E5D3B3]/30" />
-                    <select className="w-full p-4 bg-[#00050A] border border-[#C5A059]/20 rounded text-[#E5D3B3]">
-                        <option>Reparação</option>
-                        <option>Manutenção</option>
-                        <option>Restauração</option>
+                    <input type="text" name="name" required placeholder="Seu Nome" className="w-full p-4 bg-[#00050A] border border-[#C5A059]/20 rounded text-[#E5D3B3] placeholder-[#E5D3B3]/30 outline-none focus:border-[#C5A059]" />
+                    <input type="text" name="whatsapp" required placeholder="Seu WhatsApp" className="w-full p-4 bg-[#00050A] border border-[#C5A059]/20 rounded text-[#E5D3B3] placeholder-[#E5D3B3]/30 outline-none focus:border-[#C5A059]" />
+                    <select name="service" required className="w-full p-4 bg-[#00050A] border border-[#C5A059]/20 rounded text-[#E5D3B3] outline-none focus:border-[#C5A059]">
+                        <option value="Reparação">Reparação</option>
+                        <option value="Manutenção">Manutenção</option>
+                        <option value="Restauração">Restauração</option>
+                        <option value="Avaliação">Avaliação</option>
                     </select>
-                    <textarea placeholder="Descrição do problema" className="w-full p-4 bg-[#00050A] border border-[#C5A059]/20 rounded text-[#E5D3B3] min-h-[150px] placeholder-[#E5D3B3]/30"></textarea>
+                    <textarea name="description" placeholder="Descrição do problema" className="w-full p-4 bg-[#00050A] border border-[#C5A059]/20 rounded text-[#E5D3B3] min-h-[150px] placeholder-[#E5D3B3]/30 outline-none focus:border-[#C5A059]"></textarea>
                     <button type="submit" className="w-full bg-[#C5A059] text-[#00050A] py-4 rounded font-bold hover:bg-[#D4B473] transition-all flex justify-center items-center gap-2">
                         <Send size={18} /> Enviar para avaliação
                     </button>
