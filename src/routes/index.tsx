@@ -8,6 +8,30 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const [activeCategory, setActiveCategory] = useState("Todos");
+
+  const categories = [
+    "Todos",
+    "Relógios Clássicos",
+    "Relógios de Luxo",
+    "Relógios Antigos",
+    "Relógios Vintage",
+    "Relógios Masculinos",
+    "Relógios Femininos",
+    "Peças Exclusivas"
+  ];
+
+  const watches = [
+    { name: 'Submariner Date', brand: 'Rolex', category: 'Relógios de Luxo', price: 'R$ 75.000', condition: 'Novo', img: 'https://images.unsplash.com/photo-1547996160-81dfa63595dd?auto=format&fit=crop&q=80&w=800' },
+    { name: 'Speedmaster Moon', brand: 'Omega', category: 'Relógios Clássicos', price: 'R$ 42.000', condition: 'Excelente', img: 'https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&q=80&w=800' },
+    { name: 'Calatrava 96', brand: 'Patek Philippe', category: 'Relógios Antigos', price: 'Sob Consulta', condition: 'Vintage', img: 'https://images.unsplash.com/photo-1509048191080-d2984bad6ad5?auto=format&fit=crop&q=80&w=800' },
+    { name: 'Tank Louis', brand: 'Cartier', category: 'Relógios de Luxo', price: 'R$ 58.000', condition: 'Novo', img: 'https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=80&w=800' },
+  ];
+
+  const filteredWatches = activeCategory === "Todos" 
+    ? watches 
+    : watches.filter(w => w.category === activeCategory);
+
   return (
     <div className="min-h-screen bg-[#00050A] text-[#E5D3B3] font-['Inter'] selection:bg-[#C5A059] selection:text-[#00050A]">
       <header className="fixed top-0 w-full z-50 flex items-center justify-between px-8 py-6 bg-[#00050A]/90 backdrop-blur-md border-b border-[#C5A059]/20">
