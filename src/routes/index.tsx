@@ -1,6 +1,21 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { 
+  MessageCircle, 
+  MapPin, 
+  Clock, 
+  Star, 
+  Shield, 
+  PenTool as Tool, 
+  History, 
+  Smartphone, 
+  CheckCircle2, 
+  Menu, 
+  X,
+  Upload,
+  Send
+} from "lucide-react";
 
 export const Route = createFileRoute("/")({
   component: Index,
