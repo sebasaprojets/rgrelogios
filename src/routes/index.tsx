@@ -16,6 +16,7 @@ import {
   Upload,
   Send
 } from "lucide-react";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -191,12 +192,7 @@ function Index() {
         </div>
 
         {/* WhatsApp Float */}
-        <motion.button 
-          className="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:bg-[#128C7E] transition-all"
-          whileHover={{ scale: 1.1 }}
-        >
-          <MessageCircle size={32} />
-        </motion.button>
+<WhatsAppButton />
       </main>
     </div>
   );
