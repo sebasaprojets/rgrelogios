@@ -145,9 +145,29 @@ function Index() {
           </div>
         </section>
 
-        {/* Reparo Section with Form */}
-        <section id="serviços" className="py-32 px-8 bg-[#00050A]">
-            <div className="max-w-2xl mx-auto bg-[#0A101A] p-10 rounded-xl border border-[#C5A059]/20">
+        {/* Form & Services Section */}
+        <div id="serviços" className="py-32 px-8 bg-[#00050A] grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-7xl mx-auto">
+            {/* Services List */}
+            <div className="space-y-8">
+                <h3 className="text-4xl font-serif text-[#C5A059]">Serviços de Relojoaria</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {[
+                    { title: 'Manutenção', icon: Tool },
+                    { title: 'Reparação', icon: Tool },
+                    { title: 'Restauração', icon: History },
+                    { title: 'Avaliação', icon: Star },
+                  ].map((service, i) => (
+                    <div key={i} className="p-6 bg-[#0A101A] border border-[#C5A059]/10 rounded-lg hover:border-[#C5A059]/40 transition-all">
+                      <service.icon className="text-[#C5A059] mb-4" size={24} />
+                      <h4 className="text-lg font-serif text-[#C5A059] mb-2">{service.title}</h4>
+                      <p className="text-sm text-[#E5D3B3]/60">Serviço profissional de alta precisão.</p>
+                    </div>
+                  ))}
+                </div>
+            </div>
+
+            {/* Evaluation Form */}
+            <div className="bg-[#0A101A] p-10 rounded-xl border border-[#C5A059]/20 shadow-2xl">
                 <h3 className="text-3xl font-serif text-[#C5A059] mb-8">Solicite uma avaliação do seu relógio</h3>
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <input type="text" placeholder="Seu Nome" className="w-full p-4 bg-[#00050A] border border-[#C5A059]/20 rounded text-[#E5D3B3] placeholder-[#E5D3B3]/30" />
@@ -158,7 +178,9 @@ function Index() {
                         <option>Restauração</option>
                     </select>
                     <textarea placeholder="Descrição do problema" className="w-full p-4 bg-[#00050A] border border-[#C5A059]/20 rounded text-[#E5D3B3] min-h-[150px] placeholder-[#E5D3B3]/30"></textarea>
-                    <button type="submit" className="w-full bg-[#C5A059] text-[#00050A] py-4 rounded font-bold hover:bg-[#D4B473] transition-all">Enviar para avaliação</button>
+                    <button type="submit" className="w-full bg-[#C5A059] text-[#00050A] py-4 rounded font-bold hover:bg-[#D4B473] transition-all flex justify-center items-center gap-2">
+                        <Send size={18} /> Enviar para avaliação
+                    </button>
                 </form>
                 {showConfirm && (
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-6 p-4 bg-green-900/20 text-green-500 rounded flex items-center gap-2">
@@ -166,7 +188,15 @@ function Index() {
                     </motion.div>
                 )}
             </div>
-        </section>
+        </div>
+
+        {/* WhatsApp Float */}
+        <motion.button 
+          className="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:bg-[#128C7E] transition-all"
+          whileHover={{ scale: 1.1 }}
+        >
+          <MessageCircle size={32} />
+        </motion.button>
       </main>
     </div>
   );
