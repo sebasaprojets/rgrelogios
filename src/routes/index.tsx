@@ -161,11 +161,11 @@ function Index() {
               loop 
               muted 
               playsInline 
+              preload="auto"
               className="w-full h-full object-cover opacity-60"
-              poster="https://images.unsplash.com/photo-1509048191080-d2984bad6ad5?auto=format&fit=crop&q=80&w=1920"
+              poster={heroPosterAsset.url}
             >
-              <source src="https://assets.mixkit.co/videos/preview/mixkit-repairing-the-inside-of-a-clock-34438-large.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
+              <source src={heroVideoAsset.url} type="video/mp4" />
             </video>
             <div className="absolute inset-0 bg-[#00050A]/60" />
           </div>
