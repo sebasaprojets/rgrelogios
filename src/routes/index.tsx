@@ -56,8 +56,10 @@ function Index() {
 
   return (
     <div className="min-h-screen bg-[#00050A] text-[#E5D3B3] font-['Inter'] selection:bg-[#C5A059] selection:text-[#00050A]">
-      <header className="fixed top-0 w-full z-50 flex items-center justify-between px-8 py-6 bg-[#00050A]/90 backdrop-blur-md border-b border-[#C5A059]/20">
+      <header className="fixed top-0 w-full z-50 flex items-center justify-between px-8 py-6 bg-[#00050A]/95 backdrop-blur-md border-b border-[#C5A059]/20">
         <h1 className="text-2xl font-serif font-bold text-[#C5A059] tracking-wider">RG RELÓGIOS</h1>
+        
+        {/* Desktop Nav */}
         <nav className="hidden md:flex gap-8 text-sm font-medium tracking-wide text-[#E5D3B3]/90 uppercase">
           {["Início", "Relógios", "Antigos", "Serviços", "Sobre", "Contato"].map((item) => (
             <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-[#C5A059] transition-colors">
@@ -65,13 +67,52 @@ function Index() {
             </a>
           ))}
         </nav>
-        <motion.button 
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="bg-[#C5A059] text-[#00050A] px-6 py-2.5 rounded font-bold text-sm tracking-wide hover:bg-[#D4B473] transition-all"
-        >
-          Falar no WhatsApp
-        </motion.button>
+
+        <div className="flex items-center gap-4">
+          <motion.button 
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="hidden sm:flex bg-[#C5A059] text-[#00050A] px-6 py-2.5 rounded font-bold text-sm tracking-wide hover:bg-[#D4B473] transition-all items-center gap-2"
+          >
+            <MessageCircle size={18} />
+            Falar no WhatsApp
+          </motion.button>
+          
+          {/* Mobile Menu Toggle */}
+          <button 
+            className="md:hidden text-[#C5A059]"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
+
+        {/* Mobile Nav */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div 
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="absolute top-full left-0 w-full bg-[#00050A] border-b border-[#C5A059]/20 p-8 flex flex-col gap-6 md:hidden shadow-2xl"
+            >
+              {["Início", "Relógios", "Antigos", "Serviços", "Sobre", "Contato"].map((item) => (
+                <a 
+                  key={item} 
+                  href={`#${item.toLowerCase()}`} 
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-xl font-serif text-[#C5A059] hover:text-[#D4B473]"
+                >
+                  {item}
+                </a>
+              ))}
+              <button className="bg-[#C5A059] text-[#00050A] py-4 rounded font-bold flex justify-center items-center gap-2">
+                <MessageCircle size={20} />
+                WhatsApp
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
 
       <main>
