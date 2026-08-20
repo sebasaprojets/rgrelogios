@@ -169,14 +169,14 @@ function Index() {
             >
               <source src={heroVideoAsset.url} type="video/mp4" />
             </video>
-            <div className="absolute inset-0 bg-[#00050A]/60" />
+            <div className="absolute inset-0 bg-[#00050A]/80 md:bg-[#00050A]/60" />
           </div>
 
-          <div className="relative z-10 flex flex-col items-center">
-            <h2 className="text-5xl md:text-8xl font-serif text-[#C5A059] mb-8 leading-tight">
+          <div className="relative z-10 flex flex-col items-center px-4">
+            <h2 className="text-4xl sm:text-5xl md:text-8xl font-serif text-[#C5A059] mb-6 md:mb-8 leading-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
               O tempo passa.<br/>A elegância permanece.
             </h2>
-            <p className="text-xl md:text-2xl max-w-2xl mb-12 text-[#E5D3B3]/80 font-light">
+            <p className="text-lg md:text-2xl max-w-2xl mb-10 md:mb-12 text-[#E5D3B3]/90 md:text-[#E5D3B3]/80 font-light drop-shadow-[0_1px_5px_rgba(0,0,0,0.5)]">
               Relógios selecionados, peças especiais e serviços especializados para quem valoriza precisão, história e exclusividade.
             </p>
             <div className="flex flex-col md:flex-row gap-6">
