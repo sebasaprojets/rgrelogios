@@ -1,6 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useServerFn } from "@tanstack/react-start";
+import { getProducts, getReviews, submitServiceRequest } from "@/lib/api.functions";
 import { 
   MessageCircle, 
   MapPin, 
@@ -26,34 +29,64 @@ function Index() {
   const [activeCategory, setActiveCategory] = useState("Todos");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  
+  const fetchProducts = useServerFn(getProducts);
+  const fetchReviews = useServerFn(getReviews);
+  const submitRequest = useServerFn(submitServiceRequest);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const { data: products = [] } = useQuery({
+    queryKey: ["products", activeCategory],
+    queryFn: () => fetchProducts({ data: { category: activeCategory } }),
+  });
+
+  const { data: reviews = [] } = useQuery({
+    queryKey: ["reviews"],
+    queryFn: () => fetchReviews({ data: undefined }),
+  });
+
+  const filteredProducts = useMemo(() => {
+    return products.filter(p => 
+      p.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      p.brand.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      p.model.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [products, searchTerm]);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setShowConfirm(true);
-    setTimeout(() => setShowConfirm(false), 5000);
+    const formData = new FormData(e.currentTarget);
+    
+    try {
+      await submitRequest({
+        data: {
+          customer_name: formData.get("name") as string,
+          customer_whatsapp: formData.get("whatsapp") as string,
+          customer_email: formData.get("email") as string || undefined,
+          service_type: formData.get("service") as string,
+          description: formData.get("description") as string || undefined,
+          watch_brand: formData.get("brand") as string || undefined,
+          watch_model: formData.get("model") as string || undefined,
+        }
+      });
+      setShowConfirm(true);
+      (e.target as HTMLFormElement).reset();
+      setTimeout(() => setShowConfirm(false), 5000);
+    } catch (error) {
+      console.error("Erro ao enviar solicitação:", error);
+    }
   };
 
   const categories = [
     "Todos",
-    "Relógios Clássicos",
-    "Relógios de Luxo",
-    "Relógios Antigos",
-    "Relógios Vintage",
-    "Relógios Masculinos",
-    "Relógios Femininos",
+    "Clássicos",
+    "Luxo",
+    "Antigos",
+    "Vintage",
+    "Masculinos",
+    "Femininos",
     "Peças Exclusivas"
   ];
-
-  const watches = [
-    { name: 'Submariner Date', brand: 'Rolex', category: 'Relógios de Luxo', price: 'R$ 75.000', condition: 'Novo', img: 'https://images.unsplash.com/photo-1547996160-81dfa63595dd?auto=format&fit=crop&q=80&w=800' },
-    { name: 'Speedmaster Moon', brand: 'Omega', category: 'Relógios Clássicos', price: 'R$ 42.000', condition: 'Excelente', img: 'https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&q=80&w=800' },
-    { name: 'Calatrava 96', brand: 'Patek Philippe', category: 'Relógios Antigos', price: 'Sob Consulta', condition: 'Vintage', img: 'https://images.unsplash.com/photo-1509048191080-d2984bad6ad5?auto=format&fit=crop&q=80&w=800' },
-    { name: 'Tank Louis', brand: 'Cartier', category: 'Relógios de Luxo', price: 'R$ 58.000', condition: 'Novo', img: 'https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=80&w=800' },
-  ];
-
-  const filteredWatches = activeCategory === "Todos" 
-    ? watches 
-    : watches.filter(w => w.category === activeCategory);
 
   return (
     <div className="min-h-screen bg-[#00050A] text-[#E5D3B3] font-['Inter'] selection:bg-[#C5A059] selection:text-[#00050A]">
