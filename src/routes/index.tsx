@@ -156,27 +156,34 @@ function Index() {
 
       <main>
         <section id="início" className="relative h-screen flex flex-col items-center justify-center text-center p-6 overflow-hidden">
-          {/* Vídeo Cinematográfico de Fundo */}
+          {/* Fundo Cinematográfico com Zoom Suave */}
           <div className="absolute inset-0 z-0">
-            <video 
-              autoPlay 
-              loop 
-              muted 
-              playsInline 
-              preload="auto"
-              className="w-full h-full object-cover opacity-60"
-              poster={heroPosterAsset.url}
+            <motion.div 
+              initial={{ scale: 1.1 }}
+              animate={{ scale: 1.25 }}
+              transition={{ 
+                duration: 20, 
+                repeat: Infinity, 
+                repeatType: "reverse", 
+                ease: "linear" 
+              }}
+              className="w-full h-full"
             >
-              <source src={heroVideoAsset.url} type="video/mp4" />
-            </video>
-            <div className="absolute inset-0 bg-[#00050A]/80 md:bg-[#00050A]/60" />
+              <img 
+                src="https://images.unsplash.com/photo-1547996160-81dfa63595dd?auto=format&fit=crop&q=80&w=1920"
+                alt="Luxury Watch Background"
+                className="w-full h-full object-cover opacity-60"
+              />
+            </motion.div>
+            {/* Overlay Gradiente Denso para Máxima Legibilidade */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#00050A]/40 via-[#00050A]/80 to-[#00050A]" />
           </div>
 
           <div className="relative z-10 flex flex-col items-center px-4">
-            <h2 className="text-3xl sm:text-5xl md:text-8xl font-serif text-[#C5A059] mb-6 md:mb-8 leading-tight drop-shadow-lg">
+            <h2 className="text-[2.5rem] sm:text-5xl md:text-8xl font-serif text-[#C5A059] mb-6 md:mb-8 leading-[1.1] md:leading-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] tracking-tight">
               O tempo passa.<br/>A elegância permanece.
             </h2>
-            <p className="text-base sm:text-xl md:text-2xl max-w-2xl mb-8 md:mb-12 text-[#E5D3B3] md:text-[#E5D3B3]/80 font-light drop-shadow-md">
+            <p className="text-base sm:text-xl md:text-2xl max-w-2xl mb-8 md:mb-12 text-[#E5D3B3] md:text-[#E5D3B3]/90 font-light drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)] leading-relaxed">
               Relógios selecionados, peças especiais e serviços especializados para quem valoriza precisão, história e exclusividade.
             </p>
             <div className="flex flex-col md:flex-row gap-6">
