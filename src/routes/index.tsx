@@ -171,10 +171,50 @@ function Index() {
             >
               <img 
                 src="https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?auto=compress&cs=tinysrgb&w=1920"
-                alt="Luxury Watch Background"
+                alt="Relógio de luxo em destaque"
                 className="w-full h-full object-cover opacity-60"
               />
-...
+            </motion.div>
+            <div className="absolute inset-0 bg-gradient-to-b from-[#00050A]/90 via-[#00050A]/70 to-[#00050A]" />
+          </div>
+
+          <div className="relative z-10 max-w-4xl">
+            <h2 className="text-4xl sm:text-6xl font-serif font-bold text-[#C5A059] drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
+              Tempo, arte e precisão
+            </h2>
+            <p className="mt-6 text-base sm:text-xl text-[#E5D3B3] drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+              Venda, manutenção e restauração de relógios clássicos e contemporâneos.
+            </p>
+            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="#relógios" className="bg-[#C5A059] text-[#00050A] px-8 py-4 rounded font-bold tracking-wide hover:bg-[#D4B473] transition-all">
+                Ver Catálogo
+              </a>
+              <a href="#serviços" className="border border-[#C5A059]/50 text-[#C5A059] px-8 py-4 rounded font-bold tracking-wide hover:bg-[#C5A059]/10 transition-all">
+                Solicitar Serviço
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* Relógios Antigos */}
+        <section id="antigos" className="relative py-32 px-8 bg-[#0A101A] overflow-hidden">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-6">
+              <h3 className="text-4xl sm:text-5xl font-serif text-[#C5A059]">Relógios que carregam histórias</h3>
+              <p className="text-[#E5D3B3]/70 leading-relaxed">
+                Peças antigas restauradas com respeito à sua origem, mantendo o mecanismo original sempre que possível.
+              </p>
+              <div className="flex flex-wrap gap-4 pt-2">
+                <a href="#relógios" className="bg-[#C5A059] text-[#00050A] px-7 py-3.5 rounded font-bold tracking-wide hover:bg-[#D4B473] transition-all">
+                  Explorar Coleção
+                </a>
+                <a href="#contato" className="border border-[#C5A059]/50 text-[#C5A059] px-7 py-3.5 rounded font-bold tracking-wide hover:bg-[#C5A059]/10 transition-all">
+                  Avaliar minha peça
+                </a>
+              </div>
+            </div>
+
+            <div className="relative h-[480px]">
               {/* Grid de Imagens Sofisticado */}
               <div className="absolute top-0 right-0 w-3/4 h-[85%] z-10 overflow-hidden rounded-lg shadow-2xl border border-[#C5A059]/10 group">
                 <img 
@@ -200,6 +240,7 @@ function Index() {
             </div>
           </div>
         </section>
+
 
         {/* Form & Services Section */}
         <div id="serviços" className="py-32 px-8 bg-[#00050A] grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-7xl mx-auto">
