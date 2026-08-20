@@ -106,6 +106,7 @@ function Index() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="hidden sm:flex bg-[#C5A059] text-[#00050A] px-6 py-2.5 rounded font-bold text-sm tracking-wide hover:bg-[#D4B473] transition-all items-center gap-2"
+            onClick={() => window.open('https://wa.me/5541992399650', '_blank')}
           >
             <MessageCircle size={18} />
             Falar no WhatsApp
