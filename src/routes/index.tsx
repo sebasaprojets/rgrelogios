@@ -170,7 +170,7 @@ function Index() {
               className="w-full h-full"
             >
               <img 
-                src="https://images.unsplash.com/photo-1547996160-81dfa63595dd?auto=format&fit=crop&q=80&w=1920"
+                src="https://images.unsplash.com/photo-1509048191080-d2984bad6ad5?auto=format&fit=crop&q=80&w=1920"
                 alt="Luxury Watch Background"
                 className="w-full h-full object-cover opacity-60"
               />
