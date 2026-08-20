@@ -1,4 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { motion } from "framer-motion";
+import { MessageCircle, MapPin, Clock, Star, Shield, PenTool as Tool, Search, Filter, History, Smartphone, ChevronRight } from "lucide-react";
+import { useState } from "react";
 
 export const Route = createFileRoute("/")({
   component: Index,
