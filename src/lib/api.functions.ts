@@ -76,7 +76,8 @@ export const createOrder = createServerFn({ method: "POST" })
     shipping_address: z.string().optional(),
   }).parse(data))
   .handler(async ({ data }) => {
-    const { error } = await supabase
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { error } = await supabaseAdmin
       .from("orders" as any)
       .insert([{
         customer_name: data.customer_name,
@@ -86,6 +87,7 @@ export const createOrder = createServerFn({ method: "POST" })
         total_amount: data.total_amount,
         payment_method: data.payment_method,
         shipping_address: data.shipping_address ?? undefined,
+        status: "pending"
       } as any]);
       
     if (error) throw new Error(error.message);
@@ -94,7 +96,8 @@ export const createOrder = createServerFn({ method: "POST" })
 
 export const getOrders = createServerFn({ method: "GET" })
   .handler(async () => {
-    const { data: orders, error } = await supabase
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { data: orders, error } = await supabaseAdmin
       .from("orders" as any)
       .select("*")
       .order("created_at", { ascending: false });
@@ -105,7 +108,8 @@ export const getOrders = createServerFn({ method: "GET" })
 
 export const getServiceRequests = createServerFn({ method: "GET" })
   .handler(async () => {
-    const { data: requests, error } = await supabase
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { data: requests, error } = await supabaseAdmin
       .from("service_requests")
       .select("*")
       .order("created_at", { ascending: false });
