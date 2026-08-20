@@ -1,23 +1,49 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
+import { useServerFn } from "@tanstack/react-start";
+import { getProducts, getServiceRequests, getOrders, getReviews } from "@/lib/api.functions";
 import { motion } from "framer-motion";
-import { LayoutDashboard, Package, MessageSquare, Star, Settings, LogOut } from "lucide-react";
+import { LayoutDashboard, Package, MessageSquare, Star, Settings, LogOut, ShoppingCart } from "lucide-react";
+import { useState } from "react";
 
 export const Route = createFileRoute("/admin")({
   component: AdminPanel,
 });
 
 function AdminPanel() {
-  const { data: stats } = useQuery({
-    queryKey: ["admin-stats"],
-    queryFn: async () => {
-      const { count: productsCount } = await supabase.from("products").select("*", { count: 'exact', head: true });
-      const { count: requestsCount } = await supabase.from("service_requests").select("*", { count: 'exact', head: true });
-      const { count: reviewsCount } = await supabase.from("reviews").select("*", { count: 'exact', head: true });
-      return { productsCount, requestsCount, reviewsCount };
-    }
+  const [activeTab, setActiveTab] = useState("Dashboard");
+  
+  const fetchProducts = useServerFn(getProducts);
+  const fetchRequests = useServerFn(getServiceRequests);
+  const fetchOrders = useServerFn(getOrders);
+  const fetchReviews = useServerFn(getReviews);
+
+  const { data: products = [] } = useQuery({
+    queryKey: ["admin-products"],
+    queryFn: () => fetchProducts({ data: {} }),
   });
+
+  const { data: requests = [] } = useQuery({
+    queryKey: ["admin-requests"],
+    queryFn: () => fetchRequests({ data: undefined }),
+  });
+
+  const { data: orders = [] } = useQuery({
+    queryKey: ["admin-orders"],
+    queryFn: () => fetchOrders({ data: undefined }),
+  });
+
+  const { data: reviews = [] } = useQuery({
+    queryKey: ["admin-reviews"],
+    queryFn: () => fetchReviews({ data: undefined }),
+  });
+
+  const stats = {
+    productsCount: products.length,
+    requestsCount: requests.length,
+    ordersCount: orders.length,
+    reviewsCount: reviews.length,
+  };
 
   return (
     <div className="min-h-screen bg-[#00050A] text-[#E5D3B3] flex">
