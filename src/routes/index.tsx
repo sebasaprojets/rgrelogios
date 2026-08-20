@@ -162,11 +162,12 @@ function Index() {
               muted 
               playsInline 
               className="w-full h-full object-cover opacity-60"
+              poster="https://images.unsplash.com/photo-1509048191080-d2984bad6ad5?auto=format&fit=crop&q=80&w=1920"
             >
               <source src="https://assets.mixkit.co/videos/preview/mixkit-repairing-the-inside-of-a-clock-34438-large.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
-            <div className="absolute inset-0 bg-gradient-to-b from-[#00050A]/80 via-[#00050A]/40 to-[#00050A]" />
+            <div className="absolute inset-0 bg-[#00050A]/60" />
           </div>
 
           <div className="relative z-10 flex flex-col items-center">
