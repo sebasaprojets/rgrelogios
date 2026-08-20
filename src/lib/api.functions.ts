@@ -77,16 +77,16 @@ export const createOrder = createServerFn({ method: "POST" })
   }).parse(data))
   .handler(async ({ data }) => {
     const { error } = await supabase
-      .from("orders")
+      .from("orders" as any)
       .insert([{
         customer_name: data.customer_name,
         customer_email: data.customer_email,
-        customer_whatsapp: data.customer_whatsapp ?? null,
+        customer_whatsapp: data.customer_whatsapp ?? undefined,
         items: data.items,
         total_amount: data.total_amount,
         payment_method: data.payment_method,
-        shipping_address: data.shipping_address ?? null,
-      }]);
+        shipping_address: data.shipping_address ?? undefined,
+      } as any]);
       
     if (error) throw new Error(error.message);
     return { success: true };
@@ -95,12 +95,12 @@ export const createOrder = createServerFn({ method: "POST" })
 export const getOrders = createServerFn({ method: "GET" })
   .handler(async () => {
     const { data: orders, error } = await supabase
-      .from("orders")
+      .from("orders" as any)
       .select("*")
       .order("created_at", { ascending: false });
       
     if (error) throw new Error(error.message);
-    return orders;
+    return orders as any[];
   });
 
 export const getServiceRequests = createServerFn({ method: "GET" })
