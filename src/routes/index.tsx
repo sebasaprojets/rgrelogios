@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { MessageCircle, MapPin, Clock, Star, Shield, PenTool as Tool, Search, Filter, History, Smartphone, ChevronRight } from "lucide-react";
 import { useState } from "react";
 
 export const Route = createFileRoute("/")({
@@ -131,7 +130,7 @@ function Index() {
                       <button className="w-full bg-[#C5A059] text-[#00050A] py-2 rounded text-sm font-bold hover:bg-[#D4B473] transition-colors">Tenho interesse</button>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
