@@ -20,6 +20,8 @@ import {
   Send
 } from "lucide-react";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import logoAsset from "@/assets/logo.jpeg.asset.json";
+import storefrontAsset from "@/assets/storefront.jpeg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -91,7 +93,10 @@ function Index() {
   return (
     <div className="min-h-screen bg-[#00050A] text-[#E5D3B3] font-['Inter'] selection:bg-[#C5A059] selection:text-[#00050A]">
       <header className="fixed top-0 w-full z-50 flex items-center justify-between px-8 py-6 bg-[#00050A]/95 backdrop-blur-md border-b border-[#C5A059]/20">
-        <h1 className="text-2xl font-serif font-bold text-[#C5A059] tracking-wider">RG RELÓGIOS</h1>
+        <div className="flex items-center gap-4">
+          <img src={logoAsset.url} alt="RG Relógios" className="w-10 h-10 object-contain rounded-full border border-[#C5A059]/30" />
+          <h1 className="text-2xl font-serif font-bold text-[#C5A059] tracking-wider">RG RELÓGIOS</h1>
+        </div>
         
         <nav className="hidden md:flex gap-8 text-sm font-medium tracking-wide text-[#E5D3B3]/90 uppercase">
           {["Início", "Relógios", "Antigos", "Serviços", "Sobre", "Contato"].map((item) => (
@@ -393,7 +398,7 @@ function Index() {
         <section id="sobre" className="py-32 px-8 bg-[#00050A]">
           <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-20">
             <div className="lg:w-1/2 relative">
-              <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&q=80&w=800" alt="Work Bench" className="rounded-lg shadow-2xl" />
+              <img src={storefrontAsset.url} alt="Loja RG Relógios" className="rounded-lg shadow-2xl w-full h-[500px] object-cover border border-[#C5A059]/20" />
               <div className="absolute -bottom-10 -right-10 bg-[#C5A059] p-8 hidden md:block rounded-lg shadow-2xl">
                 <span className="block text-4xl font-serif text-[#00050A] mb-1">25+</span>
                 <span className="text-[10px] font-bold uppercase tracking-widest text-[#00050A]">Anos de Experiência</span>
@@ -472,7 +477,10 @@ function Index() {
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
               <div className="col-span-1 md:col-span-2">
-                <h4 className="text-2xl font-serif text-[#C5A059] mb-6">RG RELÓGIOS</h4>
+                <div className="flex items-center gap-4 mb-6">
+                  <img src={logoAsset.url} alt="RG Relógios Logo" className="w-12 h-12 object-contain rounded-full border border-[#C5A059]/20" />
+                  <h4 className="text-2xl font-serif text-[#C5A059]">RG RELÓGIOS</h4>
+                </div>
                 <p className="text-[#E5D3B3]/60 max-w-md leading-relaxed">
                   Especialistas em relógios, relojoaria, peças antigas e serviços especializados. 
                   Tradição e excelência no cuidado com o seu tempo.
