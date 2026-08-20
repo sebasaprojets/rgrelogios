@@ -87,16 +87,34 @@ function Index() {
 
         <section id="relógios" className="py-32 px-8 bg-[#00050A]">
           <div className="max-w-7xl mx-auto">
-            <h3 className="text-4xl md:text-5xl font-serif text-[#C5A059] mb-16 text-center">Encontre o relógio ideal</h3>
+            <h3 className="text-4xl md:text-5xl font-serif text-[#C5A059] mb-8 text-center uppercase tracking-widest">Encontre o relógio ideal</h3>
             
+            <div className="flex flex-wrap justify-center gap-4 mb-16">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className={`px-4 py-2 text-xs font-bold uppercase tracking-widest transition-all border ${
+                    activeCategory === cat 
+                      ? "bg-[#C5A059] text-[#00050A] border-[#C5A059]" 
+                      : "text-[#C5A059] border-[#C5A059]/30 hover:border-[#C5A059]"
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {[
-                { name: 'Submariner Date', brand: 'Rolex', category: 'Luxo', price: 'R$ 75.000', condition: 'Novo', img: 'https://images.unsplash.com/photo-1547996160-81dfa63595dd?auto=format&fit=crop&q=80&w=800' },
-                { name: 'Speedmaster Moon', brand: 'Omega', category: 'Clássicos', price: 'R$ 42.000', condition: 'Excelente', img: 'https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&q=80&w=800' },
-                { name: 'Calatrava 96', brand: 'Patek Philippe', category: 'Antigos', price: 'Sob Consulta', condition: 'Vintage', img: 'https://images.unsplash.com/photo-1509048191080-d2984bad6ad5?auto=format&fit=crop&q=80&w=800' },
-                { name: 'Tank Louis', brand: 'Cartier', category: 'Luxo', price: 'R$ 58.000', condition: 'Novo', img: 'https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=80&w=800' },
-              ].map((watch, i) => (
-                <div key={i} className="group bg-[#0A101A] border border-[#C5A059]/10 rounded-lg overflow-hidden hover:border-[#C5A059]/40 transition-all">
+              {filteredWatches.map((watch, i) => (
+                <motion.div 
+                  key={i} 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  viewport={{ once: true }}
+                  className="group bg-[#0A101A] border border-[#C5A059]/10 rounded-lg overflow-hidden hover:border-[#C5A059]/40 transition-all shadow-xl shadow-black/20"
+                >
                   <div className="aspect-[4/5] overflow-hidden">
                     <img src={watch.img} alt={watch.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                   </div>
