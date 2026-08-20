@@ -1,6 +1,9 @@
 import { supabase } from "@/integrations/supabase/client";
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
+import { Database } from "@/integrations/supabase/types";
+
+type WatchCategory = Database["public"]["Enums"]["watch_category"];
 
 export const getProducts = createServerFn({ method: "GET" })
   .inputValidator((data) => z.object({ 
@@ -11,7 +14,7 @@ export const getProducts = createServerFn({ method: "GET" })
     let query = supabase.from("products").select("*");
     
     if (data.category && data.category !== "Todos") {
-      query = query.eq("category", data.category);
+      query = query.eq("category", data.category as WatchCategory);
     }
     
     if (data.featured) {
@@ -48,7 +51,15 @@ export const submitServiceRequest = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const { error } = await supabase
       .from("service_requests")
-      .insert([data]);
+      .insert([{
+        customer_name: data.customer_name,
+        customer_whatsapp: data.customer_whatsapp,
+        customer_email: data.customer_email ?? null,
+        watch_brand: data.watch_brand ?? null,
+        watch_model: data.watch_model ?? null,
+        service_type: data.service_type,
+        description: data.description ?? null,
+      }]);
       
     if (error) throw new Error(error.message);
     return { success: true };
