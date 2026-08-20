@@ -19,9 +19,13 @@ function Index() {
             </a>
           ))}
         </nav>
-        <button className="bg-[#C5A059] text-[#00050A] px-6 py-2.5 rounded font-bold text-sm tracking-wide hover:bg-[#D4B473] transition-all hover:scale-105 active:scale-95">
+        <motion.button 
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="bg-[#C5A059] text-[#00050A] px-6 py-2.5 rounded font-bold text-sm tracking-wide hover:bg-[#D4B473] transition-all"
+        >
           Falar no WhatsApp
-        </button>
+        </motion.button>
       </header>
 
       <main>
