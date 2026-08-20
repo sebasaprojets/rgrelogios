@@ -153,37 +153,55 @@ function Index() {
       </header>
 
       <main>
-        <section id="início" className="relative h-screen flex flex-col items-center justify-center text-center p-6 bg-gradient-to-b from-[#00050A] to-[#0A101A]">
-          <h2 className="text-5xl md:text-8xl font-serif text-[#C5A059] mb-8 leading-tight">
-            O tempo passa.<br/>A elegância permanece.
-          </h2>
-          <p className="text-xl md:text-2xl max-w-2xl mb-12 text-[#E5D3B3]/80 font-light">
-            Relógios selecionados, peças especiais e serviços especializados para quem valoriza precisão, história e exclusividade.
-          </p>
-          <div className="flex flex-col md:flex-row gap-6">
-            <motion.a 
-              href="#relógios"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="border border-[#C5A059] text-[#C5A059] px-10 py-4 rounded text-lg font-medium hover:bg-[#C5A059]/10 transition-all flex items-center justify-center"
+        <section id="início" className="relative h-screen flex flex-col items-center justify-center text-center p-6 overflow-hidden">
+          {/* Vídeo Cinematográfico de Fundo */}
+          <div className="absolute inset-0 z-0">
+            <video 
+              autoPlay 
+              loop 
+              muted 
+              playsInline 
+              className="w-full h-full object-cover opacity-60"
+              poster="https://images.unsplash.com/photo-1509048191080-d2984bad6ad5?auto=format&fit=crop&q=80&w=1920"
             >
-              Ver Relógios
-            </motion.a>
-            <motion.a 
-              href="#serviços"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-[#C5A059] text-[#00050A] px-10 py-4 rounded text-lg font-bold hover:bg-[#D4B473] transition-all flex items-center justify-center"
-            >
-              Solicitar Avaliação
-            </motion.a>
+              <source src="https://assets.mixkit.co/videos/preview/mixkit-repairing-the-inside-of-a-clock-34438-large.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <div className="absolute inset-0 bg-[#00050A]/60" />
           </div>
-          
-          <div className="mt-20 flex gap-12 text-[#E5D3B3]/60 text-sm tracking-widest uppercase">
-            <div><strong>4,9/5</strong> no Google</div>
-            <div>+100 avaliações</div>
-            <div>Especialistas em relojoaria</div>
-            <div>Atendimento em Curitiba</div>
+
+          <div className="relative z-10 flex flex-col items-center">
+            <h2 className="text-5xl md:text-8xl font-serif text-[#C5A059] mb-8 leading-tight">
+              O tempo passa.<br/>A elegância permanece.
+            </h2>
+            <p className="text-xl md:text-2xl max-w-2xl mb-12 text-[#E5D3B3]/80 font-light">
+              Relógios selecionados, peças especiais e serviços especializados para quem valoriza precisão, história e exclusividade.
+            </p>
+            <div className="flex flex-col md:flex-row gap-6">
+              <motion.a 
+                href="#relógios"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="border border-[#C5A059] text-[#C5A059] px-10 py-4 rounded text-lg font-medium hover:bg-[#C5A059]/10 transition-all flex items-center justify-center"
+              >
+                Ver Relógios
+              </motion.a>
+              <motion.a 
+                href="#serviços"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-[#C5A059] text-[#00050A] px-10 py-4 rounded text-lg font-bold hover:bg-[#D4B473] transition-all flex items-center justify-center"
+              >
+                Solicitar Avaliação
+              </motion.a>
+            </div>
+            
+            <div className="mt-20 flex flex-wrap justify-center gap-8 md:gap-12 text-[#E5D3B3]/60 text-sm tracking-widest uppercase">
+              <div><strong>4,9/5</strong> no Google</div>
+              <div>+100 avaliações</div>
+              <div>Especialistas em relojoaria</div>
+              <div>Atendimento em Curitiba</div>
+            </div>
           </div>
         </section>
 
