@@ -23,6 +23,14 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const [activeCategory, setActiveCategory] = useState("Todos");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setShowConfirm(true);
+    setTimeout(() => setShowConfirm(false), 5000);
+  };
 
   const categories = [
     "Todos",
