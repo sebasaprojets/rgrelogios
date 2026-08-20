@@ -14,7 +14,132 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      products: {
+        Row: {
+          availability: boolean | null
+          brand: string
+          category: Database["public"]["Enums"]["watch_category"]
+          condition: Database["public"]["Enums"]["watch_condition"]
+          created_at: string | null
+          description: string | null
+          features: string[] | null
+          id: string
+          images: string[] | null
+          is_featured: boolean | null
+          model: string
+          name: string
+          price: number | null
+          updated_at: string | null
+          year: string | null
+        }
+        Insert: {
+          availability?: boolean | null
+          brand: string
+          category: Database["public"]["Enums"]["watch_category"]
+          condition: Database["public"]["Enums"]["watch_condition"]
+          created_at?: string | null
+          description?: string | null
+          features?: string[] | null
+          id?: string
+          images?: string[] | null
+          is_featured?: boolean | null
+          model: string
+          name: string
+          price?: number | null
+          updated_at?: string | null
+          year?: string | null
+        }
+        Update: {
+          availability?: boolean | null
+          brand?: string
+          category?: Database["public"]["Enums"]["watch_category"]
+          condition?: Database["public"]["Enums"]["watch_condition"]
+          created_at?: string | null
+          description?: string | null
+          features?: string[] | null
+          id?: string
+          images?: string[] | null
+          is_featured?: boolean | null
+          model?: string
+          name?: string
+          price?: number | null
+          updated_at?: string | null
+          year?: string | null
+        }
+        Relationships: []
+      }
+      reviews: {
+        Row: {
+          avatar_url: string | null
+          comment: string | null
+          created_at: string | null
+          customer_name: string
+          id: string
+          is_verified: boolean | null
+          rating: number
+        }
+        Insert: {
+          avatar_url?: string | null
+          comment?: string | null
+          created_at?: string | null
+          customer_name: string
+          id?: string
+          is_verified?: boolean | null
+          rating: number
+        }
+        Update: {
+          avatar_url?: string | null
+          comment?: string | null
+          created_at?: string | null
+          customer_name?: string
+          id?: string
+          is_verified?: boolean | null
+          rating?: number
+        }
+        Relationships: []
+      }
+      service_requests: {
+        Row: {
+          created_at: string | null
+          customer_email: string | null
+          customer_name: string
+          customer_whatsapp: string
+          description: string | null
+          id: string
+          image_urls: string[] | null
+          service_type: string
+          status: string | null
+          watch_brand: string | null
+          watch_model: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          customer_email?: string | null
+          customer_name: string
+          customer_whatsapp: string
+          description?: string | null
+          id?: string
+          image_urls?: string[] | null
+          service_type: string
+          status?: string | null
+          watch_brand?: string | null
+          watch_model?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          customer_email?: string | null
+          customer_name?: string
+          customer_whatsapp?: string
+          description?: string | null
+          id?: string
+          image_urls?: string[] | null
+          service_type?: string
+          status?: string | null
+          watch_brand?: string | null
+          watch_model?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +148,20 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      watch_category:
+        | "Clássicos"
+        | "Luxo"
+        | "Antigos"
+        | "Vintage"
+        | "Masculinos"
+        | "Femininos"
+        | "Peças Exclusivas"
+      watch_condition:
+        | "Novo"
+        | "Excelente"
+        | "Bom"
+        | "Vintage/Antigo"
+        | "Restauração necessária"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +288,23 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      watch_category: [
+        "Clássicos",
+        "Luxo",
+        "Antigos",
+        "Vintage",
+        "Masculinos",
+        "Femininos",
+        "Peças Exclusivas",
+      ],
+      watch_condition: [
+        "Novo",
+        "Excelente",
+        "Bom",
+        "Vintage/Antigo",
+        "Restauração necessária",
+      ],
+    },
   },
 } as const
