@@ -156,20 +156,22 @@ function Index() {
             Relógios selecionados, peças especiais e serviços especializados para quem valoriza precisão, história e exclusividade.
           </p>
           <div className="flex flex-col md:flex-row gap-6">
-            <motion.button 
+            <motion.a 
+              href="#relógios"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="border border-[#C5A059] text-[#C5A059] px-10 py-4 rounded text-lg font-medium hover:bg-[#C5A059]/10 transition-all"
+              className="border border-[#C5A059] text-[#C5A059] px-10 py-4 rounded text-lg font-medium hover:bg-[#C5A059]/10 transition-all flex items-center justify-center"
             >
               Ver Relógios
-            </motion.button>
-            <motion.button 
+            </motion.a>
+            <motion.a 
+              href="#serviços"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-[#C5A059] text-[#00050A] px-10 py-4 rounded text-lg font-bold hover:bg-[#D4B473] transition-all"
+              className="bg-[#C5A059] text-[#00050A] px-10 py-4 rounded text-lg font-bold hover:bg-[#D4B473] transition-all flex items-center justify-center"
             >
               Solicitar Avaliação
-            </motion.button>
+            </motion.a>
           </div>
           
           <div className="mt-20 flex gap-12 text-[#E5D3B3]/60 text-sm tracking-widest uppercase">
