@@ -337,7 +337,7 @@ function Index() {
                         <option value="Restauração">Restauração</option>
                         <option value="Avaliação">Avaliação</option>
                     </select>
-                    <textarea placeholder="Descrição do problema" className="w-full p-4 bg-[#00050A] border border-[#C5A059]/20 rounded text-[#E5D3B3] min-h-[150px] placeholder-[#E5D3B3]/30"></textarea>
+                    <textarea name="description" placeholder="Descrição do problema" className="w-full p-4 bg-[#00050A] border border-[#C5A059]/20 rounded text-[#E5D3B3] min-h-[150px] placeholder-[#E5D3B3]/30 outline-none focus:border-[#C5A059]"></textarea>
                     <button type="submit" className="w-full bg-[#C5A059] text-[#00050A] py-4 rounded font-bold hover:bg-[#D4B473] transition-all flex justify-center items-center gap-2">
                         <Send size={18} /> Enviar para avaliação
                     </button>
