@@ -170,165 +170,15 @@ function Index() {
               className="w-full h-full"
             >
               <img 
-                src="https://images.unsplash.com/photo-1547996160-81dfa63595dd?auto=format&fit=crop&q=80&w=1920"
+                src="https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?auto=compress&cs=tinysrgb&w=1920"
                 alt="Luxury Watch Background"
                 className="w-full h-full object-cover opacity-60"
               />
-            </motion.div>
-            {/* Overlay Gradiente Denso para Máxima Legibilidade */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#00050A]/40 via-[#00050A]/80 to-[#00050A]" />
-          </div>
-
-          <div className="relative z-10 flex flex-col items-center px-4">
-            <h2 className="text-[2.5rem] sm:text-5xl md:text-8xl font-serif text-[#C5A059] mb-6 md:mb-8 leading-[1.1] md:leading-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] tracking-tight">
-              O tempo passa.<br/>A elegância permanece.
-            </h2>
-            <p className="text-base sm:text-xl md:text-2xl max-w-2xl mb-8 md:mb-12 text-[#E5D3B3] md:text-[#E5D3B3]/90 font-light drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)] leading-relaxed">
-              Relógios selecionados, peças especiais e serviços especializados para quem valoriza precisão, história e exclusividade.
-            </p>
-            <div className="flex flex-col md:flex-row gap-6">
-              <motion.a 
-                href="#relógios"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="border border-[#C5A059] text-[#C5A059] px-10 py-4 rounded text-lg font-medium hover:bg-[#C5A059]/10 transition-all flex items-center justify-center"
-              >
-                Ver Relógios
-              </motion.a>
-              <motion.a 
-                href="#serviços"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-[#C5A059] text-[#00050A] px-10 py-4 rounded text-lg font-bold hover:bg-[#D4B473] transition-all flex items-center justify-center"
-              >
-                Solicitar Avaliação
-              </motion.a>
-            </div>
-            
-            <div className="mt-20 flex flex-wrap justify-center gap-8 md:gap-12 text-[#E5D3B3]/60 text-sm tracking-widest uppercase">
-              <div><strong>4,9/5</strong> no Google</div>
-              <div>+100 avaliações</div>
-              <div>Especialistas em relojoaria</div>
-              <div>Atendimento em Curitiba</div>
-            </div>
-          </div>
-        </section>
-
-        {/* Catálogo Section */}
-        <section id="relógios" className="py-32 px-8 bg-[#00050A]">
-          <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
-              <div>
-                <h2 className="text-sm font-bold tracking-[0.3em] text-[#C5A059] uppercase mb-4">Coleção Exclusiva</h2>
-                <h3 className="text-4xl md:text-5xl font-serif text-[#E5D3B3]">Encontre o relógio ideal</h3>
-              </div>
-              
-              <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
-                <input 
-                  type="text" 
-                  placeholder="Buscar por marca ou modelo..." 
-                  className="bg-[#0A101A] border border-[#C5A059]/20 p-4 rounded text-sm w-full sm:w-64 focus:border-[#C5A059] outline-none transition-colors"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-                <div className="flex gap-2 overflow-x-auto pb-2 sm:pb-0 scrollbar-hide">
-                  {categories.slice(0, 4).map(cat => (
-                    <button
-                      key={cat}
-                      onClick={() => setActiveCategory(cat)}
-                      className={`px-4 py-2 rounded text-xs font-bold uppercase tracking-widest border transition-all whitespace-nowrap ${
-                        activeCategory === cat 
-                        ? "bg-[#C5A059] text-[#00050A] border-[#C5A059]" 
-                        : "border-[#C5A059]/20 text-[#C5A059] hover:border-[#C5A059]"
-                      }`}
-                    >
-                      {cat}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              <AnimatePresence mode="popLayout">
-                {filteredProducts.map((watch) => (
-                  <motion.div
-                    layout
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    key={watch.id}
-                    className="group bg-[#0A101A] border border-[#C5A059]/10 rounded-lg overflow-hidden hover:border-[#C5A059]/40 transition-all shadow-xl"
-                  >
-                    <div className="relative aspect-square overflow-hidden">
-                      <img 
-                        src={watch.images?.[0] || 'https://images.unsplash.com/photo-1524592094714-0f0654e20314'} 
-                        alt={watch.name}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                      {watch.is_featured && (
-                        <div className="absolute top-4 right-4 bg-[#C5A059] text-[#00050A] text-[10px] font-bold px-3 py-1 uppercase tracking-widest rounded-full">
-                          Destaque
-                        </div>
-                      )}
-                    </div>
-                    <div className="p-6">
-                      <div className="flex justify-between items-start mb-2">
-                        <div>
-                          <h4 className="text-[#C5A059] text-xs font-bold uppercase tracking-widest mb-1">{watch.brand}</h4>
-                          <h5 className="text-xl font-serif text-[#E5D3B3]">{watch.name}</h5>
-                        </div>
-                      </div>
-                      <p className="text-[#E5D3B3]/40 text-xs mb-4">{watch.model} • {watch.condition}</p>
-                      <div className="flex justify-between items-center">
-                        <span className="text-[#C5A059] font-bold">
-                          {watch.price ? `R$ ${watch.price.toLocaleString()}` : "Sob Consulta"}
-                        </span>
-                        <a 
-                          href={`/relogios/${watch.id}`}
-                          className="text-[10px] font-bold uppercase tracking-widest text-[#E5D3B3]/60 hover:text-[#C5A059] transition-colors border-b border-[#C5A059]/20 pb-1"
-                        >
-                          Ver Detalhes
-                        </a>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-            </div>
-          </div>
-        </section>
-
-        {/* Relógios Antigos Section */}
-        <section id="antigos" className="py-32 bg-[#0A101A] relative overflow-hidden">
-          <div className="absolute inset-0 opacity-10 pointer-events-none">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-[#C5A059] rounded-full" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-[#C5A059] rounded-full" />
-          </div>
-          
-          <div className="max-w-7xl mx-auto px-8 relative z-10 flex flex-col lg:flex-row items-center gap-16">
-            <div className="lg:w-5/12">
-              <h2 className="text-sm font-bold tracking-[0.3em] text-[#C5A059] uppercase mb-4">Herança & Tradição</h2>
-              <h3 className="text-4xl md:text-6xl font-serif text-[#E5D3B3] mb-8 leading-tight">Relógios que carregam histórias</h3>
-              <p className="text-lg text-[#E5D3B3]/70 mb-10 leading-relaxed font-light">
-                Descubra peças antigas e vintage selecionadas para colecionadores e apaixonados por relojoaria. 
-                Cada relógio possui sua própria história, personalidade e valor inestimável.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <button className="bg-[#C5A059] text-[#00050A] px-8 py-4 rounded font-bold hover:bg-[#D4B473] transition-all uppercase text-xs tracking-[0.2em] shadow-lg shadow-[#C5A059]/10">
-                  Explorar Relógios Antigos
-                </button>
-                <button className="border border-[#C5A059]/40 text-[#C5A059] px-8 py-4 rounded font-bold hover:bg-[#C5A059]/10 transition-all uppercase text-xs tracking-[0.2em]">
-                  Avaliar Meu Antigo
-                </button>
-              </div>
-            </div>
-            
-            <div className="lg:w-7/12 relative h-[500px] w-full mt-12 lg:mt-0">
+...
               {/* Grid de Imagens Sofisticado */}
               <div className="absolute top-0 right-0 w-3/4 h-[85%] z-10 overflow-hidden rounded-lg shadow-2xl border border-[#C5A059]/10 group">
                 <img 
-                  src="https://images.unsplash.com/photo-1547996160-81dfa63595dd?auto=format&fit=crop&q=80&w=1200" 
+                  src="https://images.pexels.com/photos/277390/pexels-photo-277390.jpeg?auto=compress&cs=tinysrgb&w=1200" 
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105" 
                   alt="Relógio Vintage de Luxo" 
                 />
@@ -337,7 +187,7 @@ function Index() {
               
               <div className="absolute bottom-0 left-0 w-1/2 h-3/4 z-20 overflow-hidden rounded-lg shadow-2xl border border-[#C5A059]/20 group">
                 <img 
-                  src="https://images.unsplash.com/photo-1509048191080-d2984bad6ad5?auto=format&fit=crop&q=80&w=800" 
+                  src="https://images.pexels.com/photos/280250/pexels-photo-280250.jpeg?auto=compress&cs=tinysrgb&w=800" 
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105" 
                   alt="Mecanismo de Precisão" 
                 />
