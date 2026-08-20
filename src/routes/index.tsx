@@ -328,7 +328,7 @@ function Index() {
               {/* Grid de Imagens Sofisticado */}
               <div className="absolute top-0 right-0 w-3/4 h-[85%] z-10 overflow-hidden rounded-lg shadow-2xl border border-[#C5A059]/10 group">
                 <img 
-                  src="https://images.unsplash.com/photo-1547996160-81dfa63595dd?auto=format&fit=crop&q=80&w=1200" 
+                  src="https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=80&w=1200" 
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105" 
                   alt="Relógio Vintage de Luxo" 
                 />
@@ -337,7 +337,7 @@ function Index() {
               
               <div className="absolute bottom-0 left-0 w-1/2 h-3/4 z-20 overflow-hidden rounded-lg shadow-2xl border border-[#C5A059]/20 group">
                 <img 
-                  src="https://images.unsplash.com/photo-1509048191080-d2984bad6ad5?auto=format&fit=crop&q=80&w=800" 
+                  src="https://images.unsplash.com/photo-1639037687665-684c304d98d7?auto=format&fit=crop&q=80&w=800" 
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105" 
                   alt="Mecanismo de Precisão" 
                 />
