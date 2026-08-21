@@ -317,7 +317,7 @@ function Index() {
                 { 
                   title: 'Revisão Completa', 
                   desc: 'Revisão completa do mecanismo para garantir o perfeito funcionamento do relógio.',
-                  img: 'https://images.pexels.com/photos/277390/pexels-photo-277390.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  img: 'https://images.pexels.com/photos/1198262/pexels-photo-1198262.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Tool 
                 },
                 { 
