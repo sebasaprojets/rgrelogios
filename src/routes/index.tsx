@@ -335,7 +335,7 @@ function Index() {
                 { 
                   title: 'Limpeza e Conservação', 
                   desc: 'Limpeza profissional que mantém a estética e o brilho do seu relógio.',
-                  img: 'https://images.pexels.com/photos/2113994/pexels-photo-2113994.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  img: 'https://images.pexels.com/photos/1198269/pexels-photo-1198269.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Star 
                 },
               ].map((service, i) => (
