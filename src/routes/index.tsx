@@ -205,11 +205,11 @@ function Index() {
                 Peças antigas restauradas com respeito à sua origem, mantendo o mecanismo original sempre que possível.
               </p>
               <div className="flex flex-wrap gap-4 pt-2">
-                <a href="#relógios" className="bg-[#C5A059] text-[#00050A] px-7 py-3.5 rounded font-bold tracking-wide hover:bg-[#D4B473] transition-all">
-                  Explorar Coleção
+                <a href="#serviços" className="bg-[#C5A059] text-[#00050A] px-7 py-3.5 rounded font-bold tracking-wide hover:bg-[#D4B473] transition-all">
+                  Restaurar meu relógio
                 </a>
                 <a href="#contato" className="border border-[#C5A059]/50 text-[#C5A059] px-7 py-3.5 rounded font-bold tracking-wide hover:bg-[#C5A059]/10 transition-all">
-                  Avaliar minha peça
+                  Falar com especialista
                 </a>
               </div>
             </div>
