@@ -248,10 +248,10 @@ function Index() {
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
-                { title: 'Manutenção', icon: Tool, description: 'Limpeza, lubrificação e ajuste de precisão.' },
-                { title: 'Reparação', icon: Tool, description: 'Conserto de mecanismos e troca de componentes.' },
-                { title: 'Restauração', icon: History, description: 'Revitalização estética e mecânica de peças.' },
-                { title: 'Avaliação', icon: Star, description: 'Análise técnica e mercadológica completa.' },
+                { title: 'Manutenção', icon: Tool, description: 'quero um servico de cada espaco e tals' },
+                { title: 'Reparação', icon: Tool, description: 'quero um servico de cada espaco e tals' },
+                { title: 'Restauração', icon: History, description: 'quero um servico de cada espaco e tals' },
+                { title: 'Avaliação', icon: Star, description: 'quero um servico de cada espaco e tals' },
               ].map((service, i) => (
                 <motion.button 
                   key={i} 
