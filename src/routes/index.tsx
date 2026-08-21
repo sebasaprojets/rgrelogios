@@ -293,13 +293,13 @@ function Index() {
                 { 
                   title: 'Manutenção', 
                   desc: 'Manutenção preventiva que prolonga a vida útil do seu relógio e garante precisão.',
-                  img: 'https://images.pexels.com/photos/934673/pexels-photo-934673.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  img: 'https://images.pexels.com/photos/1198264/pexels-photo-1198264.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Shield
                 },
                 { 
                   title: 'Reparação', 
                   desc: 'Diagnóstico preciso e reparos especializados para qualquer tipo de problema.',
-                  img: 'https://images.pexels.com/photos/1198264/pexels-photo-1198264.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  img: 'https://images.pexels.com/photos/360733/pexels-photo-360733.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Tool 
                 },
                 { 
