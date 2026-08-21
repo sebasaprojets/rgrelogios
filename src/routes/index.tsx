@@ -299,7 +299,7 @@ function Index() {
                 { 
                   title: 'Reparação', 
                   desc: 'Diagnóstico preciso e reparos especializados para qualquer tipo de problema.',
-                  img: 'https://images.pexels.com/photos/4425881/pexels-photo-4425881.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  img: 'https://images.pexels.com/photos/1198261/pexels-photo-1198261.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Tool 
                 },
                 { 
