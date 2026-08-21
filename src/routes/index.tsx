@@ -186,11 +186,11 @@ function Index() {
               Venda, manutenção e restauração de relógios clássicos e contemporâneos.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="#relógios" className="bg-[#C5A059] text-[#00050A] px-8 py-4 rounded font-bold tracking-wide hover:bg-[#D4B473] transition-all">
-                Ver Catálogo
-              </a>
-              <a href="#serviços" className="border border-[#C5A059]/50 text-[#C5A059] px-8 py-4 rounded font-bold tracking-wide hover:bg-[#C5A059]/10 transition-all">
+              <a href="#serviços" className="bg-[#C5A059] text-[#00050A] px-8 py-4 rounded font-bold tracking-wide hover:bg-[#D4B473] transition-all">
                 Solicitar Serviço
+              </a>
+              <a href="#sobre" className="border border-[#C5A059]/50 text-[#C5A059] px-8 py-4 rounded font-bold tracking-wide hover:bg-[#C5A059]/10 transition-all">
+                Sobre Nós
               </a>
             </div>
           </div>
