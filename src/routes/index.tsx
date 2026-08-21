@@ -254,11 +254,15 @@ function Index() {
                     { title: 'Restauração', icon: History },
                     { title: 'Avaliação', icon: Star },
                   ].map((service, i) => (
-                    <div key={i} className="p-6 bg-[#0A101A] border border-[#C5A059]/10 rounded-lg hover:border-[#C5A059]/40 transition-all">
-                      <service.icon className="text-[#C5A059] mb-4" size={24} />
+                    <button 
+                      key={i} 
+                      onClick={() => window.open(`https://wa.me/5541992399650?text=${encodeURIComponent(`Quero uma manutenção de ${service.title}`)}`, '_blank')}
+                      className="p-6 bg-[#0A101A] border border-[#C5A059]/10 rounded-lg hover:border-[#C5A059]/40 transition-all text-left w-full group"
+                    >
+                      <service.icon className="text-[#C5A059] mb-4 group-hover:scale-110 transition-transform" size={24} />
                       <h4 className="text-lg font-serif text-[#C5A059] mb-2">{service.title}</h4>
                       <p className="text-sm text-[#E5D3B3]/60">Serviço profissional de alta precisão.</p>
-                    </div>
+                    </button>
                   ))}
                 </div>
             </div>
