@@ -299,7 +299,7 @@ function Index() {
                 { 
                   title: 'Reparação', 
                   desc: 'Diagnóstico preciso e reparos especializados para qualquer tipo de problema.',
-                  img: 'https://images.pexels.com/photos/277390/pexels-photo-277390.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  img: 'https://images.pexels.com/photos/360733/pexels-photo-360733.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Tool 
                 },
                 { 
@@ -323,7 +323,7 @@ function Index() {
                 { 
                   title: 'Troca de Bateria', 
                   desc: 'Substituição de bateria com técnica e ferramentas adequadas.',
-                  img: 'https://images.pexels.com/photos/277390/pexels-photo-277390.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  img: 'https://images.pexels.com/photos/1198274/pexels-photo-1198274.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Smartphone 
                 },
                 { 
