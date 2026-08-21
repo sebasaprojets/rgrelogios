@@ -135,7 +135,7 @@ function Index() {
               exit={{ opacity: 0, y: -20 }}
               className="absolute top-full left-0 w-full bg-[#00050A] border-b border-[#C5A059]/20 p-8 flex flex-col gap-6 md:hidden shadow-2xl"
             >
-              {["Início", "Relógios", "Antigos", "Serviços", "Sobre", "Contato"].map((item) => (
+              {["Início", "Antigos", "Serviços", "Sobre", "Contato"].map((item) => (
                 <a 
                   key={item} 
                   href={`#${item.toLowerCase()}`} 
