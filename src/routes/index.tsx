@@ -243,52 +243,46 @@ function Index() {
 
 
         {/* Form & Services Section */}
-        <div id="serviços" className="py-32 px-8 bg-[#00050A] grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-7xl mx-auto">
-            {/* Services List */}
-            <div className="space-y-8">
-                <h3 className="text-4xl font-serif text-[#C5A059]">Serviços de Relojoaria</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {[
-                    { title: 'Manutenção', icon: Tool },
-                    { title: 'Reparação', icon: Tool },
-                    { title: 'Restauração', icon: History },
-                    { title: 'Avaliação', icon: Star },
-                  ].map((service, i) => (
-                    <button 
-                      key={i} 
-                      onClick={() => window.open(`https://wa.me/5541992399650?text=${encodeURIComponent(`Quero uma manutenção de ${service.title}`)}`, '_blank')}
-                      className="p-6 bg-[#0A101A] border border-[#C5A059]/10 rounded-lg hover:border-[#C5A059]/40 transition-all text-left w-full group"
-                    >
-                      <service.icon className="text-[#C5A059] mb-4 group-hover:scale-110 transition-transform" size={24} />
-                      <h4 className="text-lg font-serif text-[#C5A059] mb-2">{service.title}</h4>
-                      <p className="text-sm text-[#E5D3B3]/60">Serviço profissional de alta precisão.</p>
-                    </button>
-                  ))}
-                </div>
+        <div id="serviços" className="py-32 px-8 bg-[#00050A] max-w-7xl mx-auto text-center">
+            <h3 className="text-4xl md:text-5xl font-serif text-[#C5A059] mb-16">Nossos Serviços Especializados</h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {[
+                { title: 'Manutenção', icon: Tool, description: 'Limpeza, lubrificação e ajuste de precisão.' },
+                { title: 'Reparação', icon: Tool, description: 'Conserto de mecanismos e troca de componentes.' },
+                { title: 'Restauração', icon: History, description: 'Revitalização estética e mecânica de peças.' },
+                { title: 'Avaliação', icon: Star, description: 'Análise técnica e mercadológica completa.' },
+              ].map((service, i) => (
+                <motion.button 
+                  key={i} 
+                  whileHover={{ y: -10 }}
+                  onClick={() => window.open(`https://wa.me/5541992399650?text=${encodeURIComponent(`Quero uma manutenção de ${service.title}`)}`, '_blank')}
+                  className="p-8 bg-[#0A101A] border border-[#C5A059]/10 rounded-xl hover:border-[#C5A059]/40 transition-all text-center group flex flex-col items-center gap-4"
+                >
+                  <div className="w-16 h-16 bg-[#C5A059]/10 rounded-full flex items-center justify-center group-hover:bg-[#C5A059]/20 transition-colors">
+                    <service.icon className="text-[#C5A059]" size={32} />
+                  </div>
+                  <h4 className="text-xl font-serif text-[#C5A059]">{service.title}</h4>
+                  <p className="text-sm text-[#E5D3B3]/60 mb-4">{service.description}</p>
+                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#C5A059] border-b border-[#C5A059]/20 pb-1 group-hover:border-[#C5A059] transition-all">
+                    Solicitar via WhatsApp
+                  </span>
+                </motion.button>
+              ))}
             </div>
 
-            {/* Evaluation Form */}
-            <div className="bg-[#0A101A] p-10 rounded-xl border border-[#C5A059]/20 shadow-2xl">
-                <h3 className="text-3xl font-serif text-[#C5A059] mb-8">Solicite uma avaliação do seu relógio</h3>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                    <input type="text" name="name" required placeholder="Seu Nome" className="w-full p-4 bg-[#00050A] border border-[#C5A059]/20 rounded text-[#E5D3B3] placeholder-[#E5D3B3]/30 outline-none focus:border-[#C5A059]" />
-                    <input type="text" name="whatsapp" required placeholder="Seu WhatsApp" className="w-full p-4 bg-[#00050A] border border-[#C5A059]/20 rounded text-[#E5D3B3] placeholder-[#E5D3B3]/30 outline-none focus:border-[#C5A059]" />
-                    <select name="service" required className="w-full p-4 bg-[#00050A] border border-[#C5A059]/20 rounded text-[#E5D3B3] outline-none focus:border-[#C5A059]">
-                        <option value="Reparação">Reparação</option>
-                        <option value="Manutenção">Manutenção</option>
-                        <option value="Restauração">Restauração</option>
-                        <option value="Avaliação">Avaliação</option>
-                    </select>
-                    <textarea name="description" placeholder="Descrição do problema" className="w-full p-4 bg-[#00050A] border border-[#C5A059]/20 rounded text-[#E5D3B3] min-h-[150px] placeholder-[#E5D3B3]/30 outline-none focus:border-[#C5A059]"></textarea>
-                    <button type="submit" className="w-full bg-[#C5A059] text-[#00050A] py-4 rounded font-bold hover:bg-[#D4B473] transition-all flex justify-center items-center gap-2">
-                        <Send size={18} /> Enviar para avaliação
-                    </button>
-                </form>
-                {showConfirm && (
-                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-6 p-4 bg-green-900/20 text-green-500 rounded flex items-center gap-2">
-                        <CheckCircle2 size={20} /> Solicitação enviada com sucesso!
-                    </motion.div>
-                )}
+            <div className="mt-20 p-8 bg-[#0A101A] rounded-xl border border-[#C5A059]/20 max-w-2xl mx-auto">
+              <h4 className="text-2xl font-serif text-[#C5A059] mb-4">Atendimento Personalizado</h4>
+              <p className="text-[#E5D3B3]/60 mb-8">
+                Cada relógio é único. Fale diretamente com nossos mestres relojoeiros para uma consultoria técnica imediata.
+              </p>
+              <button 
+                onClick={() => window.open('https://wa.me/5541992399650?text=Olá! Gostaria de falar com um relojoeiro.', '_blank')}
+                className="bg-[#C5A059] text-[#00050A] px-12 py-4 rounded-full font-bold hover:bg-[#D4B473] transition-all flex items-center justify-center gap-3 mx-auto"
+              >
+                <MessageCircle size={20} />
+                Iniciar Atendimento
+              </button>
             </div>
         </div>
 
