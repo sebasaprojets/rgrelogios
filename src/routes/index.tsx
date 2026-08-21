@@ -247,14 +247,24 @@ function Index() {
           <div className="max-w-7xl mx-auto">
             {/* Cabeçalho da Seção */}
             <div className="text-center mb-20 space-y-4">
-              <motion.span 
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="text-[10px] font-bold tracking-[0.5em] text-[#C5A059] uppercase block"
-              >
-                Excelência em cada detalhe
-              </motion.span>
+              <div className="flex flex-col items-center gap-2">
+                <motion.span 
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="text-[10px] font-bold tracking-[0.5em] text-[#C5A059] uppercase block"
+                >
+                  Excelência em cada detalhe
+                </motion.span>
+                <motion.div 
+                  initial={{ opacity: 0, scaleX: 0 }}
+                  whileInView={{ opacity: 1, scaleX: 1 }}
+                  viewport={{ once: true }}
+                  className="w-12 h-[1px] bg-[#C5A059]/50 relative"
+                >
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-1 bg-[#C5A059] rotate-45" />
+                </motion.div>
+              </div>
               <motion.h2 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -271,18 +281,20 @@ function Index() {
                 transition={{ delay: 0.2 }}
                 className="text-[#E5D3B3]/60 max-w-2xl mx-auto text-lg font-light leading-relaxed"
               >
-                Cuidamos do seu relógio com precisão, técnica e paixão. Serviços completos para manter, restaurar e valorizar o que é especial.
+                Cuidamos do seu relógio com precisão, técnica e paixão.
+                <br className="hidden md:block" />
+                Serviços completos para manter, restaurar e valorizar o que é especial.
               </motion.p>
             </div>
             
-            {/* Grid de Cards Moderno */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Grid de Cards Premium */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
               {[
                 { 
                   title: 'Manutenção', 
                   desc: 'Manutenção preventiva que prolonga a vida útil do seu relógio e garante precisão.',
                   img: 'https://images.pexels.com/photos/934673/pexels-photo-934673.jpeg?auto=compress&cs=tinysrgb&w=800',
-                  icon: Tool 
+                  icon: Shield
                 },
                 { 
                   title: 'Reparação', 
@@ -306,24 +318,24 @@ function Index() {
                   title: 'Revisão Completa', 
                   desc: 'Revisão completa do mecanismo para garantir o perfeito funcionamento do relógio.',
                   img: 'https://images.pexels.com/photos/47339/mechanics-watch-close-up-open-47339.jpeg?auto=compress&cs=tinysrgb&w=800',
-                  icon: Shield 
+                  icon: Tool 
                 },
                 { 
                   title: 'Troca de Bateria', 
                   desc: 'Substituição da bateria com técnica e ferramentas adequadas.',
-                  img: 'https://images.pexels.com/photos/934673/pexels-photo-934673.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  img: 'https://images.pexels.com/photos/11566897/pexels-photo-11566897.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Smartphone 
                 },
                 { 
                   title: 'Ajuste de Pulseira', 
                   desc: 'Ajuste preciso para máximo conforto e segurança no seu dia a dia.',
-                  img: 'https://images.pexels.com/photos/277390/pexels-photo-277390.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  img: 'https://images.pexels.com/photos/9462822/pexels-photo-9462822.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Tool 
                 },
                 { 
                   title: 'Limpeza e Conservação', 
                   desc: 'Limpeza profissional que mantém a estética e o brilho do seu relógio.',
-                  img: 'https://images.pexels.com/photos/280250/pexels-photo-280250.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  img: 'https://images.pexels.com/photos/9462817/pexels-photo-9462817.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Star 
                 },
               ].map((service, i) => (
@@ -340,38 +352,71 @@ function Index() {
                     <motion.img 
                       src={service.img} 
                       alt={service.title}
-                      className="w-full h-full object-cover opacity-40 grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700 ease-out"
+                      className="w-full h-full object-cover opacity-30 grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700 ease-out"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#00050A] via-[#00050A]/80 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#00050A] via-[#00050A]/70 to-transparent" />
                   </div>
-
+  
                   {/* Conteúdo do Card */}
-                  <div className="relative z-10 h-full p-8 flex flex-col justify-end gap-4">
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#C5A059] to-[#8C6D31] flex items-center justify-center shadow-lg group-hover:shadow-[#C5A059]/20 transition-all">
-                      <service.icon className="text-[#00050A]" size={24} />
+                  <div className="relative z-10 h-full p-8 flex flex-col justify-end">
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-10 h-10 rounded-full border border-[#C5A059]/40 flex items-center justify-center text-[#C5A059] group-hover:bg-[#C5A059] group-hover:text-[#00050A] transition-all duration-300">
+                        <service.icon size={20} />
+                      </div>
+                      <h4 className="text-2xl font-serif text-[#C5A059]">{service.title}</h4>
                     </div>
                     
-                    <div className="space-y-2">
-                      <h4 className="text-2xl font-serif text-[#C5A059]">{service.title}</h4>
-                      <p className="text-sm text-[#E5D3B3]/70 leading-relaxed line-clamp-2">{service.desc}</p>
-                    </div>
-
-                    <div className="h-[1px] w-full bg-[#C5A059]/20 group-hover:bg-[#C5A059]/40 transition-colors" />
-
+                    <p className="text-sm text-[#E5D3B3]/70 leading-relaxed mb-6">
+                      {service.desc}
+                    </p>
+  
                     <button 
                       onClick={() => window.open(`https://wa.me/5541992399650?text=${encodeURIComponent(`Olá! Gostaria de solicitar um orçamento para o serviço de ${service.title} do meu relógio.`)}`, '_blank')}
-                      className="w-full py-3 rounded bg-transparent border border-[#C5A059]/30 text-[#C5A059] text-[10px] font-bold uppercase tracking-[0.2em] flex items-center justify-center gap-2 hover:bg-[#C5A059] hover:text-[#00050A] transition-all group-hover:border-[#C5A059]"
+                      className="flex items-center gap-2 text-[#C5A059] text-[10px] font-bold uppercase tracking-widest hover:text-[#D4B473] transition-colors"
                     >
-                      <MessageCircle size={14} />
+                      <MessageCircle size={14} className="text-[#C5A059]" />
                       Solicitar via WhatsApp
                     </button>
                   </div>
-
+  
                   {/* Borda de Hover */}
                   <div className="absolute inset-0 border border-[#C5A059] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl pointer-events-none" />
                 </motion.div>
               ))}
             </div>
+  
+            {/* Barra de Confiança (Trust Bar) */}
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="w-full bg-[#0A101A] border border-[#C5A059]/20 rounded-xl p-8 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-2xl"
+            >
+              <div className="flex items-center gap-6 lg:border-r lg:border-[#C5A059]/20 lg:pr-12">
+                <div className="w-12 h-12 rounded-full border border-[#C5A059]/40 flex items-center justify-center text-[#C5A059]">
+                  <Shield size={24} />
+                </div>
+                <p className="text-lg font-serif text-[#E5D3B3] max-w-xs leading-tight">
+                  Confiança, precisão e tradição desde o primeiro atendimento.
+                </p>
+              </div>
+  
+              <div className="flex flex-wrap justify-center lg:justify-end gap-x-12 gap-y-6">
+                {[
+                  { label: 'Profissionais qualificados', icon: Star },
+                  { label: 'Ferramentas de alta precisão', icon: Tool },
+                  { label: 'Peças originais e selecionadas', icon: Star },
+                  { label: 'Garantia em todos os serviços', icon: Shield },
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-3">
+                    <item.icon size={18} className="text-[#C5A059]" />
+                    <span className="text-xs font-bold uppercase tracking-tighter text-[#E5D3B3]/80">{item.label}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </section>
 
             {/* Trust Bar (Barra de Confiança) */}
             <motion.div 
