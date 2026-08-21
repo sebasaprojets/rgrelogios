@@ -242,49 +242,164 @@ function Index() {
         </section>
 
 
-        {/* Form & Services Section */}
-        <div id="serviços" className="py-32 px-8 bg-[#00050A] max-w-7xl mx-auto text-center">
-            <h3 className="text-4xl md:text-5xl font-serif text-[#C5A059] mb-16">Nossos Serviços Especializados</h3>
+        {/* Seção de Serviços Premium */}
+        <section id="serviços" className="py-32 px-8 bg-[#00050A] relative overflow-hidden">
+          <div className="max-w-7xl mx-auto">
+            {/* Cabeçalho da Seção */}
+            <div className="text-center mb-20 space-y-4">
+              <motion.span 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-[10px] font-bold tracking-[0.5em] text-[#C5A059] uppercase block"
+              >
+                Excelência em cada detalhe
+              </motion.span>
+              <motion.h2 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="text-4xl md:text-6xl font-serif text-[#C5A059]"
+              >
+                Nossos Serviços Especializados
+              </motion.h2>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="text-[#E5D3B3]/60 max-w-2xl mx-auto text-lg font-light leading-relaxed"
+              >
+                Cuidamos do seu relógio com precisão, técnica e paixão. Serviços completos para manter, restaurar e valorizar o que é especial.
+              </motion.p>
+            </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Grid de Cards Moderno */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { title: 'Manutenção', icon: Tool, description: 'quero um servico de cada espaco e tals' },
-                { title: 'Reparação', icon: Tool, description: 'quero um servico de cada espaco e tals' },
-                { title: 'Restauração', icon: History, description: 'quero um servico de cada espaco e tals' },
-                { title: 'Avaliação', icon: Star, description: 'quero um servico de cada espaco e tals' },
+                { 
+                  title: 'Manutenção', 
+                  desc: 'Manutenção preventiva que prolonga a vida útil do seu relógio e garante precisão.',
+                  img: 'https://images.pexels.com/photos/934673/pexels-photo-934673.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  icon: Tool 
+                },
+                { 
+                  title: 'Reparação', 
+                  desc: 'Diagnóstico preciso e reparos especializados para qualquer tipo de problema.',
+                  img: 'https://images.pexels.com/photos/277390/pexels-photo-277390.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  icon: Tool 
+                },
+                { 
+                  title: 'Restauração', 
+                  desc: 'Devolvemos a originalidade e beleza de relógios antigos e peças especiais.',
+                  img: 'https://images.pexels.com/photos/280250/pexels-photo-280250.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  icon: History 
+                },
+                { 
+                  title: 'Avaliação', 
+                  desc: 'Avaliação profissional para relógios antigos, coleções e peças raras.',
+                  img: 'https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  icon: Star 
+                },
+                { 
+                  title: 'Revisão Completa', 
+                  desc: 'Revisão completa do mecanismo para garantir o perfeito funcionamento do relógio.',
+                  img: 'https://images.pexels.com/photos/47339/mechanics-watch-close-up-open-47339.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  icon: Shield 
+                },
+                { 
+                  title: 'Troca de Bateria', 
+                  desc: 'Substituição da bateria com técnica e ferramentas adequadas.',
+                  img: 'https://images.pexels.com/photos/934673/pexels-photo-934673.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  icon: Smartphone 
+                },
+                { 
+                  title: 'Ajuste de Pulseira', 
+                  desc: 'Ajuste preciso para máximo conforto e segurança no seu dia a dia.',
+                  img: 'https://images.pexels.com/photos/277390/pexels-photo-277390.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  icon: Tool 
+                },
+                { 
+                  title: 'Limpeza e Conservação', 
+                  desc: 'Limpeza profissional que mantém a estética e o brilho do seu relógio.',
+                  img: 'https://images.pexels.com/photos/280250/pexels-photo-280250.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  icon: Star 
+                },
               ].map((service, i) => (
-                <motion.button 
-                  key={i} 
-                  whileHover={{ y: -10 }}
-                  onClick={() => window.open(`https://wa.me/5541992399650?text=${encodeURIComponent(`Quero uma manutenção de ${service.title}`)}`, '_blank')}
-                  className="p-8 bg-[#0A101A] border border-[#C5A059]/10 rounded-xl hover:border-[#C5A059]/40 transition-all text-center group flex flex-col items-center gap-4"
+                <motion.div 
+                  key={i}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05 }}
+                  className="group relative h-[420px] rounded-xl overflow-hidden border border-[#C5A059]/10 shadow-2xl bg-[#0A101A]"
                 >
-                  <div className="w-16 h-16 bg-[#C5A059]/10 rounded-full flex items-center justify-center group-hover:bg-[#C5A059]/20 transition-colors">
-                    <service.icon className="text-[#C5A059]" size={32} />
+                  {/* Imagem de Fundo com Hover Zoom */}
+                  <div className="absolute inset-0 z-0">
+                    <motion.img 
+                      src={service.img} 
+                      alt={service.title}
+                      className="w-full h-full object-cover opacity-40 grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700 ease-out"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#00050A] via-[#00050A]/80 to-transparent" />
                   </div>
-                  <h4 className="text-xl font-serif text-[#C5A059]">{service.title}</h4>
-                  <p className="text-sm text-[#E5D3B3]/60 mb-4">{service.description}</p>
-                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#C5A059] border-b border-[#C5A059]/20 pb-1 group-hover:border-[#C5A059] transition-all">
-                    Solicitar via WhatsApp
-                  </span>
-                </motion.button>
+
+                  {/* Conteúdo do Card */}
+                  <div className="relative z-10 h-full p-8 flex flex-col justify-end gap-4">
+                    <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#C5A059] to-[#8C6D31] flex items-center justify-center shadow-lg group-hover:shadow-[#C5A059]/20 transition-all">
+                      <service.icon className="text-[#00050A]" size={24} />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <h4 className="text-2xl font-serif text-[#C5A059]">{service.title}</h4>
+                      <p className="text-sm text-[#E5D3B3]/70 leading-relaxed line-clamp-2">{service.desc}</p>
+                    </div>
+
+                    <div className="h-[1px] w-full bg-[#C5A059]/20 group-hover:bg-[#C5A059]/40 transition-colors" />
+
+                    <button 
+                      onClick={() => window.open(`https://wa.me/5541992399650?text=${encodeURIComponent(`Olá! Gostaria de solicitar um orçamento para o serviço de ${service.title} do meu relógio.`)}`, '_blank')}
+                      className="w-full py-3 rounded bg-transparent border border-[#C5A059]/30 text-[#C5A059] text-[10px] font-bold uppercase tracking-[0.2em] flex items-center justify-center gap-2 hover:bg-[#C5A059] hover:text-[#00050A] transition-all group-hover:border-[#C5A059]"
+                    >
+                      <MessageCircle size={14} />
+                      Solicitar via WhatsApp
+                    </button>
+                  </div>
+
+                  {/* Borda de Hover */}
+                  <div className="absolute inset-0 border border-[#C5A059] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl pointer-events-none" />
+                </motion.div>
               ))}
             </div>
 
-            <div className="mt-20 p-8 bg-[#0A101A] rounded-xl border border-[#C5A059]/20 max-w-2xl mx-auto">
-              <h4 className="text-2xl font-serif text-[#C5A059] mb-4">Atendimento Personalizado</h4>
-              <p className="text-[#E5D3B3]/60 mb-8">
-                Cada relógio é único. Fale diretamente com nossos mestres relojoeiros para uma consultoria técnica imediata.
-              </p>
-              <button 
-                onClick={() => window.open('https://wa.me/5541992399650?text=Olá! Gostaria de falar com um relojoeiro.', '_blank')}
-                className="bg-[#C5A059] text-[#00050A] px-12 py-4 rounded-full font-bold hover:bg-[#D4B473] transition-all flex items-center justify-center gap-3 mx-auto"
-              >
-                <MessageCircle size={20} />
-                Iniciar Atendimento
-              </button>
-            </div>
-        </div>
+            {/* Trust Bar (Barra de Confiança) */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="mt-24 pt-12 border-t border-[#C5A059]/10"
+            >
+              <p className="text-[#C5A059] font-serif text-2xl text-center mb-12">Confiança, precisão e tradição desde o primeiro atendimento.</p>
+              
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+                {[
+                  { text: 'Profissionais qualificados', icon: Star },
+                  { text: 'Ferramentas de alta precisão', icon: Tool },
+                  { text: 'Peças originais e selecionadas', icon: Shield },
+                  { text: 'Garantia nos serviços', icon: CheckCircle2 },
+                ].map((item, i) => (
+                  <div key={i} className="flex flex-col items-center gap-3 group">
+                    <div className="w-10 h-10 rounded-full bg-[#C5A059]/10 flex items-center justify-center group-hover:bg-[#C5A059]/20 transition-colors">
+                      <item.icon size={20} className="text-[#C5A059]" />
+                    </div>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#E5D3B3]/60 text-center">{item.text}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </section>
 
         {/* Avaliações Section */}
         <section id="avaliações" className="py-32 px-8 bg-[#0A101A]">
