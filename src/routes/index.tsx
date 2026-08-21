@@ -323,7 +323,7 @@ function Index() {
                 { 
                   title: 'Troca de Bateria', 
                   desc: 'Substituição de bateria com técnica e ferramentas adequadas.',
-                  img: 'https://images.pexels.com/photos/4061511/pexels-photo-4061511.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  img: 'https://images.pexels.com/photos/1198267/pexels-photo-1198267.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Smartphone 
                 },
                 { 
