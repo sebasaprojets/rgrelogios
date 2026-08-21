@@ -292,49 +292,49 @@ function Index() {
               {[
                 { 
                   title: 'Manutenção', 
-                  desc: 'Manutenção preventiva que prolonga a vida útil do seu relógio e garante precisão.',
+                  desc: 'Manutenção preventiva que prolonga a vida útil do seu relógio e garante precisão absoluta.',
                   img: 'https://images.pexels.com/photos/934673/pexels-photo-934673.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Shield
                 },
                 { 
                   title: 'Reparação', 
-                  desc: 'Diagnóstico preciso e reparos especializados para qualquer tipo de problema.',
+                  desc: 'Diagnóstico preciso e reparos especializados para devolver a funcionalidade original à sua peça.',
                   img: 'https://images.pexels.com/photos/277390/pexels-photo-277390.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Tool 
                 },
                 { 
                   title: 'Restauração', 
-                  desc: 'Devolvemos a originalidade e beleza de relógios antigos e peças especiais.',
+                  desc: 'Resgatamos a alma e a estética de relógios antigos com total respeito à sua história.',
                   img: 'https://images.pexels.com/photos/280250/pexels-photo-280250.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: History 
                 },
                 { 
                   title: 'Avaliação', 
-                  desc: 'Avaliação profissional para relógios antigos, coleções e peças raras.',
+                  desc: 'Avaliação criteriosa e profissional para coleções, relógios raros e peças de herança.',
                   img: 'https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Star 
                 },
                 { 
                   title: 'Revisão Completa', 
-                  desc: 'Revisão completa do mecanismo para garantir o perfeito funcionamento do relógio.',
+                  desc: 'Desmontagem, limpeza e lubrificação minuciosa de todo o mecanismo interno.',
                   img: 'https://images.pexels.com/photos/47339/mechanics-watch-close-up-open-47339.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Tool 
                 },
                 { 
                   title: 'Troca de Bateria', 
-                  desc: 'Substituição da bateria com técnica e ferramentas adequadas.',
-                  img: 'https://images.pexels.com/photos/11566897/pexels-photo-11566897.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  desc: 'Substituição rápida e segura com baterias de alta performance e vedação garantida.',
+                  img: 'https://images.pexels.com/photos/4061511/pexels-photo-4061511.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Smartphone 
                 },
                 { 
                   title: 'Ajuste de Pulseira', 
-                  desc: 'Ajuste preciso para máximo conforto e segurança no seu dia a dia.',
+                  desc: 'Ajuste sob medida para proporcionar o máximo conforto e elegância no seu pulso.',
                   img: 'https://images.pexels.com/photos/9462822/pexels-photo-9462822.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Tool 
                 },
                 { 
-                  title: 'Limpeza e Conservação', 
-                  desc: 'Limpeza profissional que mantém a estética e o brilho do seu relógio.',
+                  title: 'Limpeza e Polimento', 
+                  desc: 'Tratamento estético profissional para remover marcas do tempo e devolver o brilho original.',
                   img: 'https://images.pexels.com/photos/9462817/pexels-photo-9462817.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Star 
                 },
@@ -390,27 +390,33 @@ function Index() {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="w-full bg-[#0A101A] border border-[#C5A059]/20 rounded-xl p-8 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-2xl"
+              className="w-full bg-[#0A101A] border border-[#C5A059]/20 rounded-xl p-8 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-2xl relative"
             >
+              {/* Decorative side accent */}
+              <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-12 bg-[#C5A059]/40 rounded-r" />
+
               <div className="flex items-center gap-6 lg:border-r lg:border-[#C5A059]/20 lg:pr-12">
-                <div className="w-12 h-12 rounded-full border border-[#C5A059]/40 flex items-center justify-center text-[#C5A059]">
-                  <Shield size={24} />
+                <div className="w-14 h-14 rounded-full border border-[#C5A059]/40 flex items-center justify-center text-[#C5A059] shrink-0">
+                  <Shield size={28} />
                 </div>
-                <p className="text-lg font-serif text-[#E5D3B3] max-w-xs leading-tight">
-                  Confiança, precisão e tradição desde o primeiro atendimento.
-                </p>
+                <div className="space-y-1">
+                  <p className="text-xl font-serif text-[#E5D3B3] leading-tight">
+                    Excelência, precisão e tradição
+                  </p>
+                  <p className="text-xs text-[#E5D3B3]/40 uppercase tracking-[0.2em]">Desde o primeiro atendimento</p>
+                </div>
               </div>
   
-              <div className="flex flex-wrap justify-center lg:justify-end gap-x-12 gap-y-6">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-x-12 gap-y-6 w-full lg:w-auto">
                 {[
                   { label: 'Profissionais qualificados', icon: Star },
-                  { label: 'Ferramentas de alta precisão', icon: Tool },
-                  { label: 'Peças originais e selecionadas', icon: Star },
-                  { label: 'Garantia em todos os serviços', icon: Shield },
+                  { label: 'Alta precisão técnica', icon: Tool },
+                  { label: 'Peças originais', icon: Star },
+                  { label: 'Garantia total', icon: Shield },
                 ].map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-3">
+                  <div key={idx} className="flex flex-col items-center lg:items-start gap-3">
                     <item.icon size={18} className="text-[#C5A059]" />
-                    <span className="text-xs font-bold uppercase tracking-tighter text-[#E5D3B3]/80">{item.label}</span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#E5D3B3]/80 text-center lg:text-left">{item.label}</span>
                   </div>
                 ))}
               </div>
