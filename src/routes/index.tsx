@@ -329,7 +329,7 @@ function Index() {
                 { 
                   title: 'Ajuste de Pulseira', 
                   desc: 'Ajuste preciso para máximo conforto e segurança no seu dia a dia.',
-                  img: 'https://images.pexels.com/photos/236915/pexels-photo-236915.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  img: 'https://images.pexels.com/photos/1198268/pexels-photo-1198268.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Tool 
                 },
                 { 
