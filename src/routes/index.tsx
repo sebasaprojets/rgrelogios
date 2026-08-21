@@ -20,7 +20,7 @@ import {
   Send
 } from "lucide-react";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
-import logoAsset from "@/assets/logo.jpeg.asset.json";
+import logoAsset from "@/assets/logo-official.png.asset.json";
 import storefrontAsset from "@/assets/storefront.jpeg.asset.json";
 import heroVideoAsset from "@/assets/hero-watch.mp4.asset.json";
 import heroPosterAsset from "@/assets/hero-poster.jpg.asset.json";
