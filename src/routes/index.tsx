@@ -299,43 +299,43 @@ function Index() {
                 { 
                   title: 'Reparação', 
                   desc: 'Diagnóstico preciso e reparos especializados para qualquer tipo de problema.',
-                  img: 'https://images.pexels.com/photos/1198261/pexels-photo-1198261.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  img: 'https://images.pexels.com/photos/360733/pexels-photo-360733.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Tool 
                 },
                 { 
                   title: 'Restauração', 
                   desc: 'Devolvemos a originalidade e beleza de relógios antigos e peças especiais.',
-                  img: 'https://images.pexels.com/photos/1198274/pexels-photo-1198274.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  img: 'https://images.pexels.com/photos/280250/pexels-photo-280250.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: History 
                 },
                 { 
                   title: 'Avaliação', 
                   desc: 'Avaliação profissional para relógios antigos, coleções e peças raras.',
-                  img: 'https://images.pexels.com/photos/1198263/pexels-photo-1198263.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  img: 'https://images.pexels.com/photos/168434/pexels-photo-168434.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Star 
                 },
                 { 
                   title: 'Revisão Completa', 
                   desc: 'Revisão completa do mecanismo para garantir o perfeito funcionamento do relógio.',
-                  img: 'https://images.pexels.com/photos/1198262/pexels-photo-1198262.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  img: 'https://images.pexels.com/photos/934673/pexels-photo-934673.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Tool 
                 },
                 { 
                   title: 'Troca de Bateria', 
                   desc: 'Substituição de bateria com técnica e ferramentas adequadas.',
-                  img: 'https://images.pexels.com/photos/1198267/pexels-photo-1198267.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  img: 'https://images.pexels.com/photos/4061511/pexels-photo-4061511.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Smartphone 
                 },
                 { 
                   title: 'Ajuste de Pulseira', 
                   desc: 'Ajuste preciso para máximo conforto e segurança no seu dia a dia.',
-                  img: 'https://images.pexels.com/photos/1198268/pexels-photo-1198268.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  img: 'https://images.pexels.com/photos/236915/pexels-photo-236915.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Tool 
                 },
                 { 
                   title: 'Limpeza e Conservação', 
                   desc: 'Limpeza profissional que mantém a estética e o brilho do seu relógio.',
-                  img: 'https://images.pexels.com/photos/1198269/pexels-photo-1198269.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  img: 'https://images.pexels.com/photos/2113994/pexels-photo-2113994.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Star 
                 },
               ].map((service, i) => (
