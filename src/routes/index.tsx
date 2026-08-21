@@ -292,49 +292,49 @@ function Index() {
               {[
                 { 
                   title: 'Manutenção', 
-                  desc: 'Manutenção preventiva que prolonga a vida útil do seu relógio e garante precisão absoluta.',
+                  desc: 'Manutenção preventiva que prolonga a vida útil do seu relógio e garante precisão.',
                   img: 'https://images.pexels.com/photos/934673/pexels-photo-934673.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Shield
                 },
                 { 
                   title: 'Reparação', 
-                  desc: 'Diagnóstico preciso e reparos especializados para devolver a funcionalidade original à sua peça.',
+                  desc: 'Diagnóstico preciso e reparos especializados para qualquer tipo de problema.',
                   img: 'https://images.pexels.com/photos/4425881/pexels-photo-4425881.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Tool 
                 },
                 { 
                   title: 'Restauração', 
-                  desc: 'Resgatamos a alma e a estética de relógios antigos com total respeito à sua história.',
+                  desc: 'Devolvemos a originalidade e beleza de relógios antigos e peças especiais.',
                   img: 'https://images.pexels.com/photos/280250/pexels-photo-280250.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: History 
                 },
                 { 
                   title: 'Avaliação', 
-                  desc: 'Avaliação criteriosa e profissional para coleções, relógios raros e peças de herança.',
+                  desc: 'Avaliação profissional para relógios antigos, coleções e peças raras.',
                   img: 'https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Star 
                 },
                 { 
                   title: 'Revisão Completa', 
-                  desc: 'Desmontagem, limpeza e lubrificação minuciosa de todo o mecanismo interno.',
+                  desc: 'Revisão completa do mecanismo para garantir o perfeito funcionamento do relógio.',
                   img: 'https://images.pexels.com/photos/277390/pexels-photo-277390.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Tool 
                 },
                 { 
                   title: 'Troca de Bateria', 
-                  desc: 'Substituição rápida e segura com baterias de alta performance e vedação garantida.',
+                  desc: 'Substituição de bateria com técnica e ferramentas adequadas.',
                   img: 'https://images.pexels.com/photos/4061511/pexels-photo-4061511.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Smartphone 
                 },
                 { 
                   title: 'Ajuste de Pulseira', 
-                  desc: 'Ajuste sob medida para proporcionar o máximo conforto e elegância no seu pulso.',
+                  desc: 'Ajuste preciso para máximo conforto e segurança no seu dia a dia.',
                   img: 'https://images.pexels.com/photos/236915/pexels-photo-236915.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Tool 
                 },
                 { 
                   title: 'Limpeza e Conservação', 
-                  desc: 'Tratamento estético profissional para remover marcas do tempo e devolver o brilho original.',
+                  desc: 'Limpeza profissional que mantém a estética e o brilho do seu relógio.',
                   img: 'https://images.pexels.com/photos/2113994/pexels-photo-2113994.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Star 
                 },
