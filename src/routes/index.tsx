@@ -436,9 +436,9 @@ function Index() {
                 <h5 className="text-[#C5A059] font-bold text-xs uppercase tracking-widest mb-6">Navegação</h5>
                 <ul className="space-y-4 text-sm text-[#E5D3B3]/60">
                   <li><a href="#início" className="hover:text-[#C5A059]">Início</a></li>
-                  <li><a href="#relógios" className="hover:text-[#C5A059]">Relógios</a></li>
                   <li><a href="#antigos" className="hover:text-[#C5A059]">Relógios Antigos</a></li>
                   <li><a href="#serviços" className="hover:text-[#C5A059]">Serviços</a></li>
+                  <li><a href="#sobre" className="hover:text-[#C5A059]">Sobre Nós</a></li>
                 </ul>
               </div>
               <div>
