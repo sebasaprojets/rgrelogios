@@ -311,7 +311,7 @@ function Index() {
                 { 
                   title: 'Avaliação', 
                   desc: 'Avaliação profissional para relógios antigos, coleções e peças raras.',
-                  img: 'https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  img: 'https://images.pexels.com/photos/1198263/pexels-photo-1198263.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Star 
                 },
                 { 
