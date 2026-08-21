@@ -305,7 +305,7 @@ function Index() {
                 { 
                   title: 'Restauração', 
                   desc: 'Devolvemos a originalidade e beleza de relógios antigos e peças especiais.',
-                  img: 'https://images.pexels.com/photos/280250/pexels-photo-280250.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  img: 'https://images.pexels.com/photos/1198274/pexels-photo-1198274.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: History 
                 },
                 { 
