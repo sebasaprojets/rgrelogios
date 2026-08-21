@@ -101,7 +101,7 @@ function Index() {
         </div>
         
         <nav className="hidden md:flex gap-8 text-sm font-medium tracking-wide text-[#E5D3B3]/90 uppercase">
-          {["Início", "Relógios", "Antigos", "Serviços", "Sobre", "Contato"].map((item) => (
+          {["Início", "Antigos", "Serviços", "Sobre", "Contato"].map((item) => (
             <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-[#C5A059] transition-colors">
               {item}
             </a>
