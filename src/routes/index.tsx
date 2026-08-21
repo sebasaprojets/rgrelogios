@@ -388,9 +388,18 @@ function Index() {
               </div>
               
               <div className="mt-12 h-64 rounded-lg bg-[#00050A] border border-[#C5A059]/20 flex items-center justify-center relative overflow-hidden group">
-                {/* Google Maps Embed Placeholder - would use an iframe in production */}
-                <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&q=80&w=800" className="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-50 transition-all" alt="Map" />
-                <button className="relative z-10 bg-[#C5A059] text-[#00050A] px-6 py-3 rounded font-bold text-sm tracking-widest uppercase shadow-2xl">Ver no Google Maps</button>
+                {/* Visual context instead of active map */}
+                <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&q=80&w=800" className="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-50 transition-all" alt="RG Relógios Storefront" />
+                <div className="relative z-10 text-center p-6">
+                  <MapPin className="text-[#C5A059] mx-auto mb-4" size={32} />
+                  <p className="text-[#E5D3B3] font-bold text-sm tracking-widest uppercase mb-4">Visite nossa loja física</p>
+                  <button 
+                    onClick={() => window.open('https://www.google.com/maps/search/?api=1&query=RG+Relógios+R.+João+Antônio+Xavier+420+Água+Verde+Curitiba+PR', '_blank')}
+                    className="bg-[#C5A059] text-[#00050A] px-6 py-2 rounded font-bold text-[10px] tracking-widest uppercase shadow-2xl hover:bg-[#D4B473] transition-colors"
+                  >
+                    Abrir no GPS
+                  </button>
+                </div>
               </div>
             </div>
 
