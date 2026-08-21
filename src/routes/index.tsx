@@ -418,34 +418,6 @@ function Index() {
           </div>
         </section>
 
-            {/* Trust Bar (Barra de Confiança) */}
-            <motion.div 
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="mt-24 pt-12 border-t border-[#C5A059]/10"
-            >
-              <p className="text-[#C5A059] font-serif text-2xl text-center mb-12">Confiança, precisão e tradição desde o primeiro atendimento.</p>
-              
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-                {[
-                  { text: 'Profissionais qualificados', icon: Star },
-                  { text: 'Ferramentas de alta precisão', icon: Tool },
-                  { text: 'Peças originais e selecionadas', icon: Shield },
-                  { text: 'Garantia nos serviços', icon: CheckCircle2 },
-                ].map((item, i) => (
-                  <div key={i} className="flex flex-col items-center gap-3 group">
-                    <div className="w-10 h-10 rounded-full bg-[#C5A059]/10 flex items-center justify-center group-hover:bg-[#C5A059]/20 transition-colors">
-                      <item.icon size={20} className="text-[#C5A059]" />
-                    </div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#E5D3B3]/60 text-center">{item.text}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
         {/* Avaliações Section */}
         <section id="avaliações" className="py-32 px-8 bg-[#0A101A]">
           <div className="max-w-7xl mx-auto text-center">
