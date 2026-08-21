@@ -299,7 +299,7 @@ function Index() {
                 { 
                   title: 'Reparação', 
                   desc: 'Diagnóstico preciso e reparos especializados para devolver a funcionalidade original à sua peça.',
-                  img: 'https://images.pexels.com/photos/277390/pexels-photo-277390.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  img: 'https://images.pexels.com/photos/4425881/pexels-photo-4425881.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Tool 
                 },
                 { 
@@ -317,7 +317,7 @@ function Index() {
                 { 
                   title: 'Revisão Completa', 
                   desc: 'Desmontagem, limpeza e lubrificação minuciosa de todo o mecanismo interno.',
-                  img: 'https://images.pexels.com/photos/47339/mechanics-watch-close-up-open-47339.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  img: 'https://images.pexels.com/photos/277390/pexels-photo-277390.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Tool 
                 },
                 { 
@@ -329,13 +329,13 @@ function Index() {
                 { 
                   title: 'Ajuste de Pulseira', 
                   desc: 'Ajuste sob medida para proporcionar o máximo conforto e elegância no seu pulso.',
-                  img: 'https://images.pexels.com/photos/9462822/pexels-photo-9462822.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  img: 'https://images.pexels.com/photos/236915/pexels-photo-236915.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Tool 
                 },
                 { 
-                  title: 'Limpeza e Polimento', 
+                  title: 'Limpeza e Conservação', 
                   desc: 'Tratamento estético profissional para remover marcas do tempo e devolver o brilho original.',
-                  img: 'https://images.pexels.com/photos/9462817/pexels-photo-9462817.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  img: 'https://images.pexels.com/photos/2113994/pexels-photo-2113994.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Star 
                 },
               ].map((service, i) => (
