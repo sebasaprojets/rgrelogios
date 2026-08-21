@@ -293,7 +293,7 @@ function Index() {
                 { 
                   title: 'Manutenção', 
                   desc: 'Manutenção preventiva que prolonga a vida útil do seu relógio e garante precisão.',
-                  img: 'https://images.pexels.com/photos/1198274/pexels-photo-1198274.jpeg?auto=compress&cs=tinysrgb&w=800',
+                  img: 'https://images.pexels.com/photos/2783873/pexels-photo-2783873.jpeg?auto=compress&cs=tinysrgb&w=800',
                   icon: Shield
                 },
                 { 
