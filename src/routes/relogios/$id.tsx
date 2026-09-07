@@ -58,7 +58,7 @@ function ProductDetail() {
       
       <div className="max-w-7xl mx-auto">
         <a href="/#relógios" className="inline-flex items-center gap-2 text-[#C5A059] hover:text-[#D4B473] transition-colors mb-12 uppercase text-xs font-bold tracking-widest">
-          <ChevronLeft size={16} /> Voltar ao Catálogo
+          <ChevronLeft size={16} /> Voltar
         </a>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
