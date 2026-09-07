@@ -117,3 +117,42 @@ export const getServiceRequests = createServerFn({ method: "GET" })
     if (error) throw new Error(error.message);
     return requests;
   });
+
+/** Cria um novo relógio no catálogo de vendas (uso administrativo). */
+export const createProduct = createServerFn({ method: "POST" })
+  .inputValidator((data) =>
+    z
+      .object({
+        name: z.string().min(2),
+        brand: z.string().min(1),
+        model: z.string().min(1),
+        category: z.string().min(1),
+        condition: z.string().min(1),
+        price: z.number().nonnegative().optional(),
+        year: z.string().optional(),
+        description: z.string().optional(),
+        image_url: z.string().url().optional(),
+        availability: z.boolean().optional(),
+      })
+      .parse(data),
+  )
+  .handler(async ({ data }) => {
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { error } = await supabaseAdmin.from("products").insert([
+      {
+        name: data.name,
+        brand: data.brand,
+        model: data.model,
+        category: data.category as WatchCategory,
+        condition: data.condition as Database["public"]["Enums"]["watch_condition"],
+        price: data.price ?? null,
+        year: data.year ?? null,
+        description: data.description ?? null,
+        images: data.image_url ? [data.image_url] : [],
+        availability: data.availability ?? true,
+      },
+    ]);
+
+    if (error) throw new Error(error.message);
+    return { success: true };
+  });
