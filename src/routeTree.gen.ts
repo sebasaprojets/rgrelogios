@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
+import { Route as RelogiosAntigosRouteImport } from './routes/relogios-antigos'
+import { Route as RestauracoesRouteImport } from './routes/restauracoes'
 import { Route as RelogiosIdRouteImport } from './routes/relogios/$id'
 
 const IndexRoute = IndexRouteImport.update({
@@ -23,6 +25,16 @@ const AdminRoute = AdminRouteImport.update({
   path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RelogiosAntigosRoute = RelogiosAntigosRouteImport.update({
+  id: '/relogios-antigos',
+  path: '/relogios-antigos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RestauracoesRoute = RestauracoesRouteImport.update({
+  id: '/restauracoes',
+  path: '/restauracoes',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RelogiosIdRoute = RelogiosIdRouteImport.update({
   id: '/relogios/$id',
   path: '/relogios/$id',
@@ -32,30 +44,45 @@ const RelogiosIdRoute = RelogiosIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/relogios-antigos': typeof RelogiosAntigosRoute
+  '/restauracoes': typeof RestauracoesRoute
   '/relogios/$id': typeof RelogiosIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/relogios-antigos': typeof RelogiosAntigosRoute
+  '/restauracoes': typeof RestauracoesRoute
   '/relogios/$id': typeof RelogiosIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/relogios-antigos': typeof RelogiosAntigosRoute
+  '/restauracoes': typeof RestauracoesRoute
   '/relogios/$id': typeof RelogiosIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/relogios/$id'
+  fullPaths:
+    '/' | '/admin' | '/relogios-antigos' | '/restauracoes' | '/relogios/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/relogios/$id'
-  id: '__root__' | '/' | '/admin' | '/relogios/$id'
+  to: '/' | '/admin' | '/relogios-antigos' | '/restauracoes' | '/relogios/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/relogios-antigos'
+    | '/restauracoes'
+    | '/relogios/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
+  RelogiosAntigosRoute: typeof RelogiosAntigosRoute
+  RestauracoesRoute: typeof RestauracoesRoute
   RelogiosIdRoute: typeof RelogiosIdRoute
 }
 
@@ -75,6 +102,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/relogios-antigos': {
+      id: '/relogios-antigos'
+      path: '/relogios-antigos'
+      fullPath: '/relogios-antigos'
+      preLoaderRoute: typeof RelogiosAntigosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/restauracoes': {
+      id: '/restauracoes'
+      path: '/restauracoes'
+      fullPath: '/restauracoes'
+      preLoaderRoute: typeof RestauracoesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/relogios/$id': {
       id: '/relogios/$id'
       path: '/relogios/$id'
@@ -88,6 +129,8 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
+  RelogiosAntigosRoute: RelogiosAntigosRoute,
+  RestauracoesRoute: RestauracoesRoute,
   RelogiosIdRoute: RelogiosIdRoute,
 }
 export const routeTree = rootRouteImport
