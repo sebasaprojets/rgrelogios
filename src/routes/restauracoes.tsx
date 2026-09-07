@@ -5,6 +5,10 @@ import { X, MessageCircle, Search, ClipboardList, PenTool, Gauge, Sparkles, Pack
 import { SiteHeader, SiteFooter, SectionEyebrow, openWhatsApp } from "@/components/SiteChrome";
 import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import oratorioAntes from "@/assets/oratorio-antes.jpg.asset.json";
+import oratorioDepois from "@/assets/oratorio-depois.jpg.asset.json";
+import tokeiAntes from "@/assets/tokei-antes.jpg.asset.json";
+import tokeiDepois from "@/assets/tokei-depois.jpg.asset.json";
 
 export const Route = createFileRoute("/restauracoes")({
   head: () => ({
