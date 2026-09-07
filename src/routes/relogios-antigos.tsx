@@ -8,6 +8,11 @@ import bolsoTissot from "@/assets/bolso-tissot.png.asset.json";
 import bolsoEsmaltado from "@/assets/bolso-esmaltado.png.asset.json";
 import bolsoSantBara from "@/assets/bolso-santbara.png.asset.json";
 import bolsoAguia from "@/assets/bolso-aguia.png.asset.json";
+import paredeCuco from "@/assets/parede-img_4432.jpeg.asset.json";
+import paredeEska from "@/assets/parede-img_4428.jpeg.asset.json";
+import paredeHerwegOrnamentado from "@/assets/parede-img_4439.jpeg.asset.json";
+import paredeColunas from "@/assets/parede-img_4431.jpeg.asset.json";
+import paredeCucoHerweg from "@/assets/parede-img_4438.jpeg.asset.json";
 
 export const Route = createFileRoute("/relogios-antigos")({
   head: () => ({
@@ -140,13 +145,48 @@ const PHOTOS: readonly GalleryPhoto[] = [
     era: "Oficina",
     group: "Detalhes",
   },
+  {
+    id: "w1",
+    src: paredeCuco.url,
+    caption: "Cuco entalhado em madeira com pássaro e folhagens",
+    era: "Relógio de parede",
+    group: "Parede",
+  },
+  {
+    id: "w2",
+    src: paredeEska.url,
+    caption: "Eska em madeira clara — mostrador dourado e pêndulo",
+    era: "Relógio de parede",
+    group: "Parede",
+  },
+  {
+    id: "w3",
+    src: paredeHerwegOrnamentado.url,
+    caption: "Herweg ornamentado em preto e ouro velho",
+    era: "Relógio de parede",
+    group: "Parede",
+  },
+  {
+    id: "w4",
+    src: paredeColunas.url,
+    caption: "Caixa em madeira escura com colunas torneadas e pêndulo",
+    era: "Relógio de parede",
+    group: "Parede",
+  },
+  {
+    id: "w5",
+    src: paredeCucoHerweg.url,
+    caption: "Cuco Herweg com folhas entalhadas, pinhas e correntes",
+    era: "Relógio de parede",
+    group: "Parede",
+  },
 ];
 
 const ALL = "Todas";
 const ANTIQUE = "Antigos";
 
 /** Grupos considerados peças antigas na aba "Antigos". */
-const ANTIQUE_GROUPS: readonly string[] = ["Pulso", "Bolso", "Mecanismos"];
+const ANTIQUE_GROUPS: readonly string[] = ["Pulso", "Bolso", "Mecanismos", "Parede"];
 
 function VintageGalleryPage() {
   const [group, setGroup] = useState(ALL);
