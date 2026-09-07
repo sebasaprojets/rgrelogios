@@ -145,13 +145,48 @@ const PHOTOS: readonly GalleryPhoto[] = [
     era: "Oficina",
     group: "Detalhes",
   },
+  {
+    id: "w1",
+    src: paredeCuco.url,
+    caption: "Cuco entalhado em madeira com pássaro e folhagens",
+    era: "Relógio de parede",
+    group: "Parede",
+  },
+  {
+    id: "w2",
+    src: paredeEska.url,
+    caption: "Eska em madeira clara — mostrador dourado e pêndulo",
+    era: "Relógio de parede",
+    group: "Parede",
+  },
+  {
+    id: "w3",
+    src: paredeHerwegOrnamentado.url,
+    caption: "Herweg ornamentado em preto e ouro velho",
+    era: "Relógio de parede",
+    group: "Parede",
+  },
+  {
+    id: "w4",
+    src: paredeColunas.url,
+    caption: "Caixa em madeira escura com colunas torneadas e pêndulo",
+    era: "Relógio de parede",
+    group: "Parede",
+  },
+  {
+    id: "w5",
+    src: paredeCucoHerweg.url,
+    caption: "Cuco Herweg com folhas entalhadas, pinhas e correntes",
+    era: "Relógio de parede",
+    group: "Parede",
+  },
 ];
 
 const ALL = "Todas";
 const ANTIQUE = "Antigos";
 
 /** Grupos considerados peças antigas na aba "Antigos". */
-const ANTIQUE_GROUPS: readonly string[] = ["Pulso", "Bolso", "Mecanismos"];
+const ANTIQUE_GROUPS: readonly string[] = ["Pulso", "Bolso", "Mecanismos", "Parede"];
 
 function VintageGalleryPage() {
   const [group, setGroup] = useState(ALL);
