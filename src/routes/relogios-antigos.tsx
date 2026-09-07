@@ -143,17 +143,26 @@ const PHOTOS: readonly GalleryPhoto[] = [
 ];
 
 const ALL = "Todas";
+const ANTIQUE = "Antigos";
+
+/** Grupos considerados peças antigas na aba "Antigos". */
+const ANTIQUE_GROUPS: readonly string[] = ["Pulso", "Bolso", "Mecanismos"];
 
 function VintageGalleryPage() {
   const [group, setGroup] = useState(ALL);
   const [index, setIndex] = useState<number | null>(null);
   const [shot, setShot] = useState(0);
 
-  const groups = useMemo(() => [ALL, ...Array.from(new Set(PHOTOS.map((p) => p.group)))], []);
-  const photos = useMemo(
-    () => (group === ALL ? PHOTOS : PHOTOS.filter((p) => p.group === group)),
-    [group],
+  const groups = useMemo(
+    () => [ALL, ANTIQUE, ...Array.from(new Set(PHOTOS.map((p) => p.group)))],
+    [],
   );
+  const photos = useMemo(() => {
+    if (group === ALL) return PHOTOS;
+    if (group === ANTIQUE) return PHOTOS.filter((p) => ANTIQUE_GROUPS.includes(p.group));
+    return PHOTOS.filter((p) => p.group === group);
+  }, [group]);
+
 
   const current = index === null ? null : photos[index] ?? null;
   const shots = current ? [current.src, ...(current.extra ?? [])] : [];
