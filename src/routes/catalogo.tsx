@@ -61,7 +61,9 @@ function CatalogPage() {
 
     return products.filter((product) => {
       const inSection =
-        !active || active.categories.length === 0 || active.categories.includes(product.category);
+        !active ||
+        active.categories.length === 0 ||
+        (active.categories as readonly string[]).includes(product.category);
       const matchesTerm =
         term.length === 0 ||
         `${product.name} ${product.brand} ${product.model} ${product.year ?? ""}`
