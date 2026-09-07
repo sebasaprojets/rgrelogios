@@ -251,7 +251,10 @@ function VintageGalleryPage() {
               >
                 <button
                   type="button"
-                  onClick={() => setIndex(i)}
+                  onClick={() => {
+                    setShot(0);
+                    setIndex(i);
+                  }}
                   aria-label={`Ampliar foto: ${photo.caption}`}
                   className="absolute inset-0 w-full h-full"
                 >
