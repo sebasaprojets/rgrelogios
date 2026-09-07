@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { getProducts, getServiceRequests, getOrders, getReviews } from "@/lib/api.functions";
+import { getProducts, getServiceRequests, getOrders, getReviews, createProduct } from "@/lib/api.functions";
 import { motion } from "framer-motion";
 import { LayoutDashboard, Package, MessageSquare, Star, Settings, LogOut, ShoppingCart } from "lucide-react";
 import { useState } from "react";
