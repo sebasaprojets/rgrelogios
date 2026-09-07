@@ -33,6 +33,8 @@ export const Route = createFileRoute("/relogios-antigos")({
 interface GalleryPhoto {
   readonly id: string;
   readonly src: string;
+  /** Fotos adicionais da mesma peça, exibidas como miniaturas na ampliação. */
+  readonly extra?: readonly string[];
   readonly caption: string;
   readonly era: string;
   readonly group: string;
@@ -91,14 +93,8 @@ const PHOTOS: readonly GalleryPhoto[] = [
   {
     id: "b3",
     src: bolsoSantBara.url,
-    caption: "Sant. Bara dourado com tampa guilhochê e brasão no mostrador",
-    era: "Relógio de bolso",
-    group: "Bolso",
-  },
-  {
-    id: "b4",
-    src: bolsoAguia.url,
-    caption: "Tampa dourada com águia em alto-relevo",
+    extra: [bolsoAguia.url],
+    caption: "Sant. Bara dourado — tampa com águia em alto-relevo e brasão no mostrador",
     era: "Relógio de bolso",
     group: "Bolso",
   },
