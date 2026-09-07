@@ -147,6 +147,7 @@ const ALL = "Todas";
 function VintageGalleryPage() {
   const [group, setGroup] = useState(ALL);
   const [index, setIndex] = useState<number | null>(null);
+  const [shot, setShot] = useState(0);
 
   const groups = useMemo(() => [ALL, ...Array.from(new Set(PHOTOS.map((p) => p.group)))], []);
   const photos = useMemo(
@@ -155,8 +156,10 @@ function VintageGalleryPage() {
   );
 
   const current = index === null ? null : photos[index] ?? null;
+  const shots = current ? [current.src, ...(current.extra ?? [])] : [];
 
   const go = (step: number) => {
+    setShot(0);
     setIndex((prev) => {
       if (prev === null) return prev;
       return (prev + step + photos.length) % photos.length;
@@ -323,10 +326,30 @@ function VintageGalleryPage() {
               </button>
 
               <img
-                src={current.src}
+                src={shots[shot] ?? current.src}
                 alt={current.caption}
                 className="w-full max-h-[70vh] object-contain rounded-lg border border-[#C5A059]/20 bg-[#00050A]"
               />
+
+              {shots.length > 1 && (
+                <div className="mt-4 flex justify-center gap-3">
+                  {shots.map((src, i) => (
+                    <button
+                      key={src}
+                      type="button"
+                      onClick={() => setShot(i)}
+                      aria-label={`Ver foto ${i + 1}`}
+                      className={`w-20 h-20 rounded overflow-hidden border transition-all ${
+                        shot === i
+                          ? "border-[#C5A059]"
+                          : "border-[#C5A059]/20 opacity-60 hover:opacity-100"
+                      }`}
+                    >
+                      <img src={src} alt="" className="w-full h-full object-cover" />
+                    </button>
+                  ))}
+                </div>
+              )}
 
               <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="text-center sm:text-left">
