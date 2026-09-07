@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { getProducts, getServiceRequests, getOrders, getReviews } from "@/lib/api.functions";
+import { getProducts, getServiceRequests, getOrders, getReviews, createProduct } from "@/lib/api.functions";
 import { motion } from "framer-motion";
 import { LayoutDashboard, Package, MessageSquare, Star, Settings, LogOut, ShoppingCart } from "lucide-react";
 import { useState } from "react";
@@ -201,10 +201,11 @@ function AdminPanel() {
         )}
 
         {activeTab === "Produtos" && (
+          <div className="space-y-8">
+          <NewProductForm />
           <div className="bg-[#0A101A] rounded-xl border border-[#C5A059]/10 overflow-hidden">
             <div className="p-6 border-b border-[#C5A059]/10 flex justify-between items-center">
               <h4 className="font-serif text-[#C5A059] text-xl">Catálogo de Produtos</h4>
-              <button className="bg-[#C5A059] text-[#00050A] px-4 py-2 rounded text-[10px] font-bold uppercase tracking-widest">Novo Produto</button>
             </div>
             <div className="p-0">
               <table className="w-full text-left text-sm">
@@ -238,8 +239,201 @@ function AdminPanel() {
               </table>
             </div>
           </div>
+          </div>
         )}
       </main>
     </div>
+  );
+}
+
+const CATEGORIES = [
+  "Antigos",
+  "Vintage",
+  "Peças Exclusivas",
+  "Clássicos",
+  "Luxo",
+  "Masculinos",
+  "Femininos",
+] as const;
+
+const CONDITIONS = ["Novo", "Excelente", "Bom", "Vintage/Antigo", "Restauração necessária"] as const;
+
+interface ProductFormState {
+  name: string;
+  brand: string;
+  model: string;
+  category: string;
+  condition: string;
+  price: string;
+  year: string;
+  image_url: string;
+  description: string;
+}
+
+const EMPTY_FORM: ProductFormState = {
+  name: "",
+  brand: "",
+  model: "",
+  category: "Antigos",
+  condition: "Excelente",
+  price: "",
+  year: "",
+  image_url: "",
+  description: "",
+};
+
+/** Formulário de cadastro de relógios no catálogo de vendas. */
+function NewProductForm() {
+  const queryClient = useQueryClient();
+  const addProduct = useServerFn(createProduct);
+  const [form, setForm] = useState<ProductFormState>(EMPTY_FORM);
+  const [status, setStatus] = useState<"idle" | "saving" | "done" | "error">("idle");
+  const [message, setMessage] = useState("");
+
+  const update = (key: keyof ProductFormState, value: string) =>
+    setForm((prev) => ({ ...prev, [key]: value }));
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    setStatus("saving");
+    setMessage("");
+
+    try {
+      const parsedPrice = form.price.trim() === "" ? undefined : Number(form.price.replace(",", "."));
+      if (parsedPrice !== undefined && Number.isNaN(parsedPrice)) {
+        throw new Error("Preço inválido.");
+      }
+
+      await addProduct({
+        data: {
+          name: form.name.trim(),
+          brand: form.brand.trim(),
+          model: form.model.trim(),
+          category: form.category,
+          condition: form.condition,
+          price: parsedPrice,
+          year: form.year.trim() || undefined,
+          image_url: form.image_url.trim() || undefined,
+          description: form.description.trim() || undefined,
+          availability: true,
+        },
+      });
+
+      setForm(EMPTY_FORM);
+      setStatus("done");
+      setMessage("Relógio adicionado ao catálogo.");
+      await queryClient.invalidateQueries({ queryKey: ["admin-products"] });
+      await queryClient.invalidateQueries({ queryKey: ["catalog-products"] });
+    } catch (error) {
+      setStatus("error");
+      setMessage(error instanceof Error ? error.message : "Não foi possível salvar o relógio.");
+    }
+  };
+
+  const inputClass =
+    "w-full bg-[#00050A] border border-[#C5A059]/20 rounded px-4 py-3 text-sm outline-none focus:border-[#C5A059] transition-colors";
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className="bg-[#0A101A] rounded-xl border border-[#C5A059]/10 p-6 space-y-6"
+    >
+      <div>
+        <h4 className="font-serif text-[#C5A059] text-xl">Adicionar relógio ao catálogo</h4>
+        <p className="text-xs text-[#E5D3B3]/40 mt-1">
+          Escolha a categoria para o relógio aparecer em "Relógios Antigos" ou "Relógios de Mão".
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <input
+          required
+          value={form.name}
+          onChange={(e) => update("name", e.target.value)}
+          placeholder="Nome do anúncio"
+          className={inputClass}
+        />
+        <input
+          required
+          value={form.brand}
+          onChange={(e) => update("brand", e.target.value)}
+          placeholder="Marca"
+          className={inputClass}
+        />
+        <input
+          required
+          value={form.model}
+          onChange={(e) => update("model", e.target.value)}
+          placeholder="Modelo"
+          className={inputClass}
+        />
+
+        <select
+          value={form.category}
+          onChange={(e) => update("category", e.target.value)}
+          className={inputClass}
+        >
+          {CATEGORIES.map((category) => (
+            <option key={category} value={category}>
+              {category}
+            </option>
+          ))}
+        </select>
+        <select
+          value={form.condition}
+          onChange={(e) => update("condition", e.target.value)}
+          className={inputClass}
+        >
+          {CONDITIONS.map((condition) => (
+            <option key={condition} value={condition}>
+              {condition}
+            </option>
+          ))}
+        </select>
+        <input
+          value={form.price}
+          onChange={(e) => update("price", e.target.value)}
+          placeholder="Preço em R$ (opcional)"
+          inputMode="decimal"
+          className={inputClass}
+        />
+
+        <input
+          value={form.year}
+          onChange={(e) => update("year", e.target.value)}
+          placeholder="Ano ou década (opcional)"
+          className={inputClass}
+        />
+        <input
+          value={form.image_url}
+          onChange={(e) => update("image_url", e.target.value)}
+          placeholder="Link da foto (https://...)"
+          className={`${inputClass} md:col-span-2`}
+        />
+      </div>
+
+      <textarea
+        value={form.description}
+        onChange={(e) => update("description", e.target.value)}
+        placeholder="Descrição da peça (opcional)"
+        rows={3}
+        className={inputClass}
+      />
+
+      <div className="flex items-center gap-4">
+        <button
+          type="submit"
+          disabled={status === "saving"}
+          className="bg-[#C5A059] text-[#00050A] px-6 py-3 rounded text-[10px] font-bold uppercase tracking-widest hover:bg-[#D4B473] transition-all disabled:opacity-50"
+        >
+          {status === "saving" ? "Salvando..." : "Adicionar ao catálogo"}
+        </button>
+        {message && (
+          <span className={`text-xs ${status === "error" ? "text-red-400" : "text-green-400"}`}>
+            {message}
+          </span>
+        )}
+      </div>
+    </form>
   );
 }
