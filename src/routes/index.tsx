@@ -20,6 +20,8 @@ import {
   Send
 } from "lucide-react";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { NAV_ITEMS } from "@/components/SiteChrome";
+
 import logoAsset from "@/assets/logo-official.png.asset.json";
 import storefrontAsset from "@/assets/storefront.jpeg.asset.json";
 import heroVideoAsset from "@/assets/hero-watch.mp4.asset.json";
@@ -100,13 +102,14 @@ function Index() {
           <h1 className="text-2xl font-serif font-bold text-[#C5A059] tracking-wider">RG RELÓGIOS</h1>
         </div>
         
-        <nav className="hidden md:flex gap-8 text-sm font-medium tracking-wide text-[#E5D3B3]/90 uppercase">
-          {["Início", "Antigos", "Serviços", "Sobre", "Contato"].map((item) => (
-            <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-[#C5A059] transition-colors">
-              {item}
+        <nav className="hidden lg:flex gap-8 text-sm font-medium tracking-wide text-[#E5D3B3]/90 uppercase">
+          {NAV_ITEMS.map((item) => (
+            <a key={item.label} href={item.href} className="hover:text-[#C5A059] transition-colors">
+              {item.label}
             </a>
           ))}
         </nav>
+
 
         <div className="flex items-center gap-4">
           <motion.button 
@@ -120,8 +123,9 @@ function Index() {
           </motion.button>
           
           <button 
-            className="md:hidden text-[#C5A059]"
+            className="lg:hidden text-[#C5A059]"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+
           >
             {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
@@ -133,18 +137,19 @@ function Index() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="absolute top-full left-0 w-full bg-[#00050A] border-b border-[#C5A059]/20 p-8 flex flex-col gap-6 md:hidden shadow-2xl"
+              className="absolute top-full left-0 w-full bg-[#00050A] border-b border-[#C5A059]/20 p-8 flex flex-col gap-6 lg:hidden shadow-2xl"
             >
-              {["Início", "Antigos", "Serviços", "Sobre", "Contato"].map((item) => (
+              {NAV_ITEMS.map((item) => (
                 <a 
-                  key={item} 
-                  href={`#${item.toLowerCase()}`} 
+                  key={item.label} 
+                  href={item.href} 
                   onClick={() => setIsMenuOpen(false)}
                   className="text-xl font-serif text-[#C5A059] hover:text-[#D4B473]"
                 >
-                  {item}
+                  {item.label}
                 </a>
               ))}
+
               <button className="bg-[#C5A059] text-[#00050A] py-4 rounded font-bold flex justify-center items-center gap-2">
                 <MessageCircle size={20} />
                 WhatsApp
