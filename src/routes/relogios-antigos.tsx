@@ -242,28 +242,48 @@ function VintageGalleryPage() {
         <section className="px-8 pb-32">
           <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {photos.map((photo, i) => (
-              <motion.button
+              <motion.div
                 key={photo.id}
-                type="button"
-                onClick={() => setIndex(i)}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: (i % 6) * 0.05 }}
                 className="group relative aspect-[4/5] overflow-hidden rounded-lg border border-[#C5A059]/15 hover:border-[#C5A059]/50 transition-all duration-500 text-left"
               >
-                <img
-                  src={photo.src}
-                  alt={photo.caption}
-                  loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#00050A] via-[#00050A]/10 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6 space-y-1">
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-[#C5A059]">{photo.era}</p>
-                  <p className="text-sm text-[#E5D3B3]/85 font-light">{photo.caption}</p>
+                <button
+                  type="button"
+                  onClick={() => setIndex(i)}
+                  aria-label={`Ampliar foto: ${photo.caption}`}
+                  className="absolute inset-0 w-full h-full"
+                >
+                  <img
+                    src={photo.src}
+                    alt={photo.caption}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#00050A] via-[#00050A]/10 to-transparent" />
+                </button>
+
+                <div className="absolute bottom-0 left-0 right-0 p-6 space-y-3 pointer-events-none">
+                  <div className="space-y-1">
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-[#C5A059]">{photo.era}</p>
+                    <p className="text-sm text-[#E5D3B3]/85 font-light">{photo.caption}</p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      openWhatsApp(
+                        `Olá! Gostaria de saber mais sobre este relógio: ${photo.caption} (${photo.era}).`,
+                      )
+                    }
+                    className="pointer-events-auto inline-flex items-center gap-2 bg-[#C5A059] text-[#00050A] px-4 py-2.5 rounded font-bold text-[10px] uppercase tracking-widest hover:bg-[#D4B473] transition-all"
+                  >
+                    <MessageCircle size={14} />
+                    Perguntar no WhatsApp
+                  </button>
                 </div>
-              </motion.button>
+              </motion.div>
             ))}
           </div>
 
