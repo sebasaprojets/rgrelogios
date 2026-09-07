@@ -291,15 +291,14 @@ function VintageGalleryPage() {
 
           <div className="max-w-3xl mx-auto text-center mt-24 space-y-6">
             <p className="text-[#E5D3B3]/60 font-light leading-relaxed">
-              Procura uma peça antiga para comprar? As peças disponíveis para venda estão reunidas no
-              catálogo.
+              Procura uma peça específica? Fale com a gente e consultamos a disponibilidade.
             </p>
-            <a
-              href="/catalogo"
+            <button
+              onClick={() => openWhatsApp("Olá! Gostaria de saber quais relógios estão disponíveis.")}
               className="inline-block bg-[#C5A059] text-[#00050A] px-8 py-4 rounded font-bold text-xs uppercase tracking-widest hover:bg-[#D4B473] transition-all"
             >
-              Ver catálogo de vendas
-            </a>
+              Consultar disponibilidade
+            </button>
           </div>
         </section>
       </main>

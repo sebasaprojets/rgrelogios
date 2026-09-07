@@ -11,7 +11,6 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
-import { Route as CatalogoRouteImport } from './routes/catalogo'
 import { Route as RelogiosAntigosRouteImport } from './routes/relogios-antigos'
 import { Route as RestauracoesRouteImport } from './routes/restauracoes'
 import { Route as RelogiosIdRouteImport } from './routes/relogios/$id'
@@ -24,11 +23,6 @@ const IndexRoute = IndexRouteImport.update({
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
   path: '/admin',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CatalogoRoute = CatalogoRouteImport.update({
-  id: '/catalogo',
-  path: '/catalogo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RelogiosAntigosRoute = RelogiosAntigosRouteImport.update({
@@ -50,7 +44,6 @@ const RelogiosIdRoute = RelogiosIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
-  '/catalogo': typeof CatalogoRoute
   '/relogios-antigos': typeof RelogiosAntigosRoute
   '/restauracoes': typeof RestauracoesRoute
   '/relogios/$id': typeof RelogiosIdRoute
@@ -58,7 +51,6 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
-  '/catalogo': typeof CatalogoRoute
   '/relogios-antigos': typeof RelogiosAntigosRoute
   '/restauracoes': typeof RestauracoesRoute
   '/relogios/$id': typeof RelogiosIdRoute
@@ -67,7 +59,6 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
-  '/catalogo': typeof CatalogoRoute
   '/relogios-antigos': typeof RelogiosAntigosRoute
   '/restauracoes': typeof RestauracoesRoute
   '/relogios/$id': typeof RelogiosIdRoute
@@ -75,25 +66,13 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/'
-    | '/admin'
-    | '/catalogo'
-    | '/relogios-antigos'
-    | '/restauracoes'
-    | '/relogios/$id'
+    '/' | '/admin' | '/relogios-antigos' | '/restauracoes' | '/relogios/$id'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/admin'
-    | '/catalogo'
-    | '/relogios-antigos'
-    | '/restauracoes'
-    | '/relogios/$id'
+  to: '/' | '/admin' | '/relogios-antigos' | '/restauracoes' | '/relogios/$id'
   id:
     | '__root__'
     | '/'
     | '/admin'
-    | '/catalogo'
     | '/relogios-antigos'
     | '/restauracoes'
     | '/relogios/$id'
@@ -102,7 +81,6 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
-  CatalogoRoute: typeof CatalogoRoute
   RelogiosAntigosRoute: typeof RelogiosAntigosRoute
   RestauracoesRoute: typeof RestauracoesRoute
   RelogiosIdRoute: typeof RelogiosIdRoute
@@ -122,13 +100,6 @@ declare module '@tanstack/react-router' {
       path: '/admin'
       fullPath: '/admin'
       preLoaderRoute: typeof AdminRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/catalogo': {
-      id: '/catalogo'
-      path: '/catalogo'
-      fullPath: '/catalogo'
-      preLoaderRoute: typeof CatalogoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/relogios-antigos': {
@@ -158,7 +129,6 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
-  CatalogoRoute: CatalogoRoute,
   RelogiosAntigosRoute: RelogiosAntigosRoute,
   RestauracoesRoute: RestauracoesRoute,
   RelogiosIdRoute: RelogiosIdRoute,
