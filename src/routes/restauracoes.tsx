@@ -5,6 +5,10 @@ import { X, MessageCircle, Search, ClipboardList, PenTool, Gauge, Sparkles, Pack
 import { SiteHeader, SiteFooter, SectionEyebrow, openWhatsApp } from "@/components/SiteChrome";
 import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import oratorioAntes from "@/assets/oratorio-antes.jpg.asset.json";
+import oratorioDepois from "@/assets/oratorio-depois.jpg.asset.json";
+import tokeiAntes from "@/assets/tokei-antes.jpg.asset.json";
+import tokeiDepois from "@/assets/tokei-depois.jpg.asset.json";
 
 export const Route = createFileRoute("/restauracoes")({
   head: () => ({
@@ -43,64 +47,42 @@ interface Restoration {
 
 const RESTORATIONS: readonly Restoration[] = [
   {
-    id: "rolex-oyster-1960",
-    title: "Rolex Oyster Perpetual",
-    period: "Década de 1960",
+    id: "oratorio-madeira",
+    title: "Relógio de Parede em Madeira",
+    period: "Peça antiga",
+    service: "Restauração completa da caixa",
+    summary:
+      "Caixa chegou coberta de poeira, com verniz desgastado, vidros opacos e acabamento comprometido pelo tempo.",
+    initialState: "Madeira ressecada, verniz oxidado, vidros manchados e detalhes torneados sem brilho.",
+    result: "Madeira recuperada, verniz reaplicado, vidros limpos e todos os detalhes originais preservados.",
+    services: [
+      "Limpeza profunda da madeira",
+      "Recuperação do verniz e do brilho",
+      "Restauração das colunas e detalhes torneados",
+      "Limpeza e ajuste dos vidros",
+    ],
+    before: oratorioAntes.url,
+    after: oratorioDepois.url,
+    process: [oratorioAntes.url, oratorioDepois.url],
+  },
+  {
+    id: "tokei-monogatari",
+    title: "Relógio Octogonal Tokei",
+    period: "Made in Japan",
     service: "Restauração completa",
-    summary: "Peça de família recebida com mecanismo parado e caixa marcada pelo uso diário de décadas.",
-    initialState: "Mecanismo parado, mostrador oxidado e caixa com riscos profundos.",
-    result: "Marcha regulada, mostrador recuperado e brilho original da caixa restabelecido.",
+    summary:
+      "Relógio octogonal recebido com mostrador manchado, vidro do pêndulo apagado e caixa sem acabamento.",
+    initialState: "Mostrador escurecido, letras do vidro desgastadas, caixa opaca e mecanismo parado.",
+    result: "Mostrador restaurado, filetes dourados refeitos, vidro recuperado e relógio funcionando novamente.",
     services: [
-      "Limpeza completa do mecanismo",
-      "Revisão do calibre",
-      "Polimento da caixa",
       "Restauração do mostrador",
-      "Troca de componentes desgastados",
-      "Regulagem do mecanismo",
+      "Recuperação dos filetes dourados da caixa",
+      "Restauração do vidro do pêndulo",
+      "Limpeza e regulagem do mecanismo",
     ],
-    before: "https://images.pexels.com/photos/9978722/pexels-photo-9978722.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    after: "https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    process: [
-      "https://images.pexels.com/photos/3766111/pexels-photo-3766111.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      "https://images.pexels.com/photos/280250/pexels-photo-280250.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    ],
-  },
-  {
-    id: "omega-seamaster-1970",
-    title: "Omega Seamaster",
-    period: "Década de 1970",
-    service: "Revisão e polimento",
-    summary: "Relógio guardado por anos em gaveta, com óleos ressecados e vidro opaco.",
-    initialState: "Óleos ressecados, atraso acentuado e vidro riscado.",
-    result: "Precisão restabelecida dentro da tolerância de fábrica e leitura nítida do mostrador.",
-    services: ["Desmontagem completa", "Lubrificação do calibre", "Troca do vidro", "Polimento leve da caixa"],
-    before: "https://images.pexels.com/photos/1152077/pexels-photo-1152077.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    after: "https://images.pexels.com/photos/364822/rolex-watch-time-luxury-364822.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    process: [
-      "https://images.pexels.com/photos/2783873/pexels-photo-2783873.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      "https://images.pexels.com/photos/236915/pexels-photo-236915.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    ],
-  },
-  {
-    id: "bolso-1920",
-    title: "Relógio de Bolso Suíço",
-    period: "Década de 1920",
-    service: "Restauração histórica",
-    summary: "Herança familiar com tampa amassada e mecanismo travado há mais de trinta anos.",
-    initialState: "Tampa deformada, corrosão interna e mola real rompida.",
-    result: "Gravação preservada, mecanismo funcionando e peça novamente em uso.",
-    services: [
-      "Endireitamento da tampa sem perda da gravação",
-      "Remoção de corrosão",
-      "Substituição da mola real",
-      "Regulagem e teste de marcha",
-    ],
-    before: "https://images.pexels.com/photos/47856/pocket-watch-time-of-sand-time-clock-47856.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    after: "https://images.pexels.com/photos/1697214/pexels-photo-1697214.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    process: [
-      "https://images.pexels.com/photos/277390/pexels-photo-277390.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      "https://images.pexels.com/photos/125779/pexels-photo-125779.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    ],
+    before: tokeiAntes.url,
+    after: tokeiDepois.url,
+    process: [tokeiAntes.url, tokeiDepois.url],
   },
 ];
 
@@ -169,7 +151,7 @@ function RestorationsPage() {
                   beforeSrc={item.before}
                   afterSrc={item.after}
                   alt={item.title}
-                  className="aspect-[4/3] rounded-none border-0 border-b border-[#C5A059]/15"
+                  className="aspect-[3/4] rounded-none border-0 border-b border-[#C5A059]/15"
                 />
 
                 <div className="p-8 space-y-4 flex-1 flex flex-col">
@@ -304,7 +286,7 @@ function RestorationModal({ item, onClose }: { item: Restoration; onClose: () =>
             </p>
           </div>
 
-          <BeforeAfterSlider beforeSrc={item.before} afterSrc={item.after} alt={item.title} />
+          <BeforeAfterSlider beforeSrc={item.before} afterSrc={item.after} alt={item.title} className="aspect-[3/4]" />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
             <div className="space-y-2">
