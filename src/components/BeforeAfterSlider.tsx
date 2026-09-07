@@ -40,17 +40,12 @@ export function BeforeAfterSlider({ beforeSrc, afterSrc, alt, className }: Befor
       }}
       onPointerUp={() => setIsDragging(false)}
       onPointerCancel={() => setIsDragging(false)}
-ようも
     >
       <img src={afterSrc} alt={`${alt} — depois`} className="absolute inset-0 w-full h-full object-cover" />
-      <div className="absolute inset-0 overflow-hidden" style={{ width: `${position}%` }}>
-        <img
-          src={beforeSrc}
-          alt={`${alt} — antes`}
-          className="absolute inset-0 h-full object-cover"
-          style={{ width: containerRef.current?.clientWidth ?? "100%", maxWidth: "none" }}
-        />
+      <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}>
+        <img src={beforeSrc} alt={`${alt} — antes`} className="w-full h-full object-cover" />
       </div>
+
 
       <span className="absolute top-4 left-4 text-[10px] font-bold uppercase tracking-widest bg-[#00050A]/80 text-[#E5D3B3]/80 px-3 py-1.5 rounded border border-[#C5A059]/20">
         Antes
