@@ -33,6 +33,8 @@ export const Route = createFileRoute("/relogios-antigos")({
 interface GalleryPhoto {
   readonly id: string;
   readonly src: string;
+  /** Fotos adicionais da mesma peça, exibidas como miniaturas na ampliação. */
+  readonly extra?: readonly string[];
   readonly caption: string;
   readonly era: string;
   readonly group: string;
@@ -91,14 +93,8 @@ const PHOTOS: readonly GalleryPhoto[] = [
   {
     id: "b3",
     src: bolsoSantBara.url,
-    caption: "Sant. Bara dourado com tampa guilhochê e brasão no mostrador",
-    era: "Relógio de bolso",
-    group: "Bolso",
-  },
-  {
-    id: "b4",
-    src: bolsoAguia.url,
-    caption: "Tampa dourada com águia em alto-relevo",
+    extra: [bolsoAguia.url],
+    caption: "Sant. Bara dourado — tampa com águia em alto-relevo e brasão no mostrador",
     era: "Relógio de bolso",
     group: "Bolso",
   },
@@ -151,6 +147,7 @@ const ALL = "Todas";
 function VintageGalleryPage() {
   const [group, setGroup] = useState(ALL);
   const [index, setIndex] = useState<number | null>(null);
+  const [shot, setShot] = useState(0);
 
   const groups = useMemo(() => [ALL, ...Array.from(new Set(PHOTOS.map((p) => p.group)))], []);
   const photos = useMemo(
@@ -159,8 +156,10 @@ function VintageGalleryPage() {
   );
 
   const current = index === null ? null : photos[index] ?? null;
+  const shots = current ? [current.src, ...(current.extra ?? [])] : [];
 
   const go = (step: number) => {
+    setShot(0);
     setIndex((prev) => {
       if (prev === null) return prev;
       return (prev + step + photos.length) % photos.length;
@@ -252,7 +251,10 @@ function VintageGalleryPage() {
               >
                 <button
                   type="button"
-                  onClick={() => setIndex(i)}
+                  onClick={() => {
+                    setShot(0);
+                    setIndex(i);
+                  }}
                   aria-label={`Ampliar foto: ${photo.caption}`}
                   className="absolute inset-0 w-full h-full"
                 >
@@ -327,10 +329,30 @@ function VintageGalleryPage() {
               </button>
 
               <img
-                src={current.src}
+                src={shots[shot] ?? current.src}
                 alt={current.caption}
                 className="w-full max-h-[70vh] object-contain rounded-lg border border-[#C5A059]/20 bg-[#00050A]"
               />
+
+              {shots.length > 1 && (
+                <div className="mt-4 flex justify-center gap-3">
+                  {shots.map((src, i) => (
+                    <button
+                      key={src}
+                      type="button"
+                      onClick={() => setShot(i)}
+                      aria-label={`Ver foto ${i + 1}`}
+                      className={`w-20 h-20 rounded overflow-hidden border transition-all ${
+                        shot === i
+                          ? "border-[#C5A059]"
+                          : "border-[#C5A059]/20 opacity-60 hover:opacity-100"
+                      }`}
+                    >
+                      <img src={src} alt="" className="w-full h-full object-cover" />
+                    </button>
+                  ))}
+                </div>
+              )}
 
               <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="text-center sm:text-left">
