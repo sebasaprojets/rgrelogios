@@ -201,10 +201,11 @@ function AdminPanel() {
         )}
 
         {activeTab === "Produtos" && (
+          <div className="space-y-8">
+          <NewProductForm />
           <div className="bg-[#0A101A] rounded-xl border border-[#C5A059]/10 overflow-hidden">
             <div className="p-6 border-b border-[#C5A059]/10 flex justify-between items-center">
               <h4 className="font-serif text-[#C5A059] text-xl">Catálogo de Produtos</h4>
-              <button className="bg-[#C5A059] text-[#00050A] px-4 py-2 rounded text-[10px] font-bold uppercase tracking-widest">Novo Produto</button>
             </div>
             <div className="p-0">
               <table className="w-full text-left text-sm">
