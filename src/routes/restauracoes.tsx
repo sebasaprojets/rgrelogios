@@ -151,7 +151,7 @@ function RestorationsPage() {
                   beforeSrc={item.before}
                   afterSrc={item.after}
                   alt={item.title}
-                  className="aspect-[4/3] rounded-none border-0 border-b border-[#C5A059]/15"
+                  className="aspect-[3/4] rounded-none border-0 border-b border-[#C5A059]/15"
                 />
 
                 <div className="p-8 space-y-4 flex-1 flex flex-col">
