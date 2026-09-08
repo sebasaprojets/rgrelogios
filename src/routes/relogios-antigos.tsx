@@ -132,61 +132,41 @@ const PHOTOS: readonly GalleryPhoto[] = [
     group: "Pulso",
   },
   {
-    id: "p11",
-    src: "https://images.pexels.com/photos/236915/pexels-photo-236915.jpeg?auto=compress&cs=tinysrgb&w=1400",
-    caption: "Pulseira em couro legítimo restaurada",
-    era: "Década de 1970",
-    group: "Detalhes",
-  },
-  {
-    id: "p12",
-    src: "https://images.pexels.com/photos/2783873/pexels-photo-2783873.jpeg?auto=compress&cs=tinysrgb&w=1400",
-    caption: "Bancada de relojoaria em trabalho",
-    era: "Oficina",
-    group: "Detalhes",
-  },
-  {
     id: "w1",
     src: paredeCuco.url,
     caption: "Cuco entalhado em madeira com pássaro e folhagens",
     era: "Relógio de parede",
-    group: "Parede",
+    group: ANTIQUE,
   },
   {
     id: "w2",
     src: paredeEska.url,
     caption: "Eska em madeira clara — mostrador dourado e pêndulo",
     era: "Relógio de parede",
-    group: "Parede",
+    group: ANTIQUE,
   },
   {
     id: "w3",
     src: paredeHerwegOrnamentado.url,
     caption: "Herweg ornamentado em preto e ouro velho",
     era: "Relógio de parede",
-    group: "Parede",
+    group: ANTIQUE,
   },
   {
     id: "w4",
     src: paredeColunas.url,
     caption: "Caixa em madeira escura com colunas torneadas e pêndulo",
     era: "Relógio de parede",
-    group: "Parede",
+    group: ANTIQUE,
   },
   {
     id: "w5",
     src: paredeCucoHerweg.url,
     caption: "Cuco Herweg com folhas entalhadas, pinhas e correntes",
     era: "Relógio de parede",
-    group: "Parede",
+    group: ANTIQUE,
   },
 ];
-
-const ALL = "Todas";
-const ANTIQUE = "Antigos";
-
-/** Grupos considerados peças antigas na aba "Antigos". */
-const ANTIQUE_GROUPS: readonly string[] = ["Pulso", "Bolso", "Mecanismos", "Parede"];
 
 function VintageGalleryPage() {
   const [group, setGroup] = useState(ALL);
