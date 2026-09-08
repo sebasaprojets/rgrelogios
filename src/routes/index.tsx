@@ -26,6 +26,8 @@ import logoAsset from "@/assets/logo-official.png.asset.json";
 import storefrontAsset from "@/assets/storefront.jpeg.asset.json";
 import heroVideoAsset from "@/assets/hero-watch.mp4.asset.json";
 import heroPosterAsset from "@/assets/hero-poster.jpg.asset.json";
+import movadoVideo from "@/assets/movado-assembly.mp4.asset.json";
+import movadoPoster from "@/assets/movado-clean.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
