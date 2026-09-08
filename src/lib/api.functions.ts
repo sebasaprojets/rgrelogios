@@ -4,39 +4,62 @@ import { z } from "zod";
 import { Database } from "@/integrations/supabase/types";
 
 type WatchCategory = Database["public"]["Enums"]["watch_category"];
+type Product = Database["public"]["Tables"]["products"]["Row"];
+type Review = Database["public"]["Tables"]["reviews"]["Row"];
+
+/**
+ * Leituras públicas devem degradar com elegância: se o backend não estiver
+ * configurado no ambiente (ex.: projeto exportado para outra plataforma sem as
+ * variáveis de ambiente), a página ainda precisa renderizar em vez de gerar 500.
+ */
+async function safeRead<T>(read: () => Promise<T>, fallback: T): Promise<T> {
+  try {
+    return await read();
+  } catch (error) {
+    console.error("[api] leitura pública falhou, usando fallback vazio:", error);
+    return fallback;
+  }
+}
 
 export const getProducts = createServerFn({ method: "GET" })
   .inputValidator((data) => z.object({ 
     category: z.string().optional(),
     featured: z.boolean().optional()
   }).parse(data))
-  .handler(async ({ data }) => {
-    let query = supabase.from("products").select("*");
-    
-    if (data.category && data.category !== "Todos") {
-      query = query.eq("category", data.category as WatchCategory);
-    }
-    
-    if (data.featured) {
-      query = query.eq("is_featured", true);
-    }
-    
-    const { data: products, error } = await query.order("created_at", { ascending: false });
-    
-    if (error) throw new Error(error.message);
-    return products;
-  });
+  .handler(async ({ data }): Promise<Product[]> =>
+    safeRead<Product[]>(async () => {
+      let query = supabase.from("products").select("*");
+
+      if (data.category && data.category !== "Todos") {
+        query = query.eq("category", data.category as WatchCategory);
+      }
+
+      if (data.featured) {
+        query = query.eq("is_featured", true);
+      }
+
+      const { data: products, error } = await query.order("created_at", { ascending: false });
+
+      if (error) throw new Error(error.message);
+      return products ?? [];
+    }, []),
+  );
 
 export const getReviews = createServerFn({ method: "GET" })
-  .handler(async () => {
-    const { data: reviews, error } = await supabase
-      .from("reviews")
-      .select("*")
-      .order("created_at", { ascending: false });
-      
-    if (error) throw new Error(error.message);
-    return reviews;
-  });
+  .handler(async (): Promise<Review[]> =>
+    safeRead<Review[]>(async () => {
+      const { data: reviews, error } = await supabase
+        .from("reviews")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (error) throw new Error(error.message);
+      return reviews ?? [];
+    }, []),
+  );
+
+
+
 
 export const submitServiceRequest = createServerFn({ method: "POST" })
   .inputValidator((data) => z.object({
