@@ -4,6 +4,8 @@ import { z } from "zod";
 import { Database } from "@/integrations/supabase/types";
 
 type WatchCategory = Database["public"]["Enums"]["watch_category"];
+type Product = Database["public"]["Tables"]["products"]["Row"];
+type Review = Database["public"]["Tables"]["reviews"]["Row"];
 
 /**
  * Leituras públicas devem degradar com elegância: se o backend não estiver
@@ -24,8 +26,8 @@ export const getProducts = createServerFn({ method: "GET" })
     category: z.string().optional(),
     featured: z.boolean().optional()
   }).parse(data))
-  .handler(async ({ data }) =>
-    safeRead(async () => {
+  .handler(async ({ data }): Promise<Product[]> =>
+    safeRead<Product[]>(async () => {
       let query = supabase.from("products").select("*");
 
       if (data.category && data.category !== "Todos") {
@@ -40,12 +42,12 @@ export const getProducts = createServerFn({ method: "GET" })
 
       if (error) throw new Error(error.message);
       return products ?? [];
-    }, [] as NonNullable<Awaited<ReturnType<typeof supabase.from>> extends never ? never : any[]>),
+    }, []),
   );
 
 export const getReviews = createServerFn({ method: "GET" })
-  .handler(async () =>
-    safeRead(async () => {
+  .handler(async (): Promise<Review[]> =>
+    safeRead<Review[]>(async () => {
       const { data: reviews, error } = await supabase
         .from("reviews")
         .select("*")
@@ -53,8 +55,9 @@ export const getReviews = createServerFn({ method: "GET" })
 
       if (error) throw new Error(error.message);
       return reviews ?? [];
-    }, [] as any[]),
+    }, []),
   );
+
 
 
 
