@@ -26,6 +26,8 @@ import logoAsset from "@/assets/logo-official.png.asset.json";
 import storefrontAsset from "@/assets/storefront.jpeg.asset.json";
 import heroVideoAsset from "@/assets/hero-watch.mp4.asset.json";
 import heroPosterAsset from "@/assets/hero-poster.jpg.asset.json";
+import movadoVideo from "@/assets/movado-assembly.mp4.asset.json";
+import movadoPoster from "@/assets/movado-clean.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -220,29 +222,26 @@ function Index() {
             </div>
 
             <div className="relative h-[480px]">
-              {/* Grid de Imagens Sofisticado */}
-              <div className="absolute top-0 right-0 w-3/4 h-[85%] z-10 overflow-hidden rounded-lg shadow-2xl border border-[#C5A059]/10 group">
-                <img 
-                  src="https://images.pexels.com/photos/277390/pexels-photo-277390.jpeg?auto=compress&cs=tinysrgb&w=1200" 
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105" 
-                  alt="Relógio Vintage de Luxo" 
+              <div className="absolute inset-0 z-10 overflow-hidden rounded-lg shadow-2xl border border-[#C5A059]/20 bg-[#00050A]">
+                <video
+                  src={movadoVideo.url}
+                  poster={movadoPoster.url}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                  aria-label="Relógio Movado Kingmatic sendo desmontado e montado novamente"
+                  className="w-full h-full object-contain"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A101A]/80 to-transparent opacity-60" />
-              </div>
-              
-              <div className="absolute bottom-0 left-0 w-1/2 h-3/4 z-20 overflow-hidden rounded-lg shadow-2xl border border-[#C5A059]/20 group">
-                <img 
-                  src="https://images.pexels.com/photos/280250/pexels-photo-280250.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105" 
-                  alt="Mecanismo de Precisão" 
-                />
-                <div className="absolute inset-0 bg-gradient-to-tr from-[#0A101A]/60 to-transparent opacity-40" />
+                <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-[#0A101A]/70 via-transparent to-transparent" />
               </div>
 
               {/* Elementos Decorativos de Design */}
               <div className="absolute -top-6 -right-6 w-32 h-32 border border-[#C5A059]/20 rounded-full animate-[spin_20s_linear_infinite] z-0" />
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[#C5A059]/5 blur-[120px] rounded-full z-0" />
             </div>
+
           </div>
         </section>
 
