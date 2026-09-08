@@ -45,6 +45,9 @@ interface GalleryPhoto {
   readonly group: string;
 }
 
+const ALL = "Todas";
+const ANTIQUE = "Antigos";
+
 const PHOTOS: readonly GalleryPhoto[] = [
   {
     id: "p1",
