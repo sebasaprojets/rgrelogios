@@ -177,12 +177,11 @@ function VintageGalleryPage() {
   const [shot, setShot] = useState(0);
 
   const groups = useMemo(
-    () => [ALL, ANTIQUE, ...Array.from(new Set(PHOTOS.map((p) => p.group)))],
+    () => Array.from(new Set([ALL, ...PHOTOS.map((p) => p.group)])),
     [],
   );
   const photos = useMemo(() => {
     if (group === ALL) return PHOTOS;
-    if (group === ANTIQUE) return PHOTOS.filter((p) => ANTIQUE_GROUPS.includes(p.group));
     return PHOTOS.filter((p) => p.group === group);
   }, [group]);
 
