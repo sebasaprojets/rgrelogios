@@ -1,10 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, MessageCircle } from "lucide-react";
 import { SiteHeader, SiteFooter, SectionEyebrow, openWhatsApp } from "@/components/SiteChrome";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { Button } from "@/components/ui/button";
+import { PrecisionCard, Reveal, TextReveal } from "@/components/MotionBits";
+import { WatchPhotoStage } from "@/components/WatchPhotoStage";
 import bolsoTissot from "@/assets/bolso-tissot.png.asset.json";
 import bolsoEsmaltado from "@/assets/bolso-esmaltado.png.asset.json";
 import bolsoSantBara from "@/assets/bolso-santbara.png.asset.json";
@@ -146,6 +148,7 @@ function VintageGalleryPage() {
   const [group, setGroup] = useState(ALL);
   const [index, setIndex] = useState<number | null>(null);
   const [shot, setShot] = useState(0);
+  const reduceMotion = useReducedMotion();
 
   const groups = useMemo(
     () => Array.from(new Set([ALL, ...PHOTOS.map((p) => p.group)])),
@@ -198,13 +201,9 @@ function VintageGalleryPage() {
 
           <div className="relative z-10 max-w-4xl mx-auto text-center space-y-6">
             <SectionEyebrow>Galeria histórica</SectionEyebrow>
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="font-serif text-5xl text-foreground md:text-7xl"
-            >
-              Relógios que atravessaram gerações
-            </motion.h1>
+            <h1 className="font-serif text-5xl text-foreground md:text-7xl">
+              <TextReveal>Relógios que atravessaram gerações</TextReveal>
+            </h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -219,7 +218,7 @@ function VintageGalleryPage() {
 
         {/* Filtro de grupos */}
         <section className="px-5 pb-10 sm:px-8">
-          <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-3">
+          <Reveal className="max-w-7xl mx-auto flex flex-wrap justify-center gap-3">
             {groups.map((item) => (
               <Button
                 key={item}
@@ -233,37 +232,37 @@ function VintageGalleryPage() {
                 {item}
               </Button>
             ))}
-          </div>
+          </Reveal>
         </section>
 
         {/* Grade de fotos */}
         <section className="px-5 pb-32 sm:px-8">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {photos.map((photo, i) => (
-              <motion.div
+          <motion.div layout className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <AnimatePresence mode="popLayout">
+            {photos.map((photo) => (
+              <PrecisionCard
                 key={photo.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: (i % 6) * 0.05 }}
-                className="group overflow-hidden rounded-md border border-border bg-card text-left editorial-shadow transition-transform duration-500 hover:-translate-y-1"
+                layout={!reduceMotion}
+                initial={reduceMotion ? false : { opacity: 0, scale: 0.97, y: 14 }}
+                animate={reduceMotion ? {} : { opacity: 1, scale: 1, y: 0 }}
+                exit={reduceMotion ? {} : { opacity: 0, scale: 0.97 }}
+                className="overflow-hidden rounded-md border border-border bg-card text-left editorial-shadow"
               >
-                <button
-                  type="button"
+                <Button
+                  variant="ghost"
                   onClick={() => {
                     setShot(0);
-                    setIndex(i);
+                    setIndex(photos.findIndex((item) => item.id === photo.id));
                   }}
                   aria-label={`Ampliar foto: ${photo.caption}`}
-                  className="block aspect-[4/5] w-full overflow-hidden bg-card p-5 sm:p-7"
+                  className="h-auto w-full rounded-none p-0"
                 >
-                  <img
+                  <WatchPhotoStage
                     src={photo.src}
                     alt={photo.caption}
-                    loading="lazy"
-                    className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-[1.025]"
+                    className="aspect-[4/5] w-full p-6 sm:p-8"
                   />
-                </button>
+                </Button>
 
                 <div className="space-y-4 border-t border-border bg-card p-6">
                   <div className="space-y-1">
@@ -283,9 +282,10 @@ function VintageGalleryPage() {
                     Perguntar no WhatsApp
                   </Button>
                 </div>
-              </motion.div>
+              </PrecisionCard>
             ))}
-          </div>
+            </AnimatePresence>
+          </motion.div>
 
           <div className="max-w-3xl mx-auto text-center mt-24 space-y-6">
             <p className="leading-relaxed text-muted-foreground">
@@ -303,39 +303,46 @@ function VintageGalleryPage() {
       <AnimatePresence>
         {current && (
           <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
-            <motion.div
+             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-foreground/80 backdrop-blur-sm"
+              className="absolute inset-0 bg-foreground/70 backdrop-blur-md"
               onClick={() => setIndex(null)}
             />
             <motion.div
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.96 }}
-              className="relative w-full max-w-4xl"
+              className="relative w-full max-w-4xl rounded-md border border-border bg-card p-4 editorial-shadow sm:p-6"
+              role="dialog"
+              aria-modal="true"
+              aria-label={`Foto ampliada: ${current.caption}`}
             >
-              <button
+              <Button
+                size="icon"
+                variant="secondary"
                 onClick={() => setIndex(null)}
                 aria-label="Fechar"
-                className="absolute -top-12 right-0 text-background hover:text-gold-soft"
+                className="absolute right-3 top-3 z-10"
               >
                 <X size={26} />
-              </button>
+              </Button>
 
-              <img
+              <WatchPhotoStage
                 src={shots[shot] ?? current.src}
                 alt={current.caption}
-                className="max-h-[70vh] w-full rounded-md border border-border bg-card object-contain"
+                className="mx-auto aspect-[4/3] max-h-[65vh] w-full rounded-sm p-5 sm:p-8"
               />
 
               {shots.length > 1 && (
                 <div className="mt-4 flex justify-center gap-3">
                   {shots.map((src, i) => (
-                    <button
+                    <Button
                       key={src}
                       type="button"
+                      variant="ghost"
+                      size="icon"
                       onClick={() => setShot(i)}
                       aria-label={`Ver foto ${i + 1}`}
                       className={`w-20 h-20 rounded overflow-hidden border transition-all ${
@@ -344,42 +351,43 @@ function VintageGalleryPage() {
                           : "border-border opacity-60 hover:opacity-100"
                       }`}
                     >
-                      <img src={src} alt="" className="w-full h-full object-cover" />
-                    </button>
+                      <img src={src} alt="" className="w-full h-full object-contain bg-studio" />
+                    </Button>
                   ))}
                 </div>
               )}
 
               <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="text-center sm:text-left">
-                    <p className="text-xs font-bold uppercase text-gold-soft">
+                     <p className="text-xs font-bold uppercase text-primary">
                     {current.era}
                   </p>
-                  <p className="text-background/80">{current.caption}</p>
+                  <p className="text-muted-foreground">{current.caption}</p>
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <button
+                  <Button
+                    variant="outline"
+                    size="icon"
                     onClick={() => go(-1)}
                     aria-label="Foto anterior"
-                    className="rounded border border-background/30 p-3 text-background transition-colors hover:bg-background hover:text-foreground"
                   >
                     <ChevronLeft size={18} />
-                  </button>
-                  <button
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="icon"
                     onClick={() => go(1)}
                     aria-label="Próxima foto"
-                    className="rounded border border-background/30 p-3 text-background transition-colors hover:bg-background hover:text-foreground"
                   >
                     <ChevronRight size={18} />
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     onClick={() => openWhatsApp(`Vi esta peça na galeria de relógios antigos: ${current.caption} (${current.era}).`)}
-                    className="flex items-center gap-2 rounded-sm bg-background px-5 py-3 text-xs font-bold text-foreground transition-colors hover:bg-gold-soft"
                   >
                     <MessageCircle size={15} />
                     Falar sobre esta peça
-                  </button>
+                  </Button>
                 </div>
               </div>
             </motion.div>
