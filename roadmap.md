@@ -6,4 +6,4 @@
 - [x] Criar página própria de serviços
 - [x] Atualizar galeria de relógios antigos, restaurações e detalhe do relógio
 - [x] Revisar metadados, acessibilidade, desempenho e responsividade
-- [ ] Validar em desktop e celular
+- [x] Validar em desktop e celular
