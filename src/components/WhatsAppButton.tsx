@@ -1,27 +1,34 @@
 import { MessageCircle } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import { Button } from "@/components/ui/button";
 
-export function WhatsAppButton({ 
-  phoneNumber = "5541992399650", 
-  message = "Olá! Gostaria de mais informações sobre os relógios." 
-}) {
-  const handleClick = () => {
-    const encodedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
-  };
+export interface WhatsAppButtonProps {
+  phoneNumber?: string;
+  message?: string;
+}
+
+export function WhatsAppButton({
+  phoneNumber = "5541992399650",
+  message = "Olá! Gostaria de mais informações sobre os relógios.",
+}: WhatsAppButtonProps) {
+  const reduceMotion = useReducedMotion();
 
   return (
-    <motion.button 
-      onClick={handleClick}
-      className="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:bg-[#128C7E] transition-all flex items-center justify-center group"
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.9 }}
-      aria-label="Falar no WhatsApp"
+    <motion.div
+      className="fixed bottom-4 right-4 z-50 sm:bottom-7 sm:right-7"
+      whileHover={reduceMotion ? {} : { y: -3 }}
+      whileTap={reduceMotion ? {} : { scale: 0.97 }}
     >
-      <MessageCircle size={32} />
-      <span className="max-w-0 overflow-hidden group-hover:max-w-xs group-hover:ml-2 transition-all duration-300 ease-in-out whitespace-nowrap font-bold">
-        Falar no WhatsApp
-      </span>
-    </motion.button>
+      <Button asChild size="lg" className="h-12 rounded-full px-4 editorial-shadow sm:px-6">
+        <a
+          href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Falar com a RG Relógios no WhatsApp"
+        >
+          <MessageCircle /> <span className="hidden sm:inline">Falar no WhatsApp</span>
+        </a>
+      </Button>
+    </motion.div>
   );
 }
