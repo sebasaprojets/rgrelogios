@@ -108,13 +108,6 @@ const PHOTOS: readonly GalleryPhoto[] = [
     group: "Bolso",
   },
   {
-    id: "p7",
-    src: "https://images.pexels.com/photos/1697214/pexels-photo-1697214.jpeg?auto=compress&cs=tinysrgb&w=1400",
-    caption: "Mecanismo aberto sobre bancada",
-    era: "Mecanismos",
-    group: "Mecanismos",
-  },
-  {
     id: "p8",
     src: "https://images.pexels.com/photos/9978722/pexels-photo-9978722.jpeg?auto=compress&cs=tinysrgb&w=1400",
     caption: "Engrenagens de um calibre antigo",
@@ -126,13 +119,6 @@ const PHOTOS: readonly GalleryPhoto[] = [
     src: "https://images.pexels.com/photos/3766111/pexels-photo-3766111.jpeg?auto=compress&cs=tinysrgb&w=1400",
     caption: "Cronógrafo clássico em detalhe",
     era: "Década de 1960",
-    group: "Pulso",
-  },
-  {
-    id: "p10",
-    src: "https://images.pexels.com/photos/1152077/pexels-photo-1152077.jpeg?auto=compress&cs=tinysrgb&w=1400",
-    caption: "Mostrador de linhas sóbrias",
-    era: "Década de 1970",
     group: "Pulso",
   },
   {
@@ -150,23 +136,9 @@ const PHOTOS: readonly GalleryPhoto[] = [
     group: ANTIQUE,
   },
   {
-    id: "w3",
-    src: paredeHerwegOrnamentado.url,
-    caption: "Herweg ornamentado em preto e ouro velho",
-    era: "Relógio de parede",
-    group: ANTIQUE,
-  },
-  {
     id: "w4",
     src: paredeColunas.url,
     caption: "Caixa em madeira escura com colunas torneadas e pêndulo",
-    era: "Relógio de parede",
-    group: ANTIQUE,
-  },
-  {
-    id: "w5",
-    src: paredeCucoHerweg.url,
-    caption: "Cuco Herweg com folhas entalhadas, pinhas e correntes",
     era: "Relógio de parede",
     group: ANTIQUE,
   },
@@ -276,7 +248,7 @@ function VintageGalleryPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: (i % 6) * 0.05 }}
-                className="group relative aspect-[4/5] overflow-hidden rounded-md border border-border bg-card text-left editorial-shadow transition-transform duration-500 hover:-translate-y-1"
+                className="group overflow-hidden rounded-md border border-border bg-card text-left editorial-shadow transition-transform duration-500 hover:-translate-y-1"
               >
                 <button
                   type="button"
@@ -285,34 +257,33 @@ function VintageGalleryPage() {
                     setIndex(i);
                   }}
                   aria-label={`Ampliar foto: ${photo.caption}`}
-                  className="absolute inset-0 w-full h-full"
+                  className="block aspect-[4/5] w-full overflow-hidden bg-card p-5 sm:p-7"
                 >
                   <img
                     src={photo.src}
                     alt={photo.caption}
                     loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                    className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-[1.025]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/85 via-foreground/10 to-transparent" />
                 </button>
 
-                <div className="absolute bottom-0 left-0 right-0 p-6 space-y-3 pointer-events-none">
+                <div className="space-y-4 border-t border-border bg-card p-6">
                   <div className="space-y-1">
-                    <p className="text-xs font-bold uppercase text-gold-soft">{photo.era}</p>
-                    <p className="text-sm text-background">{photo.caption}</p>
+                    <p className="text-xs font-bold uppercase text-primary">{photo.era}</p>
+                    <p className="min-h-10 text-sm leading-5 text-foreground">{photo.caption}</p>
                   </div>
-                  <button
-                    type="button"
+                  <Button
                     onClick={() =>
                       openWhatsApp(
                         `Olá! Gostaria de saber mais sobre este relógio: ${photo.caption} (${photo.era}).`,
                       )
                     }
-                    className="pointer-events-auto inline-flex items-center gap-2 rounded-sm bg-background px-4 py-2.5 text-xs font-bold text-foreground transition-colors hover:bg-gold-soft"
+                    variant="outline"
+                    size="sm"
                   >
                     <MessageCircle size={14} />
                     Perguntar no WhatsApp
-                  </button>
+                  </Button>
                 </div>
               </motion.div>
             ))}
