@@ -69,7 +69,7 @@ export function SiteHeader() {
           <motion.nav
             initial={reduceMotion ? false : { opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={reduceMotion ? undefined : { opacity: 0, y: -10 }}
+            exit={reduceMotion ? {} : { opacity: 0, y: -10 }}
             className="absolute inset-x-0 top-full border-b border-border bg-background p-5 editorial-shadow lg:hidden"
             aria-label="Navegação móvel"
           >

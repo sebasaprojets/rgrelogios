@@ -16,8 +16,8 @@ export function WhatsAppButton({
   return (
     <motion.div
       className="fixed bottom-4 right-4 z-50 sm:bottom-7 sm:right-7"
-      whileHover={reduceMotion ? undefined : { y: -3 }}
-      whileTap={reduceMotion ? undefined : { scale: 0.97 }}
+      whileHover={reduceMotion ? {} : { y: -3 }}
+      whileTap={reduceMotion ? {} : { scale: 0.97 }}
     >
       <Button asChild size="lg" className="h-12 rounded-full px-4 editorial-shadow sm:px-6">
         <a

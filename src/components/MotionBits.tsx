@@ -1,8 +1,8 @@
-import { motion, useReducedMotion } from "framer-motion";
-import type { ComponentProps, ReactNode } from "react";
+import { motion, useReducedMotion, type HTMLMotionProps } from "framer-motion";
+import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-export interface RevealProps extends ComponentProps<"div"> {
+export interface RevealProps extends HTMLMotionProps<"div"> {
   children: ReactNode;
   delay?: number;
 }
@@ -13,7 +13,7 @@ export function Reveal({ children, className, delay = 0, ...props }: RevealProps
   return (
     <motion.div
       initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-      whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+      whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.18 }}
       transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
       className={cn(className)}
@@ -24,7 +24,7 @@ export function Reveal({ children, className, delay = 0, ...props }: RevealProps
   );
 }
 
-export interface ImageLiftProps extends ComponentProps<"div"> {
+export interface ImageLiftProps extends HTMLMotionProps<"div"> {
   children: ReactNode;
 }
 
@@ -33,7 +33,7 @@ export function ImageLift({ children, className, ...props }: ImageLiftProps) {
 
   return (
     <motion.div
-      whileHover={reduceMotion ? undefined : { y: -4 }}
+      whileHover={reduceMotion ? {} : { y: -4 }}
       transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
       className={cn("group overflow-hidden", className)}
       {...props}
