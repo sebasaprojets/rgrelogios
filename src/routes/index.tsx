@@ -4,7 +4,8 @@ import { useServerFn } from "@tanstack/react-start";
 import { ArrowRight, Check, Clock3, MapPin, MessageCircle, ShieldCheck, Sparkles, Star } from "lucide-react";
 import { getProducts, getReviews } from "@/lib/api.functions";
 import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
-import { ImageLift, Reveal } from "@/components/MotionBits";
+import { ImageLift, PrecisionCard, Reveal, SoftFloat, TextReveal } from "@/components/MotionBits";
+import { WatchPhotoStage } from "@/components/WatchPhotoStage";
 import { SiteFooter, SiteHeader, openWhatsApp, SectionEyebrow } from "@/components/SiteChrome";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { Button } from "@/components/ui/button";
@@ -59,7 +60,7 @@ function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-t from-foreground/75 via-transparent to-foreground/20" />
           <Reveal className="relative mx-auto w-full max-w-7xl text-background">
             <p className="mb-5 text-xs font-bold uppercase text-gold-soft">Curitiba · tradição relojoeira</p>
-            <h1 className="max-w-3xl font-serif text-5xl leading-[1.04] sm:text-6xl lg:text-8xl">O tempo merece cuidado.</h1>
+            <h1 className="max-w-3xl font-serif text-5xl leading-[1.04] sm:text-6xl lg:text-8xl"><TextReveal delay={0.08}>O tempo merece cuidado.</TextReveal></h1>
             <p className="mt-6 max-w-xl text-base leading-7 text-background/80 sm:text-lg">Relógios selecionados, manutenção precisa e restaurações que preservam histórias.</p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Button asChild size="lg"><Link to="/relogios-antigos">Ver relógios <ArrowRight /></Link></Button>
@@ -83,10 +84,10 @@ function HomePage() {
             <div className="grid gap-6 md:grid-cols-3">
               {catalog.map((item, index) => (
                 <Reveal key={item.id} delay={index * 0.08}>
-                  <ImageLift className="border border-border bg-card editorial-shadow">
-                    <div className="aspect-[4/5] overflow-hidden bg-muted"><img src={item.image} alt={item.name} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.035]" /></div>
+                  <PrecisionCard className="overflow-hidden border border-border bg-card editorial-shadow">
+                    <WatchPhotoStage src={item.image} alt={item.name} className="aspect-[4/5] p-6 sm:p-8" />
                     <div className="flex items-end justify-between p-5"><div><p className="text-xs uppercase text-primary">{item.detail}</p><h3 className="mt-1 font-serif text-2xl">{item.name}</h3></div><ArrowRight className="h-5 w-5 text-primary" /></div>
-                  </ImageLift>
+                  </PrecisionCard>
                 </Reveal>
               ))}
             </div>
@@ -96,7 +97,7 @@ function HomePage() {
         <section className="bg-surface px-5 py-24 sm:px-8 lg:py-32">
           <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2">
             <Reveal><SectionEyebrow>Antes e depois</SectionEyebrow><h2 className="font-serif text-4xl sm:text-5xl">A beleza do tempo, recuperada.</h2><p className="mt-6 max-w-xl leading-7 text-muted-foreground">Cada restauração começa com uma avaliação cuidadosa e termina com uma peça pronta para atravessar novas gerações.</p><Button asChild className="mt-8" variant="outline"><Link to="/restauracoes">Ver restaurações <ArrowRight /></Link></Button></Reveal>
-            <Reveal delay={0.1}><BeforeAfterSlider beforeSrc={oratorioAntes.url} afterSrc={oratorioDepois.url} alt="Restauração de relógio de parede em madeira" className="aspect-[4/5] editorial-shadow" /></Reveal>
+             <SoftFloat><BeforeAfterSlider beforeSrc={oratorioAntes.url} afterSrc={oratorioDepois.url} alt="Restauração de relógio de parede em madeira" className="aspect-[4/5] editorial-shadow" /></SoftFloat>
           </div>
         </section>
 

@@ -62,6 +62,8 @@
   --color-surface: var(--surface);
   --color-surface-strong: var(--surface-strong);
   --color-gold-soft: var(--gold-soft);
+  --color-studio: var(--studio);
+  --color-studio-edge: var(--studio-edge);
   --font-sans: "Manrope", sans-serif;
   --font-serif: "DM Serif Display", serif;
 }
@@ -90,6 +92,8 @@
   --surface: oklch(0.965 0.011 82);
   --surface-strong: oklch(0.91 0.024 80);
   --gold-soft: oklch(0.76 0.085 78);
+  --studio: oklch(1 0 0);
+  --studio-edge: oklch(0.94 0.012 82);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -138,6 +142,8 @@
   --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.551 0.027 264.364);
+  --studio: oklch(0.985 0.004 85);
+  --studio-edge: oklch(0.88 0.02 78);
 }
 
 @layer base {
@@ -171,6 +177,66 @@
 
 @utility hairline-gold {
   border-color: color-mix(in oklab, var(--primary) 30%, transparent);
+}
+
+@utility watch-studio {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 42%, var(--studio) 0%, var(--studio) 43%, var(--studio-edge) 125%);
+}
+
+@utility watch-studio-ring {
+  position: absolute;
+  inset: 10%;
+  z-index: -1;
+  border: 1px solid color-mix(in oklab, var(--primary) 16%, transparent);
+  border-radius: 50%;
+  opacity: 0.65;
+  transform: scale(0.82);
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1), opacity 700ms ease;
+
+  .group\/studio:hover & {
+    opacity: 1;
+    transform: scale(0.9);
+  }
+}
+
+@utility watch-studio-image {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  filter: saturate(1.04) contrast(1.025) drop-shadow(0 18px 16px color-mix(in oklab, var(--foreground) 16%, transparent));
+  transition: transform 800ms cubic-bezier(0.22, 1, 0.36, 1), filter 500ms ease;
+
+  .group\/studio:hover & {
+    transform: scale(1.035) translateY(-3px);
+    filter: saturate(1.08) contrast(1.035) drop-shadow(0 24px 20px color-mix(in oklab, var(--foreground) 20%, transparent));
+  }
+}
+
+@utility watch-studio-shadow {
+  position: absolute;
+  bottom: 7%;
+  left: 25%;
+  right: 25%;
+  height: 5%;
+  z-index: 0;
+  border-radius: 50%;
+  background: color-mix(in oklab, var(--foreground) 12%, transparent);
+  filter: blur(13px);
+  opacity: 0.55;
+  transition: transform 800ms cubic-bezier(0.22, 1, 0.36, 1), opacity 500ms ease;
+
+  .group\/studio:hover & {
+    opacity: 0.7;
+    transform: scaleX(0.88);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
