@@ -1,5 +1,6 @@
 import { useCallback, useRef, useState } from "react";
 import { MoveHorizontal } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export interface BeforeAfterSliderProps {
   beforeSrc: string;
@@ -8,63 +9,53 @@ export interface BeforeAfterSliderProps {
   className?: string;
 }
 
-/**
- * Comparador Antes/Depois com divisor arrastável.
- * Funciona com mouse e toque (pointer events), sem dependências externas.
- */
 export function BeforeAfterSlider({ beforeSrc, afterSrc, alt, className }: BeforeAfterSliderProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
 
   const updateFromClientX = useCallback((clientX: number) => {
-    const el = containerRef.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
+    const element = containerRef.current;
+    if (!element) return;
+    const rect = element.getBoundingClientRect();
     if (rect.width === 0) return;
-    const ratio = ((clientX - rect.left) / rect.width) * 100;
-    setPosition(Math.min(100, Math.max(0, ratio)));
+    setPosition(Math.min(100, Math.max(0, ((clientX - rect.left) / rect.width) * 100)));
   }, []);
 
   return (
     <div
       ref={containerRef}
-      className={`relative overflow-hidden rounded-lg border border-[#C5A059]/20 select-none touch-none cursor-ew-resize ${className ?? "aspect-[4/3]"}`}
-      onPointerDown={(e) => {
-        e.currentTarget.setPointerCapture(e.pointerId);
+      role="slider"
+      tabIndex={0}
+      aria-label={`Comparar antes e depois: ${alt}`}
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-valuenow={Math.round(position)}
+      className={cn("relative aspect-[4/3] cursor-ew-resize touch-none select-none overflow-hidden rounded-md border border-border bg-muted", className)}
+      onKeyDown={(event) => {
+        if (event.key === "ArrowLeft") setPosition((value) => Math.max(0, value - 5));
+        if (event.key === "ArrowRight") setPosition((value) => Math.min(100, value + 5));
+      }}
+      onPointerDown={(event) => {
+        event.currentTarget.setPointerCapture(event.pointerId);
         setIsDragging(true);
-        updateFromClientX(e.clientX);
+        updateFromClientX(event.clientX);
       }}
-      onPointerMove={(e) => {
-        if (isDragging) updateFromClientX(e.clientX);
-      }}
+      onPointerMove={(event) => isDragging && updateFromClientX(event.clientX)}
       onPointerUp={() => setIsDragging(false)}
       onPointerCancel={() => setIsDragging(false)}
     >
-      <img src={afterSrc} alt={`${alt} — depois`} className="absolute inset-0 w-full h-full object-cover" />
+      <img src={afterSrc} alt={`${alt} — depois`} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
       <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}>
-        <img src={beforeSrc} alt={`${alt} — antes`} className="w-full h-full object-cover" />
+        <img src={beforeSrc} alt={`${alt} — antes`} loading="lazy" className="h-full w-full object-cover" />
       </div>
-
-
-      <span className="absolute top-4 left-4 text-[10px] font-bold uppercase tracking-widest bg-[#00050A]/80 text-[#E5D3B3]/80 px-3 py-1.5 rounded border border-[#C5A059]/20">
-        Antes
-      </span>
-      <span className="absolute top-4 right-4 text-[10px] font-bold uppercase tracking-widest bg-[#C5A059] text-[#00050A] px-3 py-1.5 rounded">
-        Depois
-      </span>
-
-      <div className="absolute top-0 bottom-0 w-[2px] bg-[#C5A059]" style={{ left: `${position}%` }}>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-[#00050A] border border-[#C5A059] flex items-center justify-center text-[#C5A059] shadow-2xl">
-          <MoveHorizontal size={18} />
-        </div>
-      </div>
-
-      {!isDragging && (
-        <span className="absolute bottom-4 left-1/2 -translate-x-1/2 text-[10px] font-bold uppercase tracking-widest text-[#E5D3B3]/70 bg-[#00050A]/70 px-3 py-1.5 rounded">
-          Arraste para comparar
+      <span className="absolute left-3 top-3 rounded-sm bg-background/90 px-2 py-1 text-xs font-bold uppercase text-foreground">Antes</span>
+      <span className="absolute right-3 top-3 rounded-sm bg-primary px-2 py-1 text-xs font-bold uppercase text-primary-foreground">Depois</span>
+      <div className="absolute inset-y-0 w-px bg-primary" style={{ left: `${position}%` }}>
+        <span className="absolute left-1/2 top-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-primary bg-background text-primary editorial-shadow">
+          <MoveHorizontal className="h-4 w-4" />
         </span>
-      )}
+      </div>
     </div>
   );
 }
