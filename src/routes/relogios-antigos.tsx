@@ -11,9 +11,7 @@ import bolsoSantBara from "@/assets/bolso-santbara.png.asset.json";
 import bolsoAguia from "@/assets/bolso-aguia.png.asset.json";
 import paredeCuco from "@/assets/parede-img_4432.jpeg.asset.json";
 import paredeEska from "@/assets/parede-img_4428.jpeg.asset.json";
-import paredeHerwegOrnamentado from "@/assets/parede-img_4439.jpeg.asset.json";
 import paredeColunas from "@/assets/parede-img_4431.jpeg.asset.json";
-import paredeCucoHerweg from "@/assets/parede-img_4438.jpeg.asset.json";
 
 export const Route = createFileRoute("/relogios-antigos")({
   head: () => ({
