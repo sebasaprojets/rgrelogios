@@ -10,9 +10,7 @@ import bolsoSantBara from "@/assets/bolso-santbara.png.asset.json";
 import bolsoAguia from "@/assets/bolso-aguia.png.asset.json";
 import paredeCuco from "@/assets/parede-img_4432.jpeg.asset.json";
 import paredeEska from "@/assets/parede-img_4428.jpeg.asset.json";
-import paredeHerwegOrnamentado from "@/assets/parede-img_4439.jpeg.asset.json";
 import paredeColunas from "@/assets/parede-img_4431.jpeg.asset.json";
-import paredeCucoHerweg from "@/assets/parede-img_4438.jpeg.asset.json";
 
 export const Route = createFileRoute("/relogios-antigos")({
   head: () => ({
@@ -149,23 +147,9 @@ const PHOTOS: readonly GalleryPhoto[] = [
     group: ANTIQUE,
   },
   {
-    id: "w3",
-    src: paredeHerwegOrnamentado.url,
-    caption: "Herweg ornamentado em preto e ouro velho",
-    era: "Relógio de parede",
-    group: ANTIQUE,
-  },
-  {
     id: "w4",
     src: paredeColunas.url,
     caption: "Caixa em madeira escura com colunas torneadas e pêndulo",
-    era: "Relógio de parede",
-    group: ANTIQUE,
-  },
-  {
-    id: "w5",
-    src: paredeCucoHerweg.url,
-    caption: "Cuco Herweg com folhas entalhadas, pinhas e correntes",
     era: "Relógio de parede",
     group: ANTIQUE,
   },
