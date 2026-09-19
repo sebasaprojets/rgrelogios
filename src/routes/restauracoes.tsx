@@ -1,51 +1,336 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { Check, MessageCircle, Search, Sparkles, Wrench, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X, MessageCircle, Search, ClipboardList, PenTool, Gauge, Sparkles, PackageCheck, CheckCircle2 } from "lucide-react";
+import { SiteHeader, SiteFooter, SectionEyebrow, openWhatsApp } from "@/components/SiteChrome";
 import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
-import { Reveal } from "@/components/MotionBits";
-import { SiteFooter, SiteHeader, openWhatsApp, SectionEyebrow } from "@/components/SiteChrome";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
-import { Button } from "@/components/ui/button";
 import oratorioAntes from "@/assets/oratorio-antes.jpg.asset.json";
 import oratorioDepois from "@/assets/oratorio-depois.jpg.asset.json";
 import tokeiAntes from "@/assets/tokei-antes.jpg.asset.json";
 import tokeiDepois from "@/assets/tokei-depois.jpg.asset.json";
 
 export const Route = createFileRoute("/restauracoes")({
-  head: () => ({ meta: [
-    { title: "Restaurações — Antes e Depois | RG Relógios" },
-    { name: "description", content: "Veja transformações reais de relógios restaurados pela RG Relógios em Curitiba." },
-    { property: "og:title", content: "Restaurações — Antes e Depois | RG Relógios" },
-    { property: "og:description", content: "Compare o antes e o depois de restaurações realizadas em nossa oficina." },
-    { property: "og:type", content: "website" },
-    { name: "twitter:card", content: "summary_large_image" },
-  ] }),
+  head: () => ({
+    meta: [
+      { title: "Restaurações — Antes e Depois | RG Relógios" },
+      {
+        name: "description",
+        content:
+          "Veja transformações reais de relógios restaurados pela RG Relógios: limpeza de mecanismo, polimento de caixa, restauração de mostrador e regulagem.",
+      },
+      { property: "og:title", content: "Restaurações — Antes e Depois | RG Relógios" },
+      {
+        property: "og:description",
+        content: "Compare o antes e o depois das restaurações realizadas em nossa oficina especializada.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: RestorationsPage,
 });
 
-interface Restoration { readonly id: string; readonly title: string; readonly period: string; readonly service: string; readonly summary: string; readonly initialState: string; readonly result: string; readonly services: readonly string[]; readonly before: string; readonly after: string; }
+interface Restoration {
+  readonly id: string;
+  readonly title: string;
+  readonly period: string;
+  readonly service: string;
+  readonly summary: string;
+  readonly initialState: string;
+  readonly result: string;
+  readonly services: readonly string[];
+  readonly before: string;
+  readonly after: string;
+  readonly process: readonly string[];
+}
 
 const RESTORATIONS: readonly Restoration[] = [
-  { id: "oratorio-madeira", title: "Relógio de parede em madeira", period: "Peça antiga", service: "Restauração completa da caixa", summary: "A madeira, os vidros e os detalhes torneados recuperaram profundidade e presença sem apagar as marcas da história.", initialState: "Madeira ressecada, verniz oxidado, vidros manchados e detalhes sem brilho.", result: "Madeira recuperada, verniz reaplicado, vidros limpos e detalhes originais preservados.", services: ["Limpeza profunda", "Recuperação do verniz", "Restauração dos detalhes", "Limpeza e ajuste dos vidros"], before: oratorioAntes.url, after: oratorioDepois.url },
-  { id: "tokei-monogatari", title: "Relógio octogonal Tokei", period: "Made in Japan", service: "Restauração completa", summary: "Mostrador, caixa e mecanismo foram tratados em conjunto para devolver leitura, equilíbrio e funcionamento à peça.", initialState: "Mostrador escurecido, letras desgastadas, caixa opaca e mecanismo parado.", result: "Mostrador restaurado, filetes dourados refeitos, vidro recuperado e relógio funcionando.", services: ["Restauração do mostrador", "Recuperação dos filetes", "Restauração do vidro", "Limpeza e regulagem"], before: tokeiAntes.url, after: tokeiDepois.url },
+  {
+    id: "oratorio-madeira",
+    title: "Relógio de Parede em Madeira",
+    period: "Peça antiga",
+    service: "Restauração completa da caixa",
+    summary:
+      "Caixa chegou coberta de poeira, com verniz desgastado, vidros opacos e acabamento comprometido pelo tempo.",
+    initialState: "Madeira ressecada, verniz oxidado, vidros manchados e detalhes torneados sem brilho.",
+    result: "Madeira recuperada, verniz reaplicado, vidros limpos e todos os detalhes originais preservados.",
+    services: [
+      "Limpeza profunda da madeira",
+      "Recuperação do verniz e do brilho",
+      "Restauração das colunas e detalhes torneados",
+      "Limpeza e ajuste dos vidros",
+    ],
+    before: oratorioAntes.url,
+    after: oratorioDepois.url,
+    process: [oratorioAntes.url, oratorioDepois.url],
+  },
+  {
+    id: "tokei-monogatari",
+    title: "Relógio Octogonal Tokei",
+    period: "Made in Japan",
+    service: "Restauração completa",
+    summary:
+      "Relógio octogonal recebido com mostrador manchado, vidro do pêndulo apagado e caixa sem acabamento.",
+    initialState: "Mostrador escurecido, letras do vidro desgastadas, caixa opaca e mecanismo parado.",
+    result: "Mostrador restaurado, filetes dourados refeitos, vidro recuperado e relógio funcionando novamente.",
+    services: [
+      "Restauração do mostrador",
+      "Recuperação dos filetes dourados da caixa",
+      "Restauração do vidro do pêndulo",
+      "Limpeza e regulagem do mecanismo",
+    ],
+    before: tokeiAntes.url,
+    after: tokeiDepois.url,
+    process: [tokeiAntes.url, tokeiDepois.url],
+  },
 ];
+
+const PROCESS_STEPS = [
+  { number: "01", title: "Avaliação", desc: "Análise completa do relógio.", icon: Search },
+  { number: "02", title: "Diagnóstico", desc: "Identificação dos componentes e serviços necessários.", icon: ClipboardList },
+  { number: "03", title: "Restauração", desc: "Execução dos reparos com cuidado e precisão.", icon: PenTool },
+  { number: "04", title: "Regulagem", desc: "Ajustes do mecanismo e testes.", icon: Gauge },
+  { number: "05", title: "Finalização", desc: "Limpeza, acabamento e revisão final.", icon: Sparkles },
+  { number: "06", title: "Entrega", desc: "Relógio pronto para voltar ao pulso do cliente.", icon: PackageCheck },
+] as const;
 
 function RestorationsPage() {
   const [selected, setSelected] = useState<Restoration | null>(null);
-  return <div className="min-h-screen bg-background text-foreground">
-    <SiteHeader />
-    <main>
-      <section className="px-5 pb-16 pt-36 sm:px-8 lg:pb-24 lg:pt-44"><Reveal className="mx-auto max-w-5xl text-center"><SectionEyebrow>Antes e depois</SectionEyebrow><h1 className="font-serif text-5xl leading-tight sm:text-6xl lg:text-7xl">Restaurações que deixam a história à vista.</h1><p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">Compare transformações reais e conheça o cuidado aplicado em cada etapa.</p></Reveal></section>
-      <section className="px-5 pb-24 sm:px-8 lg:pb-32"><div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-2">{RESTORATIONS.map((item, index) => <Reveal key={item.id} delay={index * .08}><article className="overflow-hidden border border-border bg-card editorial-shadow"><BeforeAfterSlider beforeSrc={item.before} afterSrc={item.after} alt={item.title} className="aspect-[4/5] rounded-none border-0 border-b" /><div className="p-6 sm:p-8"><p className="text-xs uppercase text-primary">{item.period} · {item.service}</p><h2 className="mt-2 font-serif text-3xl">{item.title}</h2><p className="mt-4 leading-7 text-muted-foreground">{item.summary}</p><Button variant="outline" className="mt-6 w-full" onClick={() => setSelected(item)}>Ver detalhes</Button></div></article></Reveal>)}</div></section>
-      <section className="bg-surface px-5 py-24 sm:px-8"><div className="mx-auto max-w-7xl"><SectionEyebrow>Nosso método</SectionEyebrow><h2 className="font-serif text-4xl sm:text-5xl">Cuidado em três etapas</h2><div className="mt-12 grid gap-8 md:grid-cols-3">{[{ title: "Avaliação", text: "Exame cuidadoso da peça e de seu estado atual.", icon: Search }, { title: "Intervenção", text: "Execução técnica com respeito aos materiais originais.", icon: Wrench }, { title: "Finalização", text: "Regulagem, testes, acabamento e revisão final.", icon: Sparkles }].map((step, i) => <Reveal key={step.title} delay={i * .08} className="border-t border-primary pt-6"><step.icon className="mb-7 h-6 w-6 text-primary" /><h3 className="font-serif text-3xl">{step.title}</h3><p className="mt-3 text-sm leading-7 text-muted-foreground">{step.text}</p></Reveal>)}</div></div></section>
-      <section className="px-5 py-24 text-center sm:px-8"><Reveal className="mx-auto max-w-2xl"><h2 className="font-serif text-4xl">Seu relógio pode ser o próximo.</h2><p className="mt-5 leading-7 text-muted-foreground">Envie uma mensagem para solicitar uma avaliação inicial.</p><Button className="mt-8" onClick={() => openWhatsApp("Olá! Gostaria de uma avaliação para restauração do meu relógio.")}><MessageCircle /> Solicitar avaliação</Button></Reveal></section>
-    </main>
-    <AnimatePresence>{selected && <RestorationDialog item={selected} onClose={() => setSelected(null)} />}</AnimatePresence>
-    <SiteFooter /><WhatsAppButton message="Olá! Gostaria de uma avaliação para restauração do meu relógio." />
-  </div>;
+
+  return (
+    <div className="min-h-screen bg-[#00050A] text-[#E5D3B3] font-['Inter'] selection:bg-[#C5A059] selection:text-[#00050A]">
+      <SiteHeader />
+
+      <main>
+        {/* Hero */}
+        <section className="relative pt-44 pb-28 px-8 overflow-hidden">
+          <div className="absolute inset-0 z-0">
+            <img
+              src="https://images.pexels.com/photos/3766111/pexels-photo-3766111.jpeg?auto=compress&cs=tinysrgb&w=1920"
+              alt="Relojoeiro restaurando um relógio"
+              className="w-full h-full object-cover opacity-40"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#00050A]/95 via-[#00050A]/85 to-[#00050A]" />
+          </div>
+
+          <div className="relative z-10 max-w-4xl mx-auto text-center space-y-6">
+            <SectionEyebrow>Antes e depois</SectionEyebrow>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-4xl md:text-6xl font-serif text-[#C5A059]"
+            >
+              Restaurando histórias, detalhe por detalhe
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-[#E5D3B3]/70 text-lg font-light leading-relaxed max-w-2xl mx-auto"
+            >
+              Veja algumas das transformações realizadas em relógios que chegaram até nós precisando de
+              cuidado e ganharam uma nova vida através de um trabalho preciso e especializado.
+            </motion.p>
+          </div>
+        </section>
+
+        {/* Galeria Antes e Depois */}
+        <section className="px-8 pb-32">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
+            {RESTORATIONS.map((item, index) => (
+              <motion.article
+                key={item.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+                className="bg-[#0A101A] border border-[#C5A059]/15 rounded-lg overflow-hidden hover:border-[#C5A059]/40 transition-all duration-500 flex flex-col"
+              >
+                <BeforeAfterSlider
+                  beforeSrc={item.before}
+                  afterSrc={item.after}
+                  alt={item.title}
+                  className="aspect-[3/4] rounded-none border-0 border-b border-[#C5A059]/15"
+                />
+
+                <div className="p-8 space-y-4 flex-1 flex flex-col">
+                  <div>
+                    <h2 className="text-2xl font-serif text-[#C5A059]">{item.title}</h2>
+                    <p className="text-xs text-[#E5D3B3]/50 mt-1">
+                      {item.period} · {item.service}
+                    </p>
+                  </div>
+
+                  <p className="text-sm text-[#E5D3B3]/60 leading-relaxed flex-1">{item.summary}</p>
+
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-[#E5D3B3]/60">
+                    {item.services.slice(0, 4).map((service) => (
+                      <li key={service} className="flex gap-2">
+                        <CheckCircle2 size={13} className="text-[#C5A059] shrink-0 mt-0.5" />
+                        {service}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <button
+                    onClick={() => setSelected(item)}
+                    className="w-full border border-[#C5A059]/50 text-[#C5A059] py-3 rounded font-bold text-xs uppercase tracking-widest hover:bg-[#C5A059] hover:text-[#00050A] transition-all"
+                  >
+                    Ver restauração
+                  </button>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        </section>
+
+        {/* Nosso processo */}
+        <section className="py-32 px-8 bg-[#0A101A]">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-20 space-y-4">
+              <SectionEyebrow>Método de trabalho</SectionEyebrow>
+              <h2 className="text-4xl md:text-5xl font-serif text-[#C5A059]">Nosso processo</h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {PROCESS_STEPS.map((step, index) => (
+                <motion.div
+                  key={step.number}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 }}
+                  className="bg-[#00050A] border border-[#C5A059]/15 rounded-lg p-8 space-y-4 hover:border-[#C5A059]/40 transition-all duration-500"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-bold tracking-[0.4em] text-[#C5A059]">{step.number}</span>
+                    <step.icon size={20} className="text-[#C5A059]/70" />
+                  </div>
+                  <h3 className="text-xl font-serif text-[#E5D3B3]">{step.title}</h3>
+                  <p className="text-sm text-[#E5D3B3]/60 leading-relaxed">{step.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA final */}
+        <section className="py-32 px-8 bg-[#00050A]">
+          <div className="max-w-4xl mx-auto text-center space-y-8 border border-[#C5A059]/20 rounded-lg p-12 bg-[#0A101A]">
+            <h2 className="text-3xl md:text-5xl font-serif text-[#C5A059]">
+              Seu relógio também pode ganhar uma nova história.
+            </h2>
+            <p className="text-[#E5D3B3]/70 leading-relaxed max-w-2xl mx-auto">
+              Se você possui um relógio antigo, danificado ou que precisa de manutenção, entre em contato
+              conosco para uma avaliação.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="/#serviços"
+                className="bg-[#C5A059] text-[#00050A] px-8 py-4 rounded font-bold tracking-wide hover:bg-[#D4B473] transition-all"
+              >
+                Solicitar avaliação
+              </a>
+              <button
+                onClick={() => openWhatsApp("Olá! Gostaria de uma avaliação para restauração do meu relógio.")}
+                className="border border-[#C5A059]/50 text-[#C5A059] px-8 py-4 rounded font-bold tracking-wide hover:bg-[#C5A059]/10 transition-all flex items-center justify-center gap-2"
+              >
+                <MessageCircle size={18} />
+                Falar pelo WhatsApp
+              </button>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <AnimatePresence>
+        {selected && <RestorationModal item={selected} onClose={() => setSelected(null)} />}
+      </AnimatePresence>
+
+      <SiteFooter />
+      <WhatsAppButton />
+    </div>
+  );
 }
 
-function RestorationDialog({ item, onClose }: { item: Restoration; onClose: () => void }) {
-  return <div className="fixed inset-0 z-[60] flex items-center justify-center overflow-y-auto p-4" role="dialog" aria-modal="true" aria-label={`Detalhes da restauração: ${item.title}`}><motion.button type="button" aria-label="Fechar detalhes" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 bg-foreground/70 backdrop-blur-sm" onClick={onClose} /><motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 16 }} className="relative my-10 w-full max-w-3xl bg-card p-6 editorial-shadow sm:p-9"><Button size="icon" variant="ghost" className="absolute right-3 top-3 z-10" onClick={onClose} aria-label="Fechar"><X /></Button><p className="text-xs uppercase text-primary">{item.period}</p><h2 className="mt-2 pr-12 font-serif text-3xl">{item.title}</h2><BeforeAfterSlider beforeSrc={item.before} afterSrc={item.after} alt={item.title} className="mt-7 aspect-[4/5]" /><div className="mt-8 grid gap-6 sm:grid-cols-2"><div><h3 className="text-xs font-bold uppercase text-primary">Estado inicial</h3><p className="mt-3 text-sm leading-7 text-muted-foreground">{item.initialState}</p></div><div><h3 className="text-xs font-bold uppercase text-primary">Resultado</h3><p className="mt-3 text-sm leading-7 text-muted-foreground">{item.result}</p></div></div><ul className="mt-7 grid gap-3 sm:grid-cols-2">{item.services.map((service) => <li key={service} className="flex gap-2 text-sm text-muted-foreground"><Check className="h-4 w-4 text-primary" />{service}</li>)}</ul><Button className="mt-8 w-full" onClick={() => openWhatsApp(`Olá! Vi a restauração do ${item.title} e gostaria de uma avaliação.`)}><MessageCircle /> Falar sobre esta restauração</Button></motion.div></div>;
+function RestorationModal({ item, onClose }: { item: Restoration; onClose: () => void }) {
+  return (
+    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 overflow-y-auto">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+        onClick={onClose}
+      />
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+        className="relative w-full max-w-3xl my-12 bg-[#0A101A] border border-[#C5A059]/30 rounded-2xl overflow-hidden shadow-2xl"
+      >
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 z-10 text-[#E5D3B3]/50 hover:text-[#C5A059]"
+          aria-label="Fechar"
+        >
+          <X size={24} />
+        </button>
+
+        <div className="p-8 space-y-8">
+          <div>
+            <h2 className="text-3xl font-serif text-[#C5A059]">{item.title}</h2>
+            <p className="text-sm text-[#E5D3B3]/50 mt-1">
+              {item.period} · {item.service}
+            </p>
+          </div>
+
+          <BeforeAfterSlider beforeSrc={item.before} afterSrc={item.after} alt={item.title} className="aspect-[3/4]" />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+            <div className="space-y-2">
+              <h3 className="text-[10px] font-bold uppercase tracking-widest text-[#C5A059]">Estado inicial</h3>
+              <p className="text-[#E5D3B3]/70 leading-relaxed">{item.initialState}</p>
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-[10px] font-bold uppercase tracking-widest text-[#C5A059]">Resultado final</h3>
+              <p className="text-[#E5D3B3]/70 leading-relaxed">{item.result}</p>
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            <h3 className="text-[10px] font-bold uppercase tracking-widest text-[#C5A059]">Serviços executados</h3>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-[#E5D3B3]/70">
+              {item.services.map((service) => (
+                <li key={service} className="flex gap-2">
+                  <CheckCircle2 size={14} className="text-[#C5A059] shrink-0 mt-1" />
+                  {service}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            {item.process.map((src) => (
+              <img
+                key={src}
+                src={src}
+                alt={`Processo de restauração — ${item.title}`}
+                className="w-full h-48 object-cover rounded-lg border border-[#C5A059]/15"
+              />
+            ))}
+          </div>
+
+          <button
+            onClick={() => openWhatsApp(`Olá! Vi a restauração do ${item.title} e gostaria de uma avaliação.`)}
+            className="w-full bg-[#C5A059] text-[#00050A] py-4 rounded font-bold uppercase text-xs tracking-widest hover:bg-[#D4B473] transition-all flex items-center justify-center gap-2"
+          >
+            <MessageCircle size={16} />
+            Falar pelo WhatsApp
+          </button>
+        </div>
+      </motion.div>
+    </div>
+  );
 }

@@ -1,34 +1,159 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { ArrowLeft, Check, Clock3, MessageCircle, ShieldCheck } from "lucide-react";
 import { getProducts } from "@/lib/api.functions";
-import { Reveal } from "@/components/MotionBits";
-import { SiteFooter, SiteHeader, openWhatsApp } from "@/components/SiteChrome";
+import { motion } from "framer-motion";
+import { ChevronLeft, MessageCircle, Shield, Clock, Award, ShoppingCart } from "lucide-react";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
-import { Button } from "@/components/ui/button";
-import { WatchPhotoStage } from "@/components/WatchPhotoStage";
+import { CheckoutModal } from "@/components/CheckoutModal";
+import { useState } from "react";
 
 export const Route = createFileRoute("/relogios/$id")({
-  head: () => ({ meta: [
-    { title: "Detalhes do Relógio | RG Relógios" },
-    { name: "description", content: "Conheça os detalhes desta peça selecionada pela RG Relógios e consulte sua disponibilidade." },
-    { property: "og:title", content: "Relógio selecionado | RG Relógios" },
-    { property: "og:description", content: "Detalhes, características e disponibilidade desta peça." },
-    { property: "og:type", content: "product" },
-    { name: "twitter:card", content: "summary_large_image" },
-  ] }),
   component: ProductDetail,
 });
 
 function ProductDetail() {
   const { id } = Route.useParams();
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const fetchProducts = useServerFn(getProducts);
-  const { data: product, isLoading } = useQuery({ queryKey: ["product", id], queryFn: async () => (await fetchProducts({ data: {} })).find((item) => item.id === id) });
 
-  if (isLoading) return <div className="flex min-h-screen items-center justify-center bg-background" aria-label="Carregando relógio"><div className="h-10 w-10 animate-spin rounded-full border-2 border-primary border-t-transparent" /></div>;
-  if (!product) return <div className="flex min-h-screen flex-col items-center justify-center bg-background p-6 text-center"><h1 className="font-serif text-4xl">Relógio não encontrado</h1><Button asChild variant="outline" className="mt-6"><Link to="/relogios-antigos"><ArrowLeft /> Voltar à galeria</Link></Button></div>;
+  const { data: product, isLoading } = useQuery({
+    queryKey: ["product", id],
+    queryFn: async () => {
+      const products = await fetchProducts({ data: {} });
+      return products.find(p => p.id === id);
+    },
+  });
 
-  const image = product.images?.[0] ?? "https://images.unsplash.com/photo-1524592094714-0f0654e20314";
-  return <div className="min-h-screen bg-background text-foreground"><SiteHeader /><main className="px-5 pb-24 pt-32 sm:px-8 lg:pt-40"><div className="mx-auto max-w-7xl"><Button asChild variant="ghost" className="mb-8"><Link to="/relogios-antigos"><ArrowLeft /> Voltar à galeria</Link></Button><div className="grid gap-12 lg:grid-cols-2 lg:gap-20"><Reveal><WatchPhotoStage src={image} alt={product.name} priority className="aspect-square editorial-shadow p-7 sm:p-10" />{product.images && product.images.length > 1 && <div className="mt-4 grid grid-cols-4 gap-3">{product.images.slice(1).map((src) => <WatchPhotoStage key={src} src={src} alt={`Outro ângulo de ${product.name}`} className="aspect-square border border-border p-2" />)}</div>}</Reveal><Reveal delay={.1} className="lg:pt-6"><p className="text-xs font-bold uppercase text-primary">{product.brand}</p><h1 className="mt-3 font-serif text-5xl leading-tight sm:text-6xl">{product.name}</h1><p className="mt-6 text-3xl font-semibold text-primary">{product.price ? `R$ ${product.price.toLocaleString("pt-BR")}` : "Preço sob consulta"}</p><p className="mt-8 border-y border-border py-8 leading-8 text-muted-foreground">{product.description ?? "Uma peça de relojoaria selecionada por sua presença, qualidade e caráter atemporal."}</p><dl className="grid grid-cols-2 gap-6 py-8 text-sm"><div><dt className="text-xs uppercase text-primary">Modelo</dt><dd className="mt-2 font-semibold">{product.model}</dd></div><div><dt className="text-xs uppercase text-primary">Ano</dt><dd className="mt-2 font-semibold">{product.year ?? "Não informado"}</dd></div><div><dt className="text-xs uppercase text-primary">Categoria</dt><dd className="mt-2 font-semibold">{product.category}</dd></div><div><dt className="text-xs uppercase text-primary">Condição</dt><dd className="mt-2 font-semibold">{product.condition}</dd></div></dl><Button size="lg" className="w-full sm:w-auto" onClick={() => openWhatsApp(`Olá! Tenho interesse no relógio ${product.brand} ${product.name}. Gostaria de mais informações.`)}><MessageCircle /> Consultar disponibilidade</Button><div className="mt-10 grid gap-4 border-t border-border pt-8 text-sm sm:grid-cols-3"><span className="flex gap-2"><ShieldCheck className="h-5 w-5 text-primary" />Atendimento seguro</span><span className="flex gap-2"><Check className="h-5 w-5 text-primary" />Peça selecionada</span><span className="flex gap-2"><Clock3 className="h-5 w-5 text-primary" />Resposta rápida</span></div></Reveal></div></div></main><SiteFooter /><WhatsAppButton message={`Olá! Tenho interesse no relógio ${product.brand} ${product.name}.`} /></div>;
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-[#00050A] flex items-center justify-center">
+        <div className="w-12 h-12 border-4 border-[#C5A059] border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
+  if (!product) {
+    return (
+      <div className="min-h-screen bg-[#00050A] text-[#E5D3B3] flex flex-col items-center justify-center p-8">
+        <h2 className="text-4xl font-serif mb-4">Relógio não encontrado</h2>
+        <a href="/" className="text-[#C5A059] hover:underline">Voltar para o início</a>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-[#00050A] text-[#E5D3B3] pt-32 pb-20 px-8">
+      <WhatsAppButton 
+        message={`Olá! Tenho interesse no relógio ${product.brand} ${product.name}. Gostaria de mais informações.`}
+      />
+      
+      {isCheckoutOpen && (
+        <CheckoutModal 
+          isOpen={isCheckoutOpen} 
+          onClose={() => setIsCheckoutOpen(false)} 
+          product={product} 
+        />
+      )}
+      
+      <div className="max-w-7xl mx-auto">
+        <a href="/#relógios" className="inline-flex items-center gap-2 text-[#C5A059] hover:text-[#D4B473] transition-colors mb-12 uppercase text-xs font-bold tracking-widest">
+          <ChevronLeft size={16} /> Voltar
+        </a>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="space-y-6"
+          >
+            <div className="aspect-square bg-[#0A101A] rounded-xl overflow-hidden border border-[#C5A059]/20 shadow-2xl">
+              <img 
+                src={product.images?.[0] || 'https://images.unsplash.com/photo-1524592094714-0f0654e20314'} 
+                alt={product.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
+            {product.images && product.images.length > 1 && (
+              <div className="grid grid-cols-4 gap-4">
+                {product.images.slice(1).map((img, i) => (
+                  <div key={i} className="aspect-square rounded-lg overflow-hidden border border-[#C5A059]/10">
+                    <img src={img} alt={`${product.name} - ${i + 2}`} className="w-full h-full object-cover" />
+                  </div>
+                ))}
+              </div>
+            )}
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="flex flex-col"
+          >
+            <h1 className="text-[#C5A059] text-sm font-bold tracking-[0.3em] uppercase mb-2">{product.brand}</h1>
+            <h2 className="text-4xl md:text-6xl font-serif text-[#E5D3B3] mb-6 leading-tight">{product.name}</h2>
+            
+            <div className="flex items-center gap-6 mb-8 pb-8 border-b border-[#C5A059]/10">
+              <span className="text-3xl font-bold text-[#C5A059]">
+                {product.price ? `R$ ${product.price.toLocaleString()}` : "Sob Consulta"}
+              </span>
+              <span className="bg-[#C5A059]/10 text-[#C5A059] px-3 py-1 rounded text-[10px] font-bold uppercase tracking-widest border border-[#C5A059]/20">
+                {product.condition}
+              </span>
+            </div>
+
+            <div className="space-y-6 mb-10 text-[#E5D3B3]/70 font-light leading-relaxed">
+              <p>{product.description || 'Uma peça excepcional de relojoaria que combina precisão técnica com design atemporal.'}</p>
+              
+              <div className="grid grid-cols-2 gap-8 py-6 border-y border-[#C5A059]/10">
+                <div>
+                  <h4 className="text-[10px] font-bold text-[#C5A059] uppercase tracking-widest mb-2">Marca</h4>
+                  <p className="text-sm font-medium">{product.brand}</p>
+                </div>
+                <div>
+                  <h4 className="text-[10px] font-bold text-[#C5A059] uppercase tracking-widest mb-2">Modelo</h4>
+                  <p className="text-sm font-medium">{product.model}</p>
+                </div>
+                <div>
+                  <h4 className="text-[10px] font-bold text-[#C5A059] uppercase tracking-widest mb-2">Ano</h4>
+                  <p className="text-sm font-medium">{product.year || "Não especificado"}</p>
+                </div>
+                <div>
+                  <h4 className="text-[10px] font-bold text-[#C5A059] uppercase tracking-widest mb-2">Categoria</h4>
+                  <p className="text-sm font-medium">{product.category}</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 mb-12">
+              <button 
+                onClick={() => setIsCheckoutOpen(true)}
+                className="flex-1 bg-[#C5A059] text-[#00050A] py-4 rounded font-bold hover:bg-[#D4B473] transition-all uppercase text-sm tracking-widest flex items-center justify-center gap-2"
+              >
+                <ShoppingCart size={18} /> Comprar Agora
+              </button>
+              <button className="flex-1 border border-[#C5A059] text-[#C5A059] py-4 rounded font-bold hover:bg-[#C5A059]/10 transition-all uppercase text-sm tracking-widest">
+                Falar com Especialista
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-10 border-t border-[#C5A059]/10">
+              <div className="flex items-center gap-3">
+                <Shield size={20} className="text-[#C5A059]" />
+                <span className="text-[10px] font-bold uppercase tracking-widest">Compra Protegida</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Award size={20} className="text-[#C5A059]" />
+                <span className="text-[10px] font-bold uppercase tracking-widest">Certificado</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Clock size={20} className="text-[#C5A059]" />
+                <span className="text-[10px] font-bold uppercase tracking-widest">Entrega Segura</span>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </div>
+  );
 }
