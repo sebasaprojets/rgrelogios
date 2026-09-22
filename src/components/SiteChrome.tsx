@@ -12,7 +12,8 @@ export interface NavItem {
 
 export const NAV_ITEMS: readonly NavItem[] = [
   { label: "Início", href: "/#início" },
-  { label: "Relógios", href: "/relogios-antigos" },
+  { label: "Catálogo", href: "/#relógios" },
+  { label: "Relógios Antigos", href: "/relogios-antigos" },
   { label: "Restaurações", href: "/restauracoes" },
   { label: "Serviços", href: "/#serviços" },
   { label: "Sobre", href: "/#sobre" },
@@ -33,7 +34,9 @@ export function SiteHeader() {
           alt="RG Relógios"
           className="w-10 h-10 object-contain rounded-full border border-primary/30"
         />
-        <span className="text-2xl font-serif font-bold text-primary tracking-wider">RG RELÓGIOS</span>
+        <span className="text-2xl font-serif font-bold text-primary tracking-wider">
+          RG RELÓGIOS
+        </span>
       </Link>
 
       <nav className="hidden lg:flex gap-8 text-sm font-medium tracking-wide text-foreground/80 uppercase">
@@ -110,7 +113,9 @@ export function SiteFooter() {
             </p>
           </div>
           <div>
-            <h5 className="text-primary font-bold text-xs uppercase tracking-widest mb-6">Navegação</h5>
+            <h5 className="text-primary font-bold text-xs uppercase tracking-widest mb-6">
+              Navegação
+            </h5>
             <ul className="space-y-4 text-sm text-muted-foreground">
               {NAV_ITEMS.map((item) => (
                 <li key={item.label}>
@@ -124,18 +129,36 @@ export function SiteFooter() {
           <div>
             <h5 className="text-primary font-bold text-xs uppercase tracking-widest mb-6">Legal</h5>
             <ul className="space-y-4 text-sm text-muted-foreground">
-              <li><a href="#" className="hover:text-primary">Privacidade</a></li>
-              <li><a href="#" className="hover:text-primary">Termos de Uso</a></li>
-              <li><a href="#" className="hover:text-primary">Garantia</a></li>
+              <li>
+                <a href="#" className="hover:text-primary">
+                  Privacidade
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-primary">
+                  Termos de Uso
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-primary">
+                  Garantia
+                </a>
+              </li>
             </ul>
           </div>
         </div>
         <div className="pt-8 border-t border-primary/10 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-bold uppercase tracking-widest text-muted-foreground/70">
           <p>© 2026 RG Relógios. Todos os direitos reservados.</p>
           <div className="flex gap-8">
-            <a href="#" className="hover:text-primary">Instagram</a>
-            <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="hover:text-primary">WhatsApp</a>
-            <a href="#" className="hover:text-primary">Maps</a>
+            <a href="#" className="hover:text-primary">
+              Instagram
+            </a>
+            <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="hover:text-primary">
+              WhatsApp
+            </a>
+            <a href="#" className="hover:text-primary">
+              Maps
+            </a>
           </div>
         </div>
       </div>

@@ -149,11 +149,20 @@
     border-color: var(--color-border);
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     letter-spacing: 0;
+  }
+
+  /* Compensa o cabeçalho fixo ao navegar para uma âncora (#início, #serviços, etc.). */
+  main > section[id] {
+    scroll-margin-top: 5.5rem;
   }
 
   ::selection {
@@ -168,7 +177,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     scroll-behavior: auto !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
