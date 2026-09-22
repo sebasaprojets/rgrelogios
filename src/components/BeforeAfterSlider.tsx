@@ -29,7 +29,7 @@ export function BeforeAfterSlider({ beforeSrc, afterSrc, alt, className }: Befor
   return (
     <div
       ref={containerRef}
-      className={`relative overflow-hidden rounded-lg border border-[#C5A059]/20 select-none touch-none cursor-ew-resize ${className ?? "aspect-[4/3]"}`}
+      className={`relative overflow-hidden rounded-lg border border-primary/25 bg-card select-none touch-none cursor-ew-resize ${className ?? "aspect-[4/3]"}`}
       onPointerDown={(e) => {
         e.currentTarget.setPointerCapture(e.pointerId);
         setIsDragging(true);
@@ -47,21 +47,21 @@ export function BeforeAfterSlider({ beforeSrc, afterSrc, alt, className }: Befor
       </div>
 
 
-      <span className="absolute top-4 left-4 text-[10px] font-bold uppercase tracking-widest bg-[#00050A]/80 text-[#E5D3B3]/80 px-3 py-1.5 rounded border border-[#C5A059]/20">
+      <span className="absolute top-4 left-4 text-[10px] font-bold uppercase tracking-widest bg-foreground/80 text-background px-3 py-1.5 rounded border border-primary/20">
         Antes
       </span>
-      <span className="absolute top-4 right-4 text-[10px] font-bold uppercase tracking-widest bg-[#C5A059] text-[#00050A] px-3 py-1.5 rounded">
+      <span className="absolute top-4 right-4 text-[10px] font-bold uppercase tracking-widest bg-primary text-primary-foreground px-3 py-1.5 rounded">
         Depois
       </span>
 
-      <div className="absolute top-0 bottom-0 w-[2px] bg-[#C5A059]" style={{ left: `${position}%` }}>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-[#00050A] border border-[#C5A059] flex items-center justify-center text-[#C5A059] shadow-2xl">
+      <div className="absolute top-0 bottom-0 w-[2px] bg-primary" style={{ left: `${position}%` }}>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-card border border-primary flex items-center justify-center text-primary shadow-lg">
           <MoveHorizontal size={18} />
         </div>
       </div>
 
       {!isDragging && (
-        <span className="absolute bottom-4 left-1/2 -translate-x-1/2 text-[10px] font-bold uppercase tracking-widest text-[#E5D3B3]/70 bg-[#00050A]/70 px-3 py-1.5 rounded">
+        <span className="absolute bottom-4 left-1/2 -translate-x-1/2 text-[10px] font-bold uppercase tracking-widest text-background bg-foreground/70 px-3 py-1.5 rounded">
           Arraste para comparar
         </span>
       )}
