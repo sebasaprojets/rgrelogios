@@ -13,7 +13,7 @@ export function WhatsAppButton({
   return (
     <motion.button 
       onClick={handleClick}
-      className="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:bg-[#128C7E] transition-all flex items-center justify-center group"
+      className="fixed bottom-5 right-5 z-50 bg-whatsapp text-whatsapp-foreground p-3.5 rounded-full shadow-lg hover:brightness-95 transition-all flex items-center justify-center group sm:bottom-8 sm:right-8 sm:p-4"
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       aria-label="Falar no WhatsApp"

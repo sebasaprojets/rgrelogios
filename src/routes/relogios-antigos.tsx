@@ -194,7 +194,7 @@ function VintageGalleryPage() {
   }, [index, photos.length]);
 
   return (
-    <div className="min-h-screen bg-[#00050A] text-[#E5D3B3] font-['Inter'] selection:bg-[#C5A059] selection:text-[#00050A]">
+    <div className="min-h-screen bg-background text-foreground font-['Inter'] selection:bg-primary selection:text-primary-foreground">
       <SiteHeader />
 
       <main>
@@ -206,7 +206,7 @@ function VintageGalleryPage() {
               alt="Relógio antigo em detalhe"
               className="w-full h-full object-cover opacity-30"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#00050A]/95 via-[#00050A]/85 to-[#00050A]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/85 to-background" />
           </div>
 
           <div className="relative z-10 max-w-4xl mx-auto text-center space-y-6">
@@ -214,7 +214,7 @@ function VintageGalleryPage() {
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-4xl md:text-6xl font-serif text-[#C5A059]"
+              className="text-4xl md:text-6xl font-serif text-primary"
             >
               Relógios que atravessaram gerações
             </motion.h1>
@@ -222,7 +222,7 @@ function VintageGalleryPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-[#E5D3B3]/70 text-lg font-light leading-relaxed max-w-2xl mx-auto"
+              className="text-muted-foreground text-lg font-light leading-relaxed max-w-2xl mx-auto"
             >
               Uma galeria de fotografias das peças antigas que passaram pela nossa bancada — mostradores,
               caixas e mecanismos preservados com respeito à sua origem.
@@ -242,8 +242,8 @@ function VintageGalleryPage() {
                 }}
                 className={`px-5 py-2.5 rounded text-[10px] font-bold uppercase tracking-widest border transition-all ${
                   group === item
-                    ? "bg-[#C5A059] text-[#00050A] border-[#C5A059]"
-                    : "border-[#C5A059]/25 text-[#E5D3B3]/60 hover:border-[#C5A059]/60 hover:text-[#C5A059]"
+                    ? "bg-primary text-primary-foreground border-primary"
+                    : "border-primary/25 text-muted-foreground hover:border-primary/60 hover:text-primary"
                 }`}
               >
                 {item}
@@ -262,7 +262,7 @@ function VintageGalleryPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: (i % 6) * 0.05 }}
-                className="group relative aspect-[4/5] overflow-hidden rounded-lg border border-[#C5A059]/15 hover:border-[#C5A059]/50 transition-all duration-500 text-left"
+                className="group relative aspect-[4/5] overflow-hidden rounded-lg border border-primary/15 hover:border-primary/50 transition-all duration-500 text-left"
               >
                 <button
                   type="button"
@@ -279,13 +279,13 @@ function VintageGalleryPage() {
                     loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#00050A] via-[#00050A]/10 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/10 to-transparent" />
                 </button>
 
                 <div className="absolute bottom-0 left-0 right-0 p-6 space-y-3 pointer-events-none">
                   <div className="space-y-1">
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-[#C5A059]">{photo.era}</p>
-                    <p className="text-sm text-[#E5D3B3]/85 font-light">{photo.caption}</p>
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-primary">{photo.era}</p>
+                    <p className="text-sm text-background/90 font-light">{photo.caption}</p>
                   </div>
                   <button
                     type="button"
@@ -294,7 +294,7 @@ function VintageGalleryPage() {
                         `Olá! Gostaria de saber mais sobre este relógio: ${photo.caption} (${photo.era}).`,
                       )
                     }
-                    className="pointer-events-auto inline-flex items-center gap-2 bg-[#C5A059] text-[#00050A] px-4 py-2.5 rounded font-bold text-[10px] uppercase tracking-widest hover:bg-[#D4B473] transition-all"
+                    className="pointer-events-auto inline-flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2.5 rounded font-bold text-[10px] uppercase tracking-widest hover:bg-primary/85 transition-all"
                   >
                     <MessageCircle size={14} />
                     Perguntar no WhatsApp
@@ -305,12 +305,12 @@ function VintageGalleryPage() {
           </div>
 
           <div className="max-w-3xl mx-auto text-center mt-24 space-y-6">
-            <p className="text-[#E5D3B3]/60 font-light leading-relaxed">
+            <p className="text-muted-foreground font-light leading-relaxed">
               Procura uma peça específica? Fale com a gente e consultamos a disponibilidade.
             </p>
             <button
               onClick={() => openWhatsApp("Olá! Gostaria de saber quais relógios estão disponíveis.")}
-              className="inline-block bg-[#C5A059] text-[#00050A] px-8 py-4 rounded font-bold text-xs uppercase tracking-widest hover:bg-[#D4B473] transition-all"
+              className="inline-block bg-primary text-primary-foreground px-8 py-4 rounded font-bold text-xs uppercase tracking-widest hover:bg-primary/85 transition-all"
             >
               Consultar disponibilidade
             </button>
@@ -325,7 +325,7 @@ function VintageGalleryPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-black/90 backdrop-blur-sm"
+              className="absolute inset-0 bg-foreground/90 backdrop-blur-sm"
               onClick={() => setIndex(null)}
             />
             <motion.div
@@ -337,7 +337,7 @@ function VintageGalleryPage() {
               <button
                 onClick={() => setIndex(null)}
                 aria-label="Fechar"
-                className="absolute -top-12 right-0 text-[#E5D3B3]/60 hover:text-[#C5A059]"
+                className="absolute -top-12 right-0 text-muted-foreground hover:text-primary"
               >
                 <X size={26} />
               </button>
@@ -345,7 +345,7 @@ function VintageGalleryPage() {
               <img
                 src={shots[shot] ?? current.src}
                 alt={current.caption}
-                className="w-full max-h-[70vh] object-contain rounded-lg border border-[#C5A059]/20 bg-[#00050A]"
+                className="w-full max-h-[70vh] object-contain rounded-lg border border-primary/20 bg-background"
               />
 
               {shots.length > 1 && (
@@ -358,8 +358,8 @@ function VintageGalleryPage() {
                       aria-label={`Ver foto ${i + 1}`}
                       className={`w-20 h-20 rounded overflow-hidden border transition-all ${
                         shot === i
-                          ? "border-[#C5A059]"
-                          : "border-[#C5A059]/20 opacity-60 hover:opacity-100"
+                          ? "border-primary"
+                          : "border-primary/20 opacity-60 hover:opacity-100"
                       }`}
                     >
                       <img src={src} alt="" className="w-full h-full object-cover" />
@@ -370,30 +370,30 @@ function VintageGalleryPage() {
 
               <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="text-center sm:text-left">
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-[#C5A059]">
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-primary">
                     {current.era}
                   </p>
-                  <p className="text-[#E5D3B3]/80 font-light">{current.caption}</p>
+                  <p className="text-foreground/80 font-light">{current.caption}</p>
                 </div>
 
                 <div className="flex items-center gap-3">
                   <button
                     onClick={() => go(-1)}
                     aria-label="Foto anterior"
-                    className="p-3 rounded border border-[#C5A059]/30 text-[#C5A059] hover:bg-[#C5A059] hover:text-[#00050A] transition-all"
+                    className="p-3 rounded border border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all"
                   >
                     <ChevronLeft size={18} />
                   </button>
                   <button
                     onClick={() => go(1)}
                     aria-label="Próxima foto"
-                    className="p-3 rounded border border-[#C5A059]/30 text-[#C5A059] hover:bg-[#C5A059] hover:text-[#00050A] transition-all"
+                    className="p-3 rounded border border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all"
                   >
                     <ChevronRight size={18} />
                   </button>
                   <button
                     onClick={() => openWhatsApp(`Vi esta peça na galeria de relógios antigos: ${current.caption} (${current.era}).`)}
-                    className="flex items-center gap-2 bg-[#C5A059] text-[#00050A] px-5 py-3 rounded font-bold text-[10px] uppercase tracking-widest hover:bg-[#D4B473] transition-all"
+                    className="flex items-center gap-2 bg-primary text-primary-foreground px-5 py-3 rounded font-bold text-[10px] uppercase tracking-widest hover:bg-primary/85 transition-all"
                   >
                     <MessageCircle size={15} />
                     Falar sobre esta peça

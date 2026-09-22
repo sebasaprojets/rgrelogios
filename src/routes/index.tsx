@@ -24,12 +24,21 @@ import { NAV_ITEMS } from "@/components/SiteChrome";
 
 import logoAsset from "@/assets/logo-official.png.asset.json";
 import storefrontAsset from "@/assets/storefront.jpeg.asset.json";
-import heroVideoAsset from "@/assets/hero-watch.mp4.asset.json";
-import heroPosterAsset from "@/assets/hero-poster.jpg.asset.json";
+import heroWatchLight from "@/assets/hero-watch-light.jpg";
 import movadoVideo from "@/assets/movado-assembly.mp4.asset.json";
 import movadoPoster from "@/assets/movado-clean.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "RG Relógios | Relojoaria e restauração em Curitiba" },
+      { name: "description", content: "Venda, manutenção e restauração de relógios clássicos e contemporâneos em Curitiba, com atendimento especializado." },
+      { property: "og:title", content: "RG Relógios | Tempo, arte e precisão" },
+      { property: "og:description", content: "Relógios selecionados e serviços especializados para preservar histórias e precisão." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
@@ -97,16 +106,16 @@ function Index() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#00050A] text-[#E5D3B3] font-['Inter'] selection:bg-[#C5A059] selection:text-[#00050A]">
-      <header className="fixed top-0 w-full z-50 flex items-center justify-between px-8 py-6 bg-[#00050A]/95 backdrop-blur-md border-b border-[#C5A059]/20">
+    <div className="min-h-screen bg-background text-foreground font-sans">
+      <header className="fixed top-0 w-full z-50 flex items-center justify-between px-5 sm:px-8 py-4 bg-background/90 backdrop-blur-xl border-b border-border/70 shadow-sm">
         <div className="flex items-center gap-4">
-          <img src={logoAsset.url} alt="RG Relógios" className="w-10 h-10 object-contain rounded-full border border-[#C5A059]/30" />
-          <h1 className="text-2xl font-serif font-bold text-[#C5A059] tracking-wider">RG RELÓGIOS</h1>
+          <img src={logoAsset.url} alt="RG Relógios" className="w-10 h-10 object-contain rounded-full border border-primary/30" />
+          <h1 className="text-2xl font-serif font-bold text-primary tracking-wider">RG RELÓGIOS</h1>
         </div>
         
-        <nav className="hidden lg:flex gap-8 text-sm font-medium tracking-wide text-[#E5D3B3]/90 uppercase">
+        <nav className="hidden lg:flex gap-8 text-sm font-medium tracking-wide text-foreground/90 uppercase">
           {NAV_ITEMS.map((item) => (
-            <a key={item.label} href={item.href} className="hover:text-[#C5A059] transition-colors">
+            <a key={item.label} href={item.href} className="hover:text-primary transition-colors">
               {item.label}
             </a>
           ))}
@@ -117,7 +126,7 @@ function Index() {
           <motion.button 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="hidden sm:flex bg-[#C5A059] text-[#00050A] px-6 py-2.5 rounded font-bold text-sm tracking-wide hover:bg-[#D4B473] transition-all items-center gap-2"
+            className="hidden sm:flex bg-primary text-primary-foreground px-6 py-2.5 rounded font-bold text-sm tracking-wide hover:bg-primary/85 transition-all items-center gap-2"
             onClick={() => window.open('https://wa.me/5541992399650', '_blank')}
           >
             <MessageCircle size={18} />
@@ -125,7 +134,7 @@ function Index() {
           </motion.button>
           
           <button 
-            className="lg:hidden text-[#C5A059]"
+            className="lg:hidden text-primary"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
 
           >
@@ -139,20 +148,20 @@ function Index() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="absolute top-full left-0 w-full bg-[#00050A] border-b border-[#C5A059]/20 p-8 flex flex-col gap-6 lg:hidden shadow-2xl"
+              className="absolute top-full left-0 w-full bg-background border-b border-primary/20 p-8 flex flex-col gap-6 lg:hidden shadow-lg"
             >
               {NAV_ITEMS.map((item) => (
                 <a 
                   key={item.label} 
                   href={item.href} 
                   onClick={() => setIsMenuOpen(false)}
-                  className="text-xl font-serif text-[#C5A059] hover:text-[#D4B473]"
+                  className="text-xl font-serif text-primary hover:text-primary/80"
                 >
                   {item.label}
                 </a>
               ))}
 
-              <button className="bg-[#C5A059] text-[#00050A] py-4 rounded font-bold flex justify-center items-center gap-2">
+              <button className="bg-primary text-primary-foreground py-4 rounded font-bold flex justify-center items-center gap-2">
                 <MessageCircle size={20} />
                 WhatsApp
               </button>
@@ -162,67 +171,70 @@ function Index() {
       </header>
 
       <main>
-        <section id="início" className="relative h-screen flex flex-col items-center justify-center text-center p-6 overflow-hidden">
-          {/* Fundo Cinematográfico com Zoom Suave */}
-          <div className="absolute inset-0 z-0">
-            <motion.div 
-              initial={{ scale: 1.1 }}
-              animate={{ scale: 1.25 }}
-              transition={{ 
-                duration: 20, 
-                repeat: Infinity, 
-                repeatType: "reverse", 
-                ease: "linear" 
-              }}
-              className="w-full h-full"
+        <section id="início" className="relative min-h-[760px] pt-32 flex items-center overflow-hidden border-b border-border/60">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_40%,var(--gold-soft),transparent_38%)] opacity-55" />
+          <div className="relative max-w-7xl mx-auto w-full px-6 sm:px-8 py-16 grid grid-cols-1 lg:grid-cols-[0.88fr_1.12fr] items-center gap-10 lg:gap-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+              className="z-10 max-w-xl order-2 lg:order-1"
             >
-              <img 
-                src="https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?auto=compress&cs=tinysrgb&w=1920"
-                alt="Relógio de luxo em destaque"
-                className="w-full h-full object-cover opacity-60"
-              />
+              <div className="flex items-center gap-3 mb-6 text-primary">
+                <span className="h-px w-10 bg-primary" />
+                <span className="text-[10px] font-bold uppercase tracking-[0.35em]">Atelier de alta relojoaria</span>
+              </div>
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif text-foreground leading-[0.98]">
+                Tempo, arte <span className="text-primary italic">e precisão</span>
+              </h1>
+              <p className="mt-7 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-lg">
+                Venda, manutenção e restauração de relógios clássicos e contemporâneos.
+              </p>
+              <div className="mt-10 flex flex-col sm:flex-row gap-3">
+                <a href="#serviços" className="inline-flex justify-center bg-primary text-primary-foreground px-8 py-4 rounded-md font-bold tracking-wide hover:bg-primary/85 transition-colors shadow-sm">
+                  Solicitar Serviço
+                </a>
+                <a href="#sobre" className="inline-flex justify-center bg-card border border-primary/50 text-foreground px-8 py-4 rounded-md font-bold tracking-wide hover:bg-primary/10 transition-colors">
+                  Sobre Nós
+                </a>
+              </div>
             </motion.div>
-            <div className="absolute inset-0 bg-gradient-to-b from-[#00050A]/90 via-[#00050A]/70 to-[#00050A]" />
-          </div>
-
-          <div className="relative z-10 max-w-4xl">
-            <h2 className="text-4xl sm:text-6xl font-serif font-bold text-[#C5A059] drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
-              Tempo, arte e precisão
-            </h2>
-            <p className="mt-6 text-base sm:text-xl text-[#E5D3B3] drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-              Venda, manutenção e restauração de relógios clássicos e contemporâneos.
-            </p>
-            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="#serviços" className="bg-[#C5A059] text-[#00050A] px-8 py-4 rounded font-bold tracking-wide hover:bg-[#D4B473] transition-all">
-                Solicitar Serviço
-              </a>
-              <a href="#sobre" className="border border-[#C5A059]/50 text-[#C5A059] px-8 py-4 rounded font-bold tracking-wide hover:bg-[#C5A059]/10 transition-all">
-                Sobre Nós
-              </a>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, x: 24 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="relative order-1 lg:order-2 min-h-[380px] sm:min-h-[500px] lg:min-h-[620px]"
+            >
+              <div className="absolute inset-0 lg:-right-20 overflow-hidden rounded-lg border border-primary/15 shadow-[0_24px_70px_color-mix(in_oklab,var(--foreground)_10%,transparent)]">
+                <img src={heroWatchLight} alt="Relógio mecânico clássico em fotografia de produto" width={1600} height={1200} className="w-full h-full object-cover object-[65%_center]" />
+              </div>
+              <div className="absolute bottom-5 left-5 bg-background/90 backdrop-blur-sm border border-primary/20 px-4 py-3 rounded-md">
+                <p className="text-[9px] uppercase tracking-[0.28em] text-primary font-bold">Curitiba · Paraná</p>
+                <p className="font-serif text-foreground mt-1">Tradição em cada detalhe</p>
+              </div>
+            </motion.div>
           </div>
         </section>
-
         {/* Relógios Antigos */}
-        <section id="antigos" className="relative py-32 px-8 bg-[#0A101A] overflow-hidden">
+        <section id="antigos" className="relative py-32 px-8 bg-secondary overflow-hidden">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-6">
-              <h3 className="text-4xl sm:text-5xl font-serif text-[#C5A059]">Relógios que carregam histórias</h3>
-              <p className="text-[#E5D3B3]/70 leading-relaxed">
+              <h3 className="text-4xl sm:text-5xl font-serif text-primary">Relógios que carregam histórias</h3>
+              <p className="text-muted-foreground leading-relaxed">
                 Peças antigas restauradas com respeito à sua origem, mantendo o mecanismo original sempre que possível.
               </p>
               <div className="flex flex-wrap gap-4 pt-2">
-                <a href="#serviços" className="bg-[#C5A059] text-[#00050A] px-7 py-3.5 rounded font-bold tracking-wide hover:bg-[#D4B473] transition-all">
+                <a href="#serviços" className="bg-primary text-primary-foreground px-7 py-3.5 rounded font-bold tracking-wide hover:bg-primary/85 transition-all">
                   Restaurar meu relógio
                 </a>
-                <a href="#contato" className="border border-[#C5A059]/50 text-[#C5A059] px-7 py-3.5 rounded font-bold tracking-wide hover:bg-[#C5A059]/10 transition-all">
+                <a href="#contato" className="border border-primary/50 text-primary px-7 py-3.5 rounded font-bold tracking-wide hover:bg-primary/10 transition-all">
                   Falar com especialista
                 </a>
               </div>
             </div>
 
             <div className="relative h-[480px]">
-              <div className="absolute inset-0 z-10 overflow-hidden rounded-lg shadow-2xl border border-[#C5A059]/20 bg-[#00050A]">
+              <div className="absolute inset-0 z-10 overflow-hidden rounded-lg shadow-lg border border-primary/20 bg-background">
                 <video
                   src={movadoVideo.url}
                   poster={movadoPoster.url}
@@ -234,12 +246,12 @@ function Index() {
                   aria-label="Relógio Movado Kingmatic sendo desmontado e montado novamente"
                   className="w-full h-full object-contain"
                 />
-                <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-[#0A101A]/70 via-transparent to-transparent" />
+                <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-secondary/70 via-transparent to-transparent" />
               </div>
 
               {/* Elementos Decorativos de Design */}
-              <div className="absolute -top-6 -right-6 w-32 h-32 border border-[#C5A059]/20 rounded-full animate-[spin_20s_linear_infinite] z-0" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[#C5A059]/5 blur-[120px] rounded-full z-0" />
+              <div className="absolute -top-6 -right-6 w-32 h-32 border border-primary/20 rounded-full animate-[spin_20s_linear_infinite] z-0" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary/5 blur-[120px] rounded-full z-0" />
             </div>
 
           </div>
@@ -247,7 +259,7 @@ function Index() {
 
 
         {/* Seção de Serviços Premium */}
-        <section id="serviços" className="py-32 px-8 bg-[#00050A] relative overflow-hidden">
+        <section id="serviços" className="py-32 px-8 bg-background relative overflow-hidden">
           <div className="max-w-7xl mx-auto">
             {/* Cabeçalho da Seção */}
             <div className="text-center mb-20 space-y-4">
@@ -256,7 +268,7 @@ function Index() {
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  className="text-[10px] font-bold tracking-[0.5em] text-[#C5A059] uppercase block"
+                  className="text-[10px] font-bold tracking-[0.5em] text-primary uppercase block"
                 >
                   Excelência em cada detalhe
                 </motion.span>
@@ -264,9 +276,9 @@ function Index() {
                   initial={{ opacity: 0, scaleX: 0 }}
                   whileInView={{ opacity: 1, scaleX: 1 }}
                   viewport={{ once: true }}
-                  className="w-12 h-[1px] bg-[#C5A059]/50 relative"
+                  className="w-12 h-[1px] bg-primary/50 relative"
                 >
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-1 bg-[#C5A059] rotate-45" />
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-1 bg-primary rotate-45" />
                 </motion.div>
               </div>
               <motion.h2 
@@ -274,7 +286,7 @@ function Index() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="text-4xl md:text-6xl font-serif text-[#C5A059]"
+                className="text-4xl md:text-6xl font-serif text-primary"
               >
                 Nossos Serviços Especializados
               </motion.h2>
@@ -283,7 +295,7 @@ function Index() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="text-[#E5D3B3]/60 max-w-2xl mx-auto text-lg font-light leading-relaxed"
+                className="text-muted-foreground max-w-2xl mx-auto text-lg font-light leading-relaxed"
               >
                 Cuidamos do seu relógio com precisão, técnica e paixão.
                 <br className="hidden md:block" />
@@ -349,42 +361,38 @@ function Index() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05 }}
-                  className="group relative h-[420px] rounded-xl overflow-hidden border border-[#C5A059]/10 shadow-2xl bg-[#0A101A]"
+                  className="group bg-card rounded-lg overflow-hidden border border-border/80 shadow-[0_12px_35px_color-mix(in_oklab,var(--foreground)_7%,transparent)] hover:-translate-y-1 hover:border-primary/35 transition-all duration-500"
                 >
-                  {/* Imagem de Fundo com Hover Zoom */}
-                  <div className="absolute inset-0 z-0">
-                    <motion.img 
-                      src={service.img} 
+                  <div className="aspect-[4/3] overflow-hidden bg-secondary">
+                    <motion.img
+                      src={service.img}
                       alt={service.title}
-                      className="w-full h-full object-cover opacity-30 grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700 ease-out"
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#00050A] via-[#00050A]/70 to-transparent" />
                   </div>
-  
-                  {/* Conteúdo do Card */}
-                  <div className="relative z-10 h-full p-8 flex flex-col justify-end">
+                  <div className="p-7 flex flex-col min-h-[245px]">
                     <div className="flex items-center gap-4 mb-4">
-                      <div className="w-10 h-10 rounded-full border border-[#C5A059]/40 flex items-center justify-center text-[#C5A059] group-hover:bg-[#C5A059] group-hover:text-[#00050A] transition-all duration-300">
+                      <div className="w-10 h-10 rounded-full border border-primary/40 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
                         <service.icon size={20} />
                       </div>
-                      <h4 className="text-2xl font-serif text-[#C5A059]">{service.title}</h4>
+                      <h4 className="text-2xl font-serif text-primary">{service.title}</h4>
                     </div>
                     
-                    <p className="text-sm text-[#E5D3B3]/70 leading-relaxed mb-6">
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-6 flex-1">
                       {service.desc}
                     </p>
   
                     <button 
                       onClick={() => window.open(`https://wa.me/5541992399650?text=${encodeURIComponent(`Olá! Gostaria de solicitar um orçamento para o serviço de ${service.title} do meu relógio.`)}`, '_blank')}
-                      className="flex items-center gap-2 text-[#C5A059] text-[10px] font-bold uppercase tracking-widest hover:text-[#D4B473] transition-colors"
+                      className="flex items-center gap-2 text-primary text-[10px] font-bold uppercase tracking-widest hover:text-primary/80 transition-colors"
                     >
-                      <MessageCircle size={14} className="text-[#C5A059]" />
+                      <MessageCircle size={14} className="text-primary" />
                       Solicitar via WhatsApp
                     </button>
                   </div>
   
-                  {/* Borda de Hover */}
-                  <div className="absolute inset-0 border border-[#C5A059] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl pointer-events-none" />
+
                 </motion.div>
               ))}
             </div>
@@ -394,13 +402,13 @@ function Index() {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="w-full bg-[#0A101A] border border-[#C5A059]/20 rounded-xl p-8 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-2xl relative"
+              className="w-full bg-card border border-border rounded-lg p-8 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-sm relative"
             >
               <div className="flex items-center gap-6 lg:pr-12">
-                <div className="w-14 h-14 rounded-full border border-[#C5A059]/40 flex items-center justify-center text-[#C5A059] shrink-0">
+                <div className="w-14 h-14 rounded-full border border-primary/40 flex items-center justify-center text-primary shrink-0">
                   <Shield size={28} />
                 </div>
-                <p className="text-xl font-serif text-[#E5D3B3] leading-tight">
+                <p className="text-xl font-serif text-foreground leading-tight">
                   Confiança, precisão e tradição desde o primeiro atendimento.
                 </p>
               </div>
@@ -413,8 +421,8 @@ function Index() {
                   { label: 'Garantia em todos os serviços', icon: Shield },
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-center gap-3">
-                    <item.icon size={18} className="text-[#C5A059]" />
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#E5D3B3]/80">{item.label}</span>
+                    <item.icon size={18} className="text-primary" />
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-foreground/80">{item.label}</span>
                   </div>
                 ))}
               </div>
@@ -423,16 +431,16 @@ function Index() {
         </section>
 
         {/* Avaliações Section */}
-        <section id="avaliações" className="py-32 px-8 bg-[#0A101A]">
+        <section id="avaliações" className="py-32 px-8 bg-secondary">
           <div className="max-w-7xl mx-auto text-center">
-            <h2 className="text-sm font-bold tracking-[0.3em] text-[#C5A059] uppercase mb-4">Depoimentos</h2>
-            <h3 className="text-4xl md:text-5xl font-serif text-[#E5D3B3] mb-4">O que nossos clientes dizem</h3>
+            <h2 className="text-sm font-bold tracking-[0.3em] text-primary uppercase mb-4">Depoimentos</h2>
+            <h3 className="text-4xl md:text-5xl font-serif text-foreground mb-4">O que nossos clientes dizem</h3>
             <div className="flex justify-center items-center gap-2 mb-16">
-              <div className="flex text-[#C5A059]">
+              <div className="flex text-primary">
                 {[...Array(5)].map((_, i) => <Star key={i} size={20} fill="currentColor" />)}
               </div>
-              <span className="text-[#E5D3B3] font-bold">4,9 ⭐</span>
-              <span className="text-[#E5D3B3]/40">• +100 avaliações</span>
+              <span className="text-foreground font-bold">4,9 ⭐</span>
+              <span className="text-muted-foreground/70">• +100 avaliações</span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -440,18 +448,18 @@ function Index() {
                 <motion.div 
                   key={review.id}
                   whileHover={{ y: -10 }}
-                  className="bg-[#00050A] p-8 rounded-xl border border-[#C5A059]/10 text-left"
+                  className="bg-background p-8 rounded-xl border border-primary/15 text-left"
                 >
-                  <div className="flex text-[#C5A059] mb-4">
+                  <div className="flex text-primary mb-4">
                     {[...Array(Math.floor(review.rating))].map((_, i) => <Star key={i} size={14} fill="currentColor" />)}
                   </div>
-                  <p className="text-[#E5D3B3]/80 italic mb-6">"{review.comment}"</p>
+                  <p className="text-foreground/80 italic mb-6">"{review.comment}"</p>
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-full bg-[#C5A059]/20 flex items-center justify-center text-[#C5A059] font-bold">
+                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
                       {review.customer_name[0]}
                     </div>
                     <div>
-                      <h4 className="text-[#E5D3B3] font-bold text-sm">{review.customer_name}</h4>
+                      <h4 className="text-foreground font-bold text-sm">{review.customer_name}</h4>
                       {review.is_verified && <span className="text-[10px] text-green-500 uppercase tracking-widest font-bold">Cliente Verificado</span>}
                     </div>
                   </div>
@@ -462,21 +470,21 @@ function Index() {
         </section>
 
         {/* Sobre Section */}
-        <section id="sobre" className="py-32 px-8 bg-[#00050A]">
+        <section id="sobre" className="py-32 px-8 bg-background">
           <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-20">
             <div className="lg:w-1/2 relative">
-              <img src={storefrontAsset.url} alt="Loja RG Relógios" className="rounded-lg shadow-2xl w-full h-[500px] object-cover border border-[#C5A059]/20" />
-              <div className="absolute -bottom-10 -right-10 bg-[#C5A059] p-8 hidden md:block rounded-lg shadow-2xl">
-                <span className="block text-4xl font-serif text-[#00050A] mb-1">25+</span>
-                <span className="text-[10px] font-bold uppercase tracking-widest text-[#00050A]">Anos de Experiência</span>
+              <img src={storefrontAsset.url} alt="Loja RG Relógios" className="rounded-lg shadow-lg w-full h-[500px] object-cover border border-primary/20" />
+              <div className="absolute -bottom-10 -right-10 bg-primary p-8 hidden md:block rounded-lg shadow-lg">
+                <span className="block text-4xl font-serif text-primary-foreground mb-1">25+</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-primary-foreground">Anos de Experiência</span>
               </div>
             </div>
             <div className="lg:w-1/2">
-              <h2 className="text-sm font-bold tracking-[0.3em] text-[#C5A059] uppercase mb-4">Sobre a RG Relógios</h2>
-              <h3 className="text-4xl md:text-5xl font-serif text-[#E5D3B3] mb-8 leading-tight">Experiência, tradição e paixão pela relojoaria</h3>
-              <div className="space-y-6 text-[#E5D3B3]/60 leading-relaxed font-light">
+              <h2 className="text-sm font-bold tracking-[0.3em] text-primary uppercase mb-4">Sobre a RG Relógios</h2>
+              <h3 className="text-4xl md:text-5xl font-serif text-foreground mb-8 leading-tight">Experiência, tradição e paixão pela relojoaria</h3>
+              <div className="space-y-6 text-muted-foreground leading-relaxed font-light">
                 <p>Localizada no coração de Curitiba, a RG Relógios é referência em alta relojoaria, especializada em peças de luxo e relógios antigos.</p>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm font-bold uppercase tracking-widest text-[#C5A059]">
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm font-bold uppercase tracking-widest text-primary">
                   <li className="flex items-center gap-2"><CheckCircle2 size={16} /> Atendimento Personalizado</li>
                   <li className="flex items-center gap-2"><CheckCircle2 size={16} /> Conhecimento Técnico</li>
                   <li className="flex items-center gap-2"><CheckCircle2 size={16} /> Peças Originais</li>
@@ -488,44 +496,44 @@ function Index() {
         </section>
 
         {/* Localização & Contato */}
-        <section id="contato" className="py-32 px-8 bg-[#0A101A]">
+        <section id="contato" className="py-32 px-8 bg-secondary">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div>
-              <h3 className="text-4xl font-serif text-[#C5A059] mb-8">Visite nossa loja</h3>
-              <div className="space-y-8 text-[#E5D3B3]/80">
+              <h3 className="text-4xl font-serif text-primary mb-8">Visite nossa loja</h3>
+              <div className="space-y-8 text-foreground/80">
                 <div className="flex gap-4">
-                  <MapPin className="text-[#C5A059] shrink-0" />
+                  <MapPin className="text-primary shrink-0" />
                   <div>
-                    <p className="font-bold text-[#E5D3B3]">R. João Antônio Xavier, 420</p>
+                    <p className="font-bold text-foreground">R. João Antônio Xavier, 420</p>
                     <p>Água Verde, Curitiba - PR, 80620-360</p>
                   </div>
                 </div>
                 <div className="flex gap-4">
-                  <Clock className="text-[#C5A059] shrink-0" />
+                  <Clock className="text-primary shrink-0" />
                   <div>
-                    <p className="font-bold text-[#E5D3B3]">Horário de Atendimento</p>
+                    <p className="font-bold text-foreground">Horário de Atendimento</p>
                     <p>Segunda a Sexta: 09h às 18h</p>
                     <p>Sábado: 09h às 13h</p>
                   </div>
                 </div>
                 <div className="flex gap-4">
-                  <Smartphone className="text-[#C5A059] shrink-0" />
+                  <Smartphone className="text-primary shrink-0" />
                   <div>
-                    <p className="font-bold text-[#E5D3B3]">WhatsApp & Telefone</p>
+                    <p className="font-bold text-foreground">WhatsApp & Telefone</p>
                     <p>+55 41 99239-9650</p>
                   </div>
                 </div>
               </div>
               
-              <div className="mt-12 h-64 rounded-lg bg-[#00050A] border border-[#C5A059]/20 flex items-center justify-center relative overflow-hidden group">
+              <div className="mt-12 h-64 rounded-lg bg-background border border-primary/20 flex items-center justify-center relative overflow-hidden group">
                 {/* Visual context instead of active map */}
                 <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&q=80&w=800" className="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-50 transition-all" alt="RG Relógios Storefront" />
                 <div className="relative z-10 text-center p-6">
-                  <MapPin className="text-[#C5A059] mx-auto mb-4" size={32} />
-                  <p className="text-[#E5D3B3] font-bold text-sm tracking-widest uppercase mb-4">Visite nossa loja física</p>
+                  <MapPin className="text-primary mx-auto mb-4" size={32} />
+                  <p className="text-foreground font-bold text-sm tracking-widest uppercase mb-4">Visite nossa loja física</p>
                   <button 
                     onClick={() => window.open('https://www.google.com/maps/search/?api=1&query=RG+Relógios+R.+João+Antônio+Xavier+420+Água+Verde+Curitiba+PR', '_blank')}
-                    className="bg-[#C5A059] text-[#00050A] px-6 py-2 rounded font-bold text-[10px] tracking-widest uppercase shadow-2xl hover:bg-[#D4B473] transition-colors"
+                    className="bg-primary text-primary-foreground px-6 py-2 rounded font-bold text-[10px] tracking-widest uppercase shadow-lg hover:bg-primary/85 transition-colors"
                   >
                     Abrir no GPS
                   </button>
@@ -533,59 +541,59 @@ function Index() {
               </div>
             </div>
 
-            <div className="bg-[#00050A] p-10 rounded-xl border border-[#C5A059]/20">
-              <h3 className="text-3xl font-serif text-[#C5A059] mb-8">Envie uma mensagem</h3>
+            <div className="bg-background p-10 rounded-xl border border-primary/20">
+              <h3 className="text-3xl font-serif text-primary mb-8">Envie uma mensagem</h3>
               <form className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <input type="text" placeholder="Nome" className="w-full p-4 bg-[#0A101A] border border-[#C5A059]/20 rounded text-[#E5D3B3] placeholder-[#E5D3B3]/30 outline-none focus:border-[#C5A059]" />
-                  <input type="text" placeholder="WhatsApp" className="w-full p-4 bg-[#0A101A] border border-[#C5A059]/20 rounded text-[#E5D3B3] placeholder-[#E5D3B3]/30 outline-none focus:border-[#C5A059]" />
+                  <input type="text" placeholder="Nome" className="w-full p-4 bg-secondary border border-primary/20 rounded text-foreground placeholder:text-muted-foreground/60 outline-none focus:border-primary" />
+                  <input type="text" placeholder="WhatsApp" className="w-full p-4 bg-secondary border border-primary/20 rounded text-foreground placeholder:text-muted-foreground/60 outline-none focus:border-primary" />
                 </div>
-                <input type="email" placeholder="E-mail" className="w-full p-4 bg-[#0A101A] border border-[#C5A059]/20 rounded text-[#E5D3B3] placeholder-[#E5D3B3]/30 outline-none focus:border-[#C5A059]" />
-                <textarea placeholder="Mensagem" className="w-full p-4 bg-[#0A101A] border border-[#C5A059]/20 rounded text-[#E5D3B3] min-h-[150px] placeholder-[#E5D3B3]/30 outline-none focus:border-[#C5A059]"></textarea>
-                <button className="w-full border border-[#C5A059] text-[#C5A059] py-4 rounded font-bold hover:bg-[#C5A059]/10 transition-all uppercase tracking-[0.2em] text-sm">Enviar Mensagem</button>
+                <input type="email" placeholder="E-mail" className="w-full p-4 bg-secondary border border-primary/20 rounded text-foreground placeholder:text-muted-foreground/60 outline-none focus:border-primary" />
+                <textarea placeholder="Mensagem" className="w-full p-4 bg-secondary border border-primary/20 rounded text-foreground min-h-[150px] placeholder:text-muted-foreground/60 outline-none focus:border-primary"></textarea>
+                <button className="w-full border border-primary text-primary py-4 rounded font-bold hover:bg-primary/10 transition-all uppercase tracking-[0.2em] text-sm">Enviar Mensagem</button>
               </form>
             </div>
           </div>
         </section>
 
         {/* Footer */}
-        <footer className="py-20 px-8 bg-[#00050A] border-t border-[#C5A059]/10">
+        <footer className="py-20 px-8 bg-background border-t border-primary/15">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
               <div className="col-span-1 md:col-span-2">
                 <div className="flex items-center gap-4 mb-6">
-                  <img src={logoAsset.url} alt="RG Relógios Logo" className="w-12 h-12 object-contain rounded-full border border-[#C5A059]/20" />
-                  <h4 className="text-2xl font-serif text-[#C5A059]">RG RELÓGIOS</h4>
+                  <img src={logoAsset.url} alt="RG Relógios Logo" className="w-12 h-12 object-contain rounded-full border border-primary/20" />
+                  <h4 className="text-2xl font-serif text-primary">RG RELÓGIOS</h4>
                 </div>
-                <p className="text-[#E5D3B3]/60 max-w-md leading-relaxed">
+                <p className="text-muted-foreground max-w-md leading-relaxed">
                   Especialistas em relógios, relojoaria, peças antigas e serviços especializados. 
                   Tradição e excelência no cuidado com o seu tempo.
                 </p>
               </div>
               <div>
-                <h5 className="text-[#C5A059] font-bold text-xs uppercase tracking-widest mb-6">Navegação</h5>
-                <ul className="space-y-4 text-sm text-[#E5D3B3]/60">
-                  <li><a href="#início" className="hover:text-[#C5A059]">Início</a></li>
-                  <li><a href="#antigos" className="hover:text-[#C5A059]">Relógios Antigos</a></li>
-                  <li><a href="#serviços" className="hover:text-[#C5A059]">Serviços</a></li>
-                  <li><a href="#sobre" className="hover:text-[#C5A059]">Sobre Nós</a></li>
+                <h5 className="text-primary font-bold text-xs uppercase tracking-widest mb-6">Navegação</h5>
+                <ul className="space-y-4 text-sm text-muted-foreground">
+                  <li><a href="#início" className="hover:text-primary">Início</a></li>
+                  <li><a href="#antigos" className="hover:text-primary">Relógios Antigos</a></li>
+                  <li><a href="#serviços" className="hover:text-primary">Serviços</a></li>
+                  <li><a href="#sobre" className="hover:text-primary">Sobre Nós</a></li>
                 </ul>
               </div>
               <div>
-                <h5 className="text-[#C5A059] font-bold text-xs uppercase tracking-widest mb-6">Legal</h5>
-                <ul className="space-y-4 text-sm text-[#E5D3B3]/60">
-                  <li><a href="#" className="hover:text-[#C5A059]">Privacidade</a></li>
-                  <li><a href="#" className="hover:text-[#C5A059]">Termos de Uso</a></li>
-                  <li><a href="#" className="hover:text-[#C5A059]">Garantia</a></li>
+                <h5 className="text-primary font-bold text-xs uppercase tracking-widest mb-6">Legal</h5>
+                <ul className="space-y-4 text-sm text-muted-foreground">
+                  <li><a href="#" className="hover:text-primary">Privacidade</a></li>
+                  <li><a href="#" className="hover:text-primary">Termos de Uso</a></li>
+                  <li><a href="#" className="hover:text-primary">Garantia</a></li>
                 </ul>
               </div>
             </div>
-            <div className="pt-8 border-t border-[#C5A059]/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-bold uppercase tracking-widest text-[#E5D3B3]/40">
+            <div className="pt-8 border-t border-primary/10 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-bold uppercase tracking-widest text-muted-foreground/70">
               <p>© 2026 RG Relógios. Todos os direitos reservados.</p>
               <div className="flex gap-8">
-                <a href="#" className="hover:text-[#C5A059]">Instagram</a>
-                <a href="#" className="hover:text-[#C5A059]">WhatsApp</a>
-                <a href="#" className="hover:text-[#C5A059]">Maps</a>
+                <a href="#" className="hover:text-primary">Instagram</a>
+                <a href="#" className="hover:text-primary">WhatsApp</a>
+                <a href="#" className="hover:text-primary">Maps</a>
               </div>
             </div>
           </div>
