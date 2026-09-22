@@ -7,6 +7,14 @@ import { LayoutDashboard, Package, MessageSquare, Star, Settings, LogOut, Shoppi
 import { useState } from "react";
 
 export const Route = createFileRoute("/admin")({
+  head: () => ({ meta: [
+    { title: "Administração | RG Relógios" },
+    { name: "description", content: "Área administrativa da RG Relógios para produtos, pedidos e solicitações." },
+    { property: "og:title", content: "Administração | RG Relógios" },
+    { property: "og:description", content: "Área administrativa da RG Relógios." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary" },
+  ]}),
   component: AdminPanel,
 });
 
@@ -46,10 +54,10 @@ function AdminPanel() {
   };
 
   return (
-    <div className="min-h-screen bg-[#00050A] text-[#E5D3B3] flex">
+    <div className="min-h-screen bg-background text-foreground flex">
       {/* Sidebar */}
-      <aside className="w-64 bg-[#0A101A] border-r border-[#C5A059]/20 p-6 hidden md:flex flex-col">
-        <h1 className="text-xl font-serif font-bold text-[#C5A059] tracking-wider mb-10">RG ADMIN</h1>
+      <aside className="w-64 bg-secondary border-r border-primary/20 p-6 hidden md:flex flex-col">
+        <h1 className="text-xl font-serif font-bold text-primary tracking-wider mb-10">RG ADMIN</h1>
         
         <nav className="space-y-2 flex-1">
           {[
@@ -63,7 +71,7 @@ function AdminPanel() {
             <button 
               key={item.label}
               onClick={() => setActiveTab(item.label)}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded text-sm font-medium transition-colors ${activeTab === item.label ? 'bg-[#C5A059] text-[#00050A]' : 'text-[#E5D3B3]/60 hover:text-[#C5A059] hover:bg-[#C5A059]/5'}`}
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded text-sm font-medium transition-colors ${activeTab === item.label ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-primary hover:bg-primary/5'}`}
             >
               <item.icon size={18} />
               {item.label}
@@ -80,12 +88,12 @@ function AdminPanel() {
       <main className="flex-1 p-8 md:p-12 overflow-y-auto pt-32 md:pt-12">
         <header className="flex justify-between items-end mb-12">
           <div>
-            <h2 className="text-sm font-bold tracking-[0.3em] text-[#C5A059] uppercase mb-2">Visão Geral</h2>
-            <h3 className="text-4xl font-serif text-[#E5D3B3]">Dashboard</h3>
+            <h2 className="text-sm font-bold tracking-[0.3em] text-primary uppercase mb-2">Visão Geral</h2>
+            <h3 className="text-4xl font-serif text-foreground">Dashboard</h3>
           </div>
           <div className="text-right">
-            <p className="text-[#E5D3B3]/40 text-xs font-bold uppercase tracking-widest">Admin logado</p>
-            <p className="text-[#C5A059] font-medium">Administrador Principal</p>
+            <p className="text-muted-foreground/70 text-xs font-bold uppercase tracking-widest">Admin logado</p>
+            <p className="text-primary font-medium">Administrador Principal</p>
           </div>
         </header>
 
@@ -101,25 +109,25 @@ function AdminPanel() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
               key={stat.label}
-              className="bg-[#0A101A] p-8 rounded-xl border border-[#C5A059]/10"
+              className="bg-secondary p-8 rounded-xl border border-primary/15"
             >
-              <stat.icon className="text-[#C5A059] mb-4" size={24} />
-              <p className="text-[#E5D3B3]/40 text-xs font-bold uppercase tracking-widest mb-1">{stat.label}</p>
-              <p className="text-3xl font-serif text-[#E5D3B3]">{stat.value}</p>
+              <stat.icon className="text-primary mb-4" size={24} />
+              <p className="text-muted-foreground/70 text-xs font-bold uppercase tracking-widest mb-1">{stat.label}</p>
+              <p className="text-3xl font-serif text-foreground">{stat.value}</p>
             </motion.div>
           ))}
         </div>
 
         {activeTab === "Dashboard" && (
           <div className="space-y-8">
-            <div className="bg-[#0A101A] rounded-xl border border-[#C5A059]/10 overflow-hidden">
-              <div className="p-6 border-b border-[#C5A059]/10 flex justify-between items-center">
-                <h4 className="font-serif text-[#C5A059] text-xl">Últimas Solicitações de Reparo</h4>
-                <button className="text-xs font-bold uppercase tracking-widest text-[#E5D3B3]/40 hover:text-[#C5A059]">Ver Todas</button>
+            <div className="bg-secondary rounded-xl border border-primary/15 overflow-hidden">
+              <div className="p-6 border-b border-primary/15 flex justify-between items-center">
+                <h4 className="font-serif text-primary text-xl">Últimas Solicitações de Reparo</h4>
+                <button className="text-xs font-bold uppercase tracking-widest text-muted-foreground/70 hover:text-primary">Ver Todas</button>
               </div>
               <div className="p-0">
                 <table className="w-full text-left text-sm">
-                  <thead className="bg-[#00050A] text-[#C5A059]/60 font-bold uppercase tracking-widest text-[10px]">
+                  <thead className="bg-background text-primary/70 font-bold uppercase tracking-widest text-[10px]">
                     <tr>
                       <th className="px-6 py-4">Cliente</th>
                       <th className="px-6 py-4">Serviço</th>
@@ -129,7 +137,7 @@ function AdminPanel() {
                   </thead>
                   <tbody className="divide-y divide-[#C5A059]/5">
                     {requests.slice(0, 5).map((request: any) => (
-                      <tr key={request.id} className="hover:bg-[#C5A059]/5 transition-colors">
+                      <tr key={request.id} className="hover:bg-primary/5 transition-colors">
                         <td className="px-6 py-4 font-medium">{request.customer_name}</td>
                         <td className="px-6 py-4">{request.service_type}</td>
                         <td className="px-6 py-4">
@@ -141,14 +149,14 @@ function AdminPanel() {
                             {request.status || 'Pendente'}
                           </span>
                         </td>
-                        <td className="px-6 py-4 text-[#E5D3B3]/40">
+                        <td className="px-6 py-4 text-muted-foreground/70">
                           {new Date(request.created_at).toLocaleDateString()}
                         </td>
                       </tr>
                     ))}
                     {requests.length === 0 && (
                       <tr>
-                        <td colSpan={4} className="px-6 py-8 text-center text-[#E5D3B3]/40">Nenhuma solicitação encontrada.</td>
+                        <td colSpan={4} className="px-6 py-8 text-center text-muted-foreground/70">Nenhuma solicitação encontrada.</td>
                       </tr>
                     )}
                   </tbody>
@@ -156,14 +164,14 @@ function AdminPanel() {
               </div>
             </div>
 
-            <div className="bg-[#0A101A] rounded-xl border border-[#C5A059]/10 overflow-hidden">
-              <div className="p-6 border-b border-[#C5A059]/10 flex justify-between items-center">
-                <h4 className="font-serif text-[#C5A059] text-xl">Últimos Pedidos</h4>
-                <button className="text-xs font-bold uppercase tracking-widest text-[#E5D3B3]/40 hover:text-[#C5A059]">Ver Todos</button>
+            <div className="bg-secondary rounded-xl border border-primary/15 overflow-hidden">
+              <div className="p-6 border-b border-primary/15 flex justify-between items-center">
+                <h4 className="font-serif text-primary text-xl">Últimos Pedidos</h4>
+                <button className="text-xs font-bold uppercase tracking-widest text-muted-foreground/70 hover:text-primary">Ver Todos</button>
               </div>
               <div className="p-0">
                 <table className="w-full text-left text-sm">
-                  <thead className="bg-[#00050A] text-[#C5A059]/60 font-bold uppercase tracking-widest text-[10px]">
+                  <thead className="bg-background text-primary/70 font-bold uppercase tracking-widest text-[10px]">
                     <tr>
                       <th className="px-6 py-4">Pedido ID</th>
                       <th className="px-6 py-4">Cliente</th>
@@ -173,10 +181,10 @@ function AdminPanel() {
                   </thead>
                   <tbody className="divide-y divide-[#C5A059]/5">
                     {orders.slice(0, 5).map((order: any) => (
-                      <tr key={order.id} className="hover:bg-[#C5A059]/5 transition-colors">
+                      <tr key={order.id} className="hover:bg-primary/5 transition-colors">
                         <td className="px-6 py-4 font-mono text-[10px]">{order.id.slice(0, 8)}...</td>
                         <td className="px-6 py-4 font-medium">{order.customer_name}</td>
-                        <td className="px-6 py-4 text-[#C5A059] font-bold">R$ {order.total_amount.toLocaleString()}</td>
+                        <td className="px-6 py-4 text-primary font-bold">R$ {order.total_amount.toLocaleString()}</td>
                         <td className="px-6 py-4">
                           <span className={`px-2 py-1 rounded text-[10px] font-bold uppercase ${
                             order.status === 'paid' ? 'bg-green-500/10 text-green-500' : 
@@ -190,7 +198,7 @@ function AdminPanel() {
                     ))}
                     {orders.length === 0 && (
                       <tr>
-                        <td colSpan={4} className="px-6 py-8 text-center text-[#E5D3B3]/40">Nenhum pedido realizado.</td>
+                        <td colSpan={4} className="px-6 py-8 text-center text-muted-foreground/70">Nenhum pedido realizado.</td>
                       </tr>
                     )}
                   </tbody>
@@ -203,13 +211,13 @@ function AdminPanel() {
         {activeTab === "Produtos" && (
           <div className="space-y-8">
           <NewProductForm />
-          <div className="bg-[#0A101A] rounded-xl border border-[#C5A059]/10 overflow-hidden">
-            <div className="p-6 border-b border-[#C5A059]/10 flex justify-between items-center">
-              <h4 className="font-serif text-[#C5A059] text-xl">Catálogo de Produtos</h4>
+          <div className="bg-secondary rounded-xl border border-primary/15 overflow-hidden">
+            <div className="p-6 border-b border-primary/15 flex justify-between items-center">
+              <h4 className="font-serif text-primary text-xl">Catálogo de Produtos</h4>
             </div>
             <div className="p-0">
               <table className="w-full text-left text-sm">
-                <thead className="bg-[#00050A] text-[#C5A059]/60 font-bold uppercase tracking-widest text-[10px]">
+                <thead className="bg-background text-primary/70 font-bold uppercase tracking-widest text-[10px]">
                   <tr>
                     <th className="px-6 py-4">Produto</th>
                     <th className="px-6 py-4">Marca/Modelo</th>
@@ -219,15 +227,15 @@ function AdminPanel() {
                 </thead>
                 <tbody className="divide-y divide-[#C5A059]/5">
                   {products.map((product) => (
-                    <tr key={product.id} className="hover:bg-[#C5A059]/5 transition-colors">
+                    <tr key={product.id} className="hover:bg-primary/5 transition-colors">
                       <td className="px-6 py-4 flex items-center gap-3">
-                        <div className="w-8 h-8 rounded bg-[#00050A] border border-[#C5A059]/10 overflow-hidden">
+                        <div className="w-8 h-8 rounded bg-background border border-primary/15 overflow-hidden">
                           <img src={product.images?.[0]} alt="" className="w-full h-full object-cover" />
                         </div>
                         <span className="font-medium">{product.name}</span>
                       </td>
                       <td className="px-6 py-4">{product.brand} {product.model}</td>
-                      <td className="px-6 py-4 text-[#C5A059]">R$ {product.price?.toLocaleString()}</td>
+                      <td className="px-6 py-4 text-primary">R$ {product.price?.toLocaleString()}</td>
                       <td className="px-6 py-4">
                         <span className={`px-2 py-1 rounded text-[10px] font-bold uppercase ${product.availability ? 'bg-green-500/10 text-green-500' : 'bg-red-500/10 text-red-500'}`}>
                           {product.availability ? 'Disponível' : 'Esgotado'}
@@ -331,16 +339,16 @@ function NewProductForm() {
   };
 
   const inputClass =
-    "w-full bg-[#00050A] border border-[#C5A059]/20 rounded px-4 py-3 text-sm outline-none focus:border-[#C5A059] transition-colors";
+    "w-full bg-background border border-primary/20 rounded px-4 py-3 text-sm outline-none focus:border-primary transition-colors";
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-[#0A101A] rounded-xl border border-[#C5A059]/10 p-6 space-y-6"
+      className="bg-secondary rounded-xl border border-primary/15 p-6 space-y-6"
     >
       <div>
-        <h4 className="font-serif text-[#C5A059] text-xl">Adicionar relógio ao catálogo</h4>
-        <p className="text-xs text-[#E5D3B3]/40 mt-1">
+        <h4 className="font-serif text-primary text-xl">Adicionar relógio ao catálogo</h4>
+        <p className="text-xs text-muted-foreground/70 mt-1">
           Escolha a categoria para o relógio aparecer em "Relógios Antigos" ou "Relógios de Mão".
         </p>
       </div>
@@ -424,7 +432,7 @@ function NewProductForm() {
         <button
           type="submit"
           disabled={status === "saving"}
-          className="bg-[#C5A059] text-[#00050A] px-6 py-3 rounded text-[10px] font-bold uppercase tracking-widest hover:bg-[#D4B473] transition-all disabled:opacity-50"
+          className="bg-primary text-primary-foreground px-6 py-3 rounded text-[10px] font-bold uppercase tracking-widest hover:bg-primary/85 transition-all disabled:opacity-50"
         >
           {status === "saving" ? "Salvando..." : "Adicionar ao catálogo"}
         </button>
