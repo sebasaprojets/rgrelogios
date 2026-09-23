@@ -42,14 +42,14 @@ const ANTIQUE = "Antigos";
 const PHOTOS: readonly GalleryPhoto[] = [
   {
     id: "casio-edifice",
-    src: "/images/galeria/casio-edifice-pedra2.jpg",
+    src: "/images/galeria/casio-edifice-pedra3.jpg",
     caption: "Casio Edifice — mostrador azul e pulseira de aço",
     era: "Relógio de pulso",
     group: "Pulso",
   },
   {
     id: "orient-chronograph",
-    src: "/images/galeria/orient-chronograph-pedra2.jpg",
+    src: "/images/galeria/orient-chronograph-pedra3.jpg",
     caption: "Orient Chronograph — mostrador azul e pulseira de couro",
     era: "Relógio de pulso",
     group: "Pulso",
