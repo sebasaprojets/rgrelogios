@@ -34,7 +34,7 @@ export function WatchVideo({ videoSrc, posterSrc, alt }: WatchVideoProps) {
       preload="metadata"
       aria-label={alt}
       onError={() => setVideoFailed(true)}
-      className="h-full w-full object-cover object-[center_62%]"
+      className="h-full w-full object-cover object-center"
     />
   );
 }
