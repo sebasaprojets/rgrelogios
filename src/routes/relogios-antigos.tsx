@@ -63,7 +63,7 @@ const PHOTOS: readonly GalleryPhoto[] = [
   },
   {
     id: "p5",
-    src: "/images/galeria/rolex-deepsea-pedra2.jpg",
+    src: "/images/galeria/rolex-deepsea-pedestal.jpg",
     caption: "Peça de corda manual em ouro plaqué",
     era: "Década de 1940",
     group: "Pulso",
@@ -91,7 +91,7 @@ const PHOTOS: readonly GalleryPhoto[] = [
   },
   {
     id: "p9",
-    src: "/images/galeria/relogio-azul-sapphire-pedra2.jpg",
+    src: "/images/galeria/relogio-azul-sapphire-pedestal.jpg",
     caption: "Cronógrafo clássico em detalhe",
     era: "Década de 1960",
     group: "Pulso",
