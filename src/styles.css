@@ -18,12 +18,6 @@
  * 2. Register it in @theme inline as --color-<name>: var(--<name>)
  */
 
-@theme {
-  /* Tipografia UI UX Pro Max (luxo / alta relojoaria): Cormorant + Montserrat */
-  --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Cormorant", ui-serif, Georgia, serif;
-}
-
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -65,78 +59,55 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-gold-soft: var(--gold-soft);
+  --color-warm: var(--warm);
+  --color-warm-foreground: var(--warm-foreground);
+  --color-whatsapp: var(--whatsapp);
+  --color-whatsapp-foreground: var(--whatsapp-foreground);
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-sans: "Inter", Arial, sans-serif;
 }
 
-:root {
-  --radius: 0.625rem;
-  /* Paleta branco + dourado */
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.21 0.006 56);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.21 0.006 56);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.21 0.006 56);
-  --primary: oklch(0.73 0.1 80);
-  --primary-foreground: oklch(0.18 0.008 70);
-  --secondary: oklch(0.98 0.008 85);
-  --secondary-foreground: oklch(0.21 0.006 56);
-  --muted: oklch(0.98 0.008 85);
-  --muted-foreground: oklch(0.5 0.01 60);
-  --accent: oklch(0.96 0.025 85);
-  --accent-foreground: oklch(0.21 0.006 56);
+:root,
+.dark {
+  --radius: 0.5rem;
+  --background: oklch(0.978 0.012 88);
+  --foreground: oklch(0.225 0.012 65);
+  --card: oklch(0.995 0.004 88);
+  --card-foreground: oklch(0.225 0.012 65);
+  --popover: oklch(0.995 0.004 88);
+  --popover-foreground: oklch(0.225 0.012 65);
+  --primary: oklch(0.704 0.105 78);
+  --primary-foreground: oklch(0.19 0.012 65);
+  --secondary: oklch(0.948 0.018 82);
+  --secondary-foreground: oklch(0.27 0.012 65);
+  --muted: oklch(0.952 0.012 88);
+  --muted-foreground: oklch(0.49 0.018 65);
+  --accent: oklch(0.92 0.038 81);
+  --accent-foreground: oklch(0.28 0.02 65);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.9 0.03 85);
-  --input: oklch(0.9 0.03 85);
-  --ring: oklch(0.73 0.1 80);
+  --border: oklch(0.86 0.035 80);
+  --input: oklch(0.89 0.025 82);
+  --ring: oklch(0.704 0.105 78);
+  --gold-soft: oklch(0.89 0.055 82);
+  --warm: oklch(0.93 0.025 82);
+  --warm-foreground: oklch(0.29 0.014 65);
+  --whatsapp: oklch(0.69 0.185 150);
+  --whatsapp-foreground: oklch(0.99 0 0);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
-}
-
-.dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  --sidebar: oklch(0.955 0.018 84);
+  --sidebar-foreground: oklch(0.225 0.012 65);
+  --sidebar-primary: oklch(0.704 0.105 78);
+  --sidebar-primary-foreground: oklch(0.19 0.012 65);
+  --sidebar-accent: oklch(0.91 0.035 82);
+  --sidebar-accent-foreground: oklch(0.27 0.012 65);
+  --sidebar-border: oklch(0.84 0.035 80);
+  --sidebar-ring: oklch(0.704 0.105 78);
 }
 
 @layer base {
@@ -148,74 +119,27 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
+    letter-spacing: 0;
   }
 
-  /* Títulos sem linhas órfãs; parágrafos com quebra equilibrada */
-  h1, h2, h3, h4 {
-    text-wrap: balance;
+  ::selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
   }
 
-  p {
-    text-wrap: pretty;
-  }
-
-  /* Todo elemento clicável mostra a mãozinha (Tailwind v4 não faz isso por padrão) */
-  button:not(:disabled),
-  [role="button"]:not([aria-disabled="true"]),
-  a[href],
-  label[for],
-  select,
-  summary {
-    cursor: pointer;
-  }
-
-  /* Foco visível para navegação por teclado, em dourado acessível */
   :focus-visible {
-    outline: 2px solid #8a6624;
+    outline: 2px solid var(--ring);
     outline-offset: 3px;
-  }
-
-  html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 5rem;
   }
 }
 
-/* Respeita quem pede menos movimento no sistema operacional */
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-}
-
-/* Faixa contínua de palavras (marquee) */
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-.animate-marquee {
-  animation: marquee 40s linear infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-marquee { animation: none; }
-}
-
-/* Barra de progresso do autoplay dos depoimentos */
-@keyframes testimonial-progress {
-  from { width: 0%; }
-  to { width: 100%; }
 }
 
 /* Ocultar o selo "Edit with Lovable" no site publicado */

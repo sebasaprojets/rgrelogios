@@ -6,27 +6,16 @@ export interface BeforeAfterSliderProps {
   afterSrc: string;
   alt: string;
   className?: string;
-  /** `object-position` de cada foto, para enquadrar a peça quando as proporções diferem. */
-  beforePosition?: string;
-  afterPosition?: string;
 }
 
 /**
  * Comparador Antes/Depois com divisor arrastável.
- * Funciona com mouse, toque (pointer events) e teclado (setas), sem dependências externas.
+ * Funciona com mouse e toque (pointer events), sem dependências externas.
  */
-export function BeforeAfterSlider({
-  beforeSrc,
-  afterSrc,
-  alt,
-  className,
-  beforePosition = "center",
-  afterPosition = "center",
-}: BeforeAfterSliderProps) {
+export function BeforeAfterSlider({ beforeSrc, afterSrc, alt, className }: BeforeAfterSliderProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
-  const [touched, setTouched] = useState(false);
 
   const updateFromClientX = useCallback((clientX: number) => {
     const el = containerRef.current;
@@ -40,17 +29,10 @@ export function BeforeAfterSlider({
   return (
     <div
       ref={containerRef}
-      role="slider"
-      tabIndex={0}
-      aria-label={`Comparar antes e depois: ${alt}`}
-      aria-valuemin={0}
-      aria-valuemax={100}
-      aria-valuenow={Math.round(position)}
-      className={`relative cursor-ew-resize touch-none overflow-hidden bg-[#FAF7F0] outline-none select-none focus-visible:ring-2 focus-visible:ring-[#C5A059] ${className ?? "aspect-[4/3] rounded-2xl"}`}
+      className={`relative overflow-hidden rounded-lg border border-primary/25 bg-card select-none touch-none cursor-ew-resize ${className ?? "aspect-[4/3]"}`}
       onPointerDown={(e) => {
         e.currentTarget.setPointerCapture(e.pointerId);
         setIsDragging(true);
-        setTouched(true);
         updateFromClientX(e.clientX);
       }}
       onPointerMove={(e) => {
@@ -58,46 +40,28 @@ export function BeforeAfterSlider({
       }}
       onPointerUp={() => setIsDragging(false)}
       onPointerCancel={() => setIsDragging(false)}
-      onKeyDown={(e) => {
-        if (e.key === "ArrowLeft") setPosition((p) => Math.max(0, p - 5));
-        if (e.key === "ArrowRight") setPosition((p) => Math.min(100, p + 5));
-      }}
     >
-      <img
-        src={afterSrc}
-        alt={`${alt} — depois`}
-        draggable={false}
-        className="absolute inset-0 h-full w-full object-cover"
-        style={{ objectPosition: afterPosition }}
-      />
+      <img src={afterSrc} alt={`${alt} — depois`} className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}>
-        <img
-          src={beforeSrc}
-          alt={`${alt} — antes`}
-          draggable={false}
-          className="h-full w-full object-cover"
-          style={{ objectPosition: beforePosition }}
-        />
+        <img src={beforeSrc} alt={`${alt} — antes`} className="w-full h-full object-cover" />
       </div>
 
-      <span className="absolute top-4 left-4 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-[#1C1917]/80 backdrop-blur">
+
+      <span className="absolute top-4 left-4 text-[10px] font-bold uppercase tracking-widest bg-foreground/80 text-background px-3 py-1.5 rounded border border-primary/20">
         Antes
       </span>
-      <span className="absolute top-4 right-4 rounded-full bg-[#C5A059] px-3 py-1 text-xs font-medium text-[#14110D]">
+      <span className="absolute top-4 right-4 text-[10px] font-bold uppercase tracking-widest bg-primary text-primary-foreground px-3 py-1.5 rounded">
         Depois
       </span>
 
-      <div
-        className="absolute top-0 bottom-0 w-px bg-white shadow-[0_0_0_1px_rgba(197,160,89,0.6)]"
-        style={{ left: `${position}%` }}
-      >
-        <div className="absolute top-1/2 left-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[#C5A059] bg-white text-[#8A6624] shadow-[0_8px_24px_-8px_rgba(28,25,23,0.4)]">
+      <div className="absolute top-0 bottom-0 w-[2px] bg-primary" style={{ left: `${position}%` }}>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-card border border-primary flex items-center justify-center text-primary shadow-lg">
           <MoveHorizontal size={18} />
         </div>
       </div>
 
-      {!touched && (
-        <span className="pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-white/90 px-3 py-1 text-xs text-[#1C1917]/70 backdrop-blur">
+      {!isDragging && (
+        <span className="absolute bottom-4 left-1/2 -translate-x-1/2 text-[10px] font-bold uppercase tracking-widest text-background bg-foreground/70 px-3 py-1.5 rounded">
           Arraste para comparar
         </span>
       )}

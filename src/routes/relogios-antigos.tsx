@@ -1,9 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronLeft, ChevronRight, ArrowRight, ArrowUpRight, Watch } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, MessageCircle } from "lucide-react";
 import { SiteHeader, SiteFooter, SectionEyebrow, openWhatsApp } from "@/components/SiteChrome";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import bolsoTissot from "@/assets/bolso-tissot.png.asset.json";
+import bolsoEsmaltado from "@/assets/bolso-esmaltado.png.asset.json";
+import bolsoSantBara from "@/assets/bolso-santbara.png.asset.json";
+import bolsoAguia from "@/assets/bolso-aguia.png.asset.json";
+import paredeCuco from "@/assets/parede-img_4432.jpeg.asset.json";
+import paredeEska from "@/assets/parede-img_4428.jpeg.asset.json";
+import paredeColunas from "@/assets/parede-img_4431.jpeg.asset.json";
 
 export const Route = createFileRoute("/relogios-antigos")({
   head: () => ({
@@ -41,85 +48,107 @@ const ANTIQUE = "Antigos";
 
 const PHOTOS: readonly GalleryPhoto[] = [
   {
-    id: "casio-edifice",
-    src: "/images/galeria/casio-edifice-pedra3.jpg",
-    caption: "Casio Edifice — mostrador azul e pulseira de aço",
-    era: "Relógio de pulso",
+    id: "p1",
+    src: "https://images.pexels.com/photos/280250/pexels-photo-280250.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    caption: "Mostrador clássico em aço",
+    era: "Década de 1960",
     group: "Pulso",
   },
   {
-    id: "orient-chronograph",
-    src: "/images/galeria/orient-chronograph-pedra3.jpg",
-    caption: "Orient Chronograph — mostrador azul e pulseira de couro",
-    era: "Relógio de pulso",
+    id: "p2",
+    src: "https://images.pexels.com/photos/277390/pexels-photo-277390.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    caption: "Detalhe de ponteiros e índices",
+    era: "Década de 1950",
+    group: "Pulso",
+  },
+  {
+    id: "p3",
+    src: "https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    caption: "Caixa com pátina natural",
+    era: "Década de 1950",
     group: "Pulso",
   },
   {
     id: "p4",
-    src: "/images/galeria/emporio-armani-pedra2.jpg",
+    src: "https://images.pexels.com/photos/125779/pexels-photo-125779.jpeg?auto=compress&cs=tinysrgb&w=1400",
     caption: "Coroa e lateral polidas à mão",
     era: "Década de 1940",
     group: "Pulso",
   },
   {
     id: "p5",
-    src: "/images/galeria/rolex-deepsea-pedra2.jpg",
+    src: "https://images.pexels.com/photos/364822/rolex-watch-time-luxury-364822.jpeg?auto=compress&cs=tinysrgb&w=1400",
     caption: "Peça de corda manual em ouro plaqué",
     era: "Década de 1940",
     group: "Pulso",
   },
   {
     id: "b1",
-    src: "/images/galeria/bolso-tissot.jpg",
+    src: bolsoTissot.url,
     caption: "Tissot Antimagnétique — caixa em ouro plaqué com corrente",
     era: "Relógio de bolso",
     group: "Bolso",
   },
   {
     id: "b2",
-    src: "/images/galeria/bolso-esmaltado.jpg",
+    src: bolsoEsmaltado.url,
     caption: "Bolso esmaltado com numerais romanos e pintura floral",
     era: "Relógio de bolso",
     group: "Bolso",
   },
   {
     id: "b3",
-    src: "/images/galeria/bolso-dourado.jpg",
+    src: bolsoSantBara.url,
+    extra: [bolsoAguia.url],
     caption: "Sant. Bara dourado — tampa com águia em alto-relevo e brasão no mostrador",
     era: "Relógio de bolso",
     group: "Bolso",
   },
   {
+    id: "p7",
+    src: "https://images.pexels.com/photos/1697214/pexels-photo-1697214.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    caption: "Mecanismo aberto sobre bancada",
+    era: "Mecanismos",
+    group: "Mecanismos",
+  },
+  {
+    id: "p8",
+    src: "https://images.pexels.com/photos/9978722/pexels-photo-9978722.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    caption: "Engrenagens de um calibre antigo",
+    era: "Mecanismos",
+    group: "Mecanismos",
+  },
+  {
     id: "p9",
-    src: "/images/galeria/relogio-azul-sapphire-pedra2.jpg",
+    src: "https://images.pexels.com/photos/3766111/pexels-photo-3766111.jpeg?auto=compress&cs=tinysrgb&w=1400",
     caption: "Cronógrafo clássico em detalhe",
     era: "Década de 1960",
     group: "Pulso",
   },
   {
-    id: "mesa-madeira",
-    src: "/images/galeria/relogio-mesa-loja.jpg",
-    caption: "Relógio de mesa em madeira — caixa ondulada e mostrador com numerais arábicos",
-    era: "Relógio de mesa",
-    group: ANTIQUE,
+    id: "p10",
+    src: "https://images.pexels.com/photos/1152077/pexels-photo-1152077.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    caption: "Mostrador de linhas sóbrias",
+    era: "Década de 1970",
+    group: "Pulso",
   },
   {
     id: "w1",
-    src: "/images/galeria/cuco-entalhado.jpg",
+    src: paredeCuco.url,
     caption: "Cuco entalhado em madeira com pássaro e folhagens",
     era: "Relógio de parede",
     group: ANTIQUE,
   },
   {
     id: "w2",
-    src: "/images/galeria/parede-eska.jpg",
+    src: paredeEska.url,
     caption: "Eska em madeira clara — mostrador dourado e pêndulo",
     era: "Relógio de parede",
     group: ANTIQUE,
   },
   {
     id: "w4",
-    src: "/images/galeria/parede-colunas.jpg",
+    src: paredeColunas.url,
     caption: "Caixa em madeira escura com colunas torneadas e pêndulo",
     era: "Relógio de parede",
     group: ANTIQUE,
@@ -130,20 +159,18 @@ function VintageGalleryPage() {
   const [group, setGroup] = useState(ALL);
   const [index, setIndex] = useState<number | null>(null);
   const [shot, setShot] = useState(0);
-  // Fotos que falharam ao carregar mostram um quadro "Foto em breve" em vez do ícone quebrado.
-  const [failed, setFailed] = useState<ReadonlySet<string>>(new Set());
-  const touchStartX = useRef<number | null>(null);
 
-  const groups = useMemo(() => Array.from(new Set([ALL, ...PHOTOS.map((p) => p.group)])), []);
+  const groups = useMemo(
+    () => Array.from(new Set([ALL, ...PHOTOS.map((p) => p.group)])),
+    [],
+  );
   const photos = useMemo(() => {
     if (group === ALL) return PHOTOS;
     return PHOTOS.filter((p) => p.group === group);
   }, [group]);
 
-  const markFailed = (id: string) =>
-    setFailed((prev) => (prev.has(id) ? prev : new Set(prev).add(id)));
 
-  const current = index === null ? null : (photos[index] ?? null);
+  const current = index === null ? null : photos[index] ?? null;
   const shots = current ? [current.src, ...(current.extra ?? [])] : [];
 
   const go = (step: number) => {
@@ -162,50 +189,50 @@ function VintageGalleryPage() {
       if (event.key === "ArrowLeft") go(-1);
     };
     window.addEventListener("keydown", onKey);
-    // Trava a rolagem da página enquanto a foto está ampliada.
-    const overflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = overflow;
-    };
+    return () => window.removeEventListener("keydown", onKey);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index, photos.length]);
 
   return (
-    <div className="min-h-screen bg-white font-sans text-[#1C1917] antialiased selection:bg-[#C5A059] selection:text-[#14110D]">
+    <div className="min-h-screen bg-background text-foreground font-sans">
       <SiteHeader />
 
       <main>
         {/* Hero */}
-        <section className="px-5 pt-32 pb-12 sm:px-6 md:px-8 md:pt-44 md:pb-16">
-          <div className="mx-auto grid max-w-7xl items-end gap-8 lg:grid-cols-[1.4fr_1fr] lg:gap-10">
-            <div>
-              <SectionEyebrow>Galeria histórica</SectionEyebrow>
-              <motion.h1
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                className="mt-6 font-serif text-[clamp(2.4rem,min(calc(8vw+1rem),15svh),5.5rem)] leading-[0.95] tracking-tight md:mt-8"
-              >
-                Relógios que atravessaram <em className="text-[#8A6624]">gerações</em>.
-              </motion.h1>
-            </div>
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
+        <section className="relative pt-44 pb-24 px-8 overflow-hidden">
+          <div className="absolute inset-0 z-0">
+            <img
+              src="https://images.pexels.com/photos/277390/pexels-photo-277390.jpeg?auto=compress&cs=tinysrgb&w=1920"
+              alt="Relógio antigo em detalhe"
+              className="w-full h-full object-cover opacity-30"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/85 to-background" />
+          </div>
+
+          <div className="relative z-10 max-w-4xl mx-auto text-center space-y-6">
+            <SectionEyebrow>Galeria histórica</SectionEyebrow>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.15 }}
-              className="max-w-md text-base leading-relaxed text-[#1C1917]/60 md:text-lg"
+              className="text-4xl md:text-6xl font-serif text-foreground"
             >
-              Peças antigas que passaram pela nossa bancada — mostradores, caixas e mecanismos
-              preservados com respeito à sua origem.
+              Relógios que atravessaram gerações
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-muted-foreground text-lg font-light leading-relaxed max-w-2xl mx-auto"
+            >
+              Uma galeria de fotografias das peças antigas que passaram pela nossa bancada — mostradores,
+              caixas e mecanismos preservados com respeito à sua origem.
             </motion.p>
           </div>
         </section>
 
-        {/* Filtro: rola na horizontal no celular, quebra linha em telas maiores */}
-        <section className="sticky top-[68px] z-30 border-y border-[#1C1917]/10 bg-white/90 backdrop-blur-xl">
-          <div className="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-5 py-3 [scrollbar-width:none] sm:px-6 md:flex-wrap md:px-8 [&::-webkit-scrollbar]:hidden">
+        {/* Filtro de grupos */}
+        <section className="px-8 pb-10">
+          <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-3">
             {groups.map((item) => (
               <button
                 key={item}
@@ -213,11 +240,10 @@ function VintageGalleryPage() {
                   setGroup(item);
                   setIndex(null);
                 }}
-                aria-pressed={group === item}
-                className={`h-10 shrink-0 rounded-full border px-4 text-sm transition-colors ${
+                className={`px-5 py-2.5 rounded text-[10px] font-bold uppercase tracking-widest border transition-all ${
                   group === item
-                    ? "border-[#1C1917] bg-[#1C1917] text-white"
-                    : "border-[#1C1917]/15 text-[#1C1917]/70 hover:border-[#1C1917]/40 hover:text-[#1C1917]"
+                    ? "bg-primary text-primary-foreground border-primary"
+                    : "border-primary/25 text-muted-foreground hover:border-primary/60 hover:text-primary"
                 }`}
               >
                 {item}
@@ -227,16 +253,16 @@ function VintageGalleryPage() {
         </section>
 
         {/* Grade de fotos */}
-        <section className="px-5 pt-10 pb-24 sm:px-6 md:px-8 md:pt-14 md:pb-32">
-          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-x-6 gap-y-10 min-[480px]:grid-cols-2 lg:grid-cols-3">
+        <section className="px-8 pb-32">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {photos.map((photo, i) => (
-              <motion.article
+              <motion.div
                 key={photo.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.6, delay: (i % 3) * 0.06 }}
-                className="group"
+                viewport={{ once: true }}
+                transition={{ delay: (i % 6) * 0.05 }}
+                className="group relative aspect-[4/5] overflow-hidden rounded-lg border border-primary/15 hover:border-primary/50 transition-all duration-500 text-left"
               >
                 <button
                   type="button"
@@ -245,30 +271,21 @@ function VintageGalleryPage() {
                     setIndex(i);
                   }}
                   aria-label={`Ampliar foto: ${photo.caption}`}
-                  className="block aspect-[4/5] w-full overflow-hidden rounded-2xl bg-[#FAF7F0] focus-visible:ring-2 focus-visible:ring-[#C5A059] focus-visible:outline-none"
+                  className="absolute inset-0 w-full h-full"
                 >
-                  {failed.has(photo.id) ? (
-                    <PhotoPlaceholder />
-                  ) : (
-                    <img
-                      src={photo.src}
-                      alt={photo.caption}
-                      loading="lazy"
-                      decoding="async"
-                      onError={() => markFailed(photo.id)}
-                      // Se a foto falhou antes da hidratação, o onError não dispara: confere aqui.
-                      ref={(el) => {
-                        if (el?.complete && el.naturalWidth === 0) markFailed(photo.id);
-                      }}
-                      className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                    />
-                  )}
+                  <img
+                    src={photo.src}
+                    alt={photo.caption}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/10 to-transparent" />
                 </button>
 
-                <div className="mt-4 flex items-start justify-between gap-4">
-                  <div className="min-w-0">
-                    <p className="text-xs text-[#8A6624]">{photo.era}</p>
-                    <p className="mt-1 leading-snug text-[#1C1917]/85">{photo.caption}</p>
+                <div className="absolute bottom-0 left-0 right-0 p-6 space-y-3 pointer-events-none">
+                  <div className="space-y-1">
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-primary">{photo.era}</p>
+                    <p className="text-sm text-background font-light">{photo.caption}</p>
                   </div>
                   <button
                     type="button"
@@ -277,28 +294,25 @@ function VintageGalleryPage() {
                         `Olá! Gostaria de saber mais sobre este relógio: ${photo.caption} (${photo.era}).`,
                       )
                     }
-                    aria-label={`Perguntar no WhatsApp sobre: ${photo.caption}`}
-                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#1C1917]/15 transition-colors hover:border-[#C5A059] hover:bg-[#C5A059] hover:text-[#14110D]"
+                    className="pointer-events-auto inline-flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2.5 rounded font-bold text-[10px] uppercase tracking-widest hover:bg-primary/85 transition-all"
                   >
-                    <ArrowUpRight size={18} />
+                    <MessageCircle size={14} />
+                    Perguntar no WhatsApp
                   </button>
                 </div>
-              </motion.article>
+              </motion.div>
             ))}
           </div>
 
-          <div className="mx-auto mt-20 flex max-w-7xl flex-col items-start justify-between gap-6 border-y border-[#1C1917]/10 py-12 md:mt-28 md:flex-row md:items-center">
-            <p className="max-w-xl font-serif text-3xl leading-tight md:text-4xl">
-              Procura uma peça específica? Consultamos a disponibilidade para você.
+          <div className="max-w-3xl mx-auto text-center mt-24 space-y-6">
+            <p className="text-muted-foreground font-light leading-relaxed">
+              Procura uma peça específica? Fale com a gente e consultamos a disponibilidade.
             </p>
             <button
-              onClick={() =>
-                openWhatsApp("Olá! Gostaria de saber quais relógios estão disponíveis.")
-              }
-              className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-[#C5A059] px-7 py-3.5 font-medium text-[#14110D] shadow-[0_10px_30px_-10px_rgba(197,160,89,0.7)] transition-colors hover:bg-[#D4B473]"
+              onClick={() => openWhatsApp("Olá! Gostaria de saber quais relógios estão disponíveis.")}
+              className="inline-block bg-primary text-primary-foreground px-8 py-4 rounded font-bold text-xs uppercase tracking-widest hover:bg-primary/85 transition-all"
             >
               Consultar disponibilidade
-              <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
             </button>
           </div>
         </section>
@@ -306,161 +320,93 @@ function VintageGalleryPage() {
 
       <AnimatePresence>
         {current && (
-          <motion.div
-            key="lightbox"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            role="dialog"
-            aria-modal="true"
-            aria-label={current.caption}
-            className="fixed inset-0 z-[60] flex flex-col bg-[#0C0A09]/95 text-white backdrop-blur-sm"
-            style={{
-              paddingTop: "env(safe-area-inset-top)",
-              paddingBottom: "env(safe-area-inset-bottom)",
-            }}
-          >
-            <div className="flex items-center justify-between px-4 py-3 md:px-8 md:py-5">
-              <span className="font-mono text-xs text-white/50">
-                {(index ?? 0) + 1} / {photos.length}
-              </span>
+          <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-foreground/90 backdrop-blur-sm"
+              onClick={() => setIndex(null)}
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              className="relative w-full max-w-4xl"
+            >
               <button
                 onClick={() => setIndex(null)}
                 aria-label="Fechar"
-                className="flex h-11 w-11 items-center justify-center rounded-full text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+                className="absolute -top-12 right-0 text-muted-foreground hover:text-primary"
               >
-                <X size={24} />
+                <X size={26} />
               </button>
-            </div>
 
-            <div
-              className="relative flex min-h-0 flex-1 items-center justify-center px-4 md:px-20"
-              onClick={(e) => {
-                if (e.target === e.currentTarget) setIndex(null);
-              }}
-              onTouchStart={(e) => {
-                touchStartX.current = e.touches[0]?.clientX ?? null;
-              }}
-              onTouchEnd={(e) => {
-                const endX = e.changedTouches[0]?.clientX;
-                if (touchStartX.current === null || endX === undefined) return;
-                const dx = endX - touchStartX.current;
-                if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1);
-                touchStartX.current = null;
-              }}
-            >
-              {shot === 0 && failed.has(current.id) ? (
-                <div className="aspect-[4/5] h-full max-h-full max-w-full overflow-hidden rounded-xl">
-                  <PhotoPlaceholder dark />
+              <img
+                src={shots[shot] ?? current.src}
+                alt={current.caption}
+                className="w-full max-h-[70vh] object-contain rounded-lg border border-primary/20 bg-background"
+              />
+
+              {shots.length > 1 && (
+                <div className="mt-4 flex justify-center gap-3">
+                  {shots.map((src, i) => (
+                    <button
+                      key={src}
+                      type="button"
+                      onClick={() => setShot(i)}
+                      aria-label={`Ver foto ${i + 1}`}
+                      className={`w-20 h-20 rounded overflow-hidden border transition-all ${
+                        shot === i
+                          ? "border-primary"
+                          : "border-primary/20 opacity-60 hover:opacity-100"
+                      }`}
+                    >
+                      <img src={src} alt="" className="w-full h-full object-cover" />
+                    </button>
+                  ))}
                 </div>
-              ) : (
-                <img
-                  key={shots[shot]}
-                  src={shots[shot] ?? current.src}
-                  alt={current.caption}
-                  onError={() => {
-                    if (shot === 0) markFailed(current.id);
-                  }}
-                  className="max-h-full max-w-full rounded-xl object-contain"
-                />
               )}
 
-              <button
-                onClick={() => go(-1)}
-                aria-label="Foto anterior"
-                className="absolute left-4 hidden h-12 w-12 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20 md:flex"
-              >
-                <ChevronLeft size={22} />
-              </button>
-              <button
-                onClick={() => go(1)}
-                aria-label="Próxima foto"
-                className="absolute right-4 hidden h-12 w-12 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20 md:flex"
-              >
-                <ChevronRight size={22} />
-              </button>
-            </div>
+              <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div className="text-center sm:text-left text-background">
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-primary">
+                    {current.era}
+                  </p>
+                  <p className="text-background/80 font-light">{current.caption}</p>
+                </div>
 
-            {shots.length > 1 && (
-              <div className="flex justify-center gap-3 pt-4">
-                {shots.map((src, i) => (
+                <div className="flex items-center gap-3">
                   <button
-                    key={src}
-                    type="button"
-                    onClick={() => setShot(i)}
-                    aria-label={`Ver foto ${i + 1}`}
-                    className={`h-16 w-16 overflow-hidden rounded-lg border-2 transition-opacity ${
-                      shot === i
-                        ? "border-[#C5A059]"
-                        : "border-transparent opacity-50 hover:opacity-100"
-                    }`}
+                    onClick={() => go(-1)}
+                    aria-label="Foto anterior"
+                    className="p-3 rounded border border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all"
                   >
-                    <img src={src} alt="" className="h-full w-full object-cover" />
+                    <ChevronLeft size={18} />
                   </button>
-                ))}
+                  <button
+                    onClick={() => go(1)}
+                    aria-label="Próxima foto"
+                    className="p-3 rounded border border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all"
+                  >
+                    <ChevronRight size={18} />
+                  </button>
+                  <button
+                    onClick={() => openWhatsApp(`Vi esta peça na galeria de relógios antigos: ${current.caption} (${current.era}).`)}
+                    className="flex items-center gap-2 bg-primary text-primary-foreground px-5 py-3 rounded font-bold text-[10px] uppercase tracking-widest hover:bg-primary/85 transition-all"
+                  >
+                    <MessageCircle size={15} />
+                    Falar sobre esta peça
+                  </button>
+                </div>
               </div>
-            )}
-
-            <div className="mx-auto flex w-full max-w-4xl flex-col gap-4 px-4 py-5 sm:flex-row sm:items-center sm:justify-between md:px-8 md:py-6">
-              <div>
-                <p className="text-xs text-[#D4B473]">{current.era}</p>
-                <p className="mt-1 text-white/90">{current.caption}</p>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => go(-1)}
-                  aria-label="Foto anterior"
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 md:hidden"
-                >
-                  <ChevronLeft size={20} />
-                </button>
-                <button
-                  onClick={() => go(1)}
-                  aria-label="Próxima foto"
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 md:hidden"
-                >
-                  <ChevronRight size={20} />
-                </button>
-                <button
-                  onClick={() =>
-                    openWhatsApp(
-                      `Vi esta peça na galeria de relógios antigos: ${current.caption} (${current.era}).`,
-                    )
-                  }
-                  className="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-full bg-[#C5A059] px-5 text-sm font-medium text-[#14110D] transition-colors hover:bg-[#D4B473] sm:flex-none"
-                >
-                  Falar sobre esta peça
-                  <ArrowUpRight size={16} />
-                </button>
-              </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         )}
       </AnimatePresence>
 
       <SiteFooter />
       <WhatsAppButton />
     </div>
-  );
-}
-
-/** Quadro exibido quando a foto da peça não carrega. */
-function PhotoPlaceholder({ dark = false }: { dark?: boolean }) {
-  return (
-    <span
-      className={`flex h-full w-full flex-col items-center justify-center gap-3 ${
-        dark ? "bg-white/5 text-white/60" : "bg-[#FAF7F0] text-[#1C1917]/45"
-      }`}
-    >
-      <span
-        className={`flex h-14 w-14 items-center justify-center rounded-full border ${
-          dark ? "border-white/15 text-[#D4B473]" : "border-[#C5A059]/40 text-[#8A6624]"
-        }`}
-      >
-        <Watch size={24} strokeWidth={1.5} />
-      </span>
-      <span className="text-sm">Foto em breve</span>
-    </span>
   );
 }

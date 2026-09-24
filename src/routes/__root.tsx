@@ -1,5 +1,4 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { MotionConfig } from "framer-motion";
 import {
   Outlet,
   Link,
@@ -77,21 +76,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
-      { name: "theme-color", content: "#FFFFFF" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "RG Relógios | Alta Relojoaria em Curitiba" },
-      {
-        name: "description",
-        content:
-          "Especialistas em relógios de luxo, peças antigas, manutenção e restauração. Tradição e precisão no coração de Curitiba - PR.",
-      },
+      { name: "description", content: "Especialistas em relógios de luxo, peças antigas, manutenção e restauração. Tradição e precisão no coração de Curitiba - PR." },
       { name: "author", content: "RG Relógios" },
       { property: "og:title", content: "RG Relógios | Luxo e Tradição" },
-      {
-        property: "og:description",
-        content:
-          "Relógios selecionados e serviços especializados para quem valoriza história e exclusividade.",
-      },
+      { property: "og:description", content: "Relógios selecionados e serviços especializados para quem valoriza história e exclusividade." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@RGRelogios" },
@@ -104,10 +94,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", type: "image/png", href: "/favicon.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap",
-      },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;700&display=swap" },
     ],
   }),
   shellComponent: RootShell,
@@ -136,10 +123,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      {/* Animações do framer-motion respeitam "reduzir movimento" do sistema */}
-      <MotionConfig reducedMotion="user">
-        <Outlet />
-      </MotionConfig>
+      <Outlet />
     </QueryClientProvider>
   );
 }
