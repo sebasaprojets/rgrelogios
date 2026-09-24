@@ -97,6 +97,20 @@ const PHOTOS: readonly GalleryPhoto[] = [
     group: "Pulso",
   },
   {
+    id: "festina",
+    src: "/images/galeria/festina-prateado-pedestal.jpg",
+    caption: "Festina — mostrador prateado com numerais rosa e luneta cravejada",
+    era: "Relógio de pulso",
+    group: "Pulso",
+  },
+  {
+    id: "seculus",
+    src: "/images/galeria/seculus-dourado-pedestal.jpg",
+    caption: "Seculus — caixa dourada com luneta de cristais e pulseira de couro",
+    era: "Relógio de pulso",
+    group: "Pulso",
+  },
+  {
     id: "mesa-madeira",
     src: "/images/galeria/relogio-mesa-loja.jpg",
     caption: "Relógio de mesa em madeira — caixa ondulada e mostrador com numerais arábicos",
