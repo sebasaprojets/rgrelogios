@@ -10,13 +10,10 @@ import { OpenStatus } from "@/components/home/LiveClock";
 import { Marquee } from "@/components/home/Marquee";
 import { CountUp } from "@/components/home/CountUp";
 import { Testimonials } from "@/components/home/Testimonials";
-import { WatchVideo } from "@/components/home/WatchVideo";
 
 const STOREFRONT_URL = "/images/loja-rg.jpg";
 const HERO_IMAGE_URL = "/images/hero-movado.jpg";
 const WATCH_PHOTO_URL = "/images/relogio-cronografo.jpg";
-/** Vídeo do relógio desmontando e montando; enquanto não existir, a foto aparece no lugar. */
-const WATCH_VIDEO_URL = "/videos/relogio-montagem.mp4";
 const MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=RG+Relógios+R.+João+Antônio+Xavier+420+Água+Verde+Curitiba+PR";
 
@@ -193,10 +190,11 @@ function Index() {
               {...fadeUp}
               className="group relative aspect-[4/5] overflow-hidden rounded-2xl md:aspect-[4/3] lg:aspect-[4/5] border border-[#1C1917]/10 bg-[#14110D]"
             >
-              <WatchVideo
-                videoSrc={WATCH_VIDEO_URL}
-                posterSrc={WATCH_PHOTO_URL}
+              <img
+                src={WATCH_PHOTO_URL}
                 alt="Cronógrafo de mostrador azul e caixa dourada com pulseira de couro marrom"
+                loading="lazy"
+                className="h-full w-full object-cover object-[center_62%] transition-transform duration-[1.2s] ease-out group-hover:scale-105"
               />
             </motion.div>
 
