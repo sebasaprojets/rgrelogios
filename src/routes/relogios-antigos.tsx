@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, ArrowRight, ArrowUpRight, Watch } from "lucide-react";
 import { SiteHeader, SiteFooter, SectionEyebrow, openWhatsApp } from "@/components/SiteChrome";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { RevealText } from "@/components/motion/RevealText";
 
 export const Route = createFileRoute("/relogios-antigos")({
   head: () => ({
@@ -196,14 +197,13 @@ function VintageGalleryPage() {
           <div className="mx-auto grid max-w-7xl items-end gap-8 lg:grid-cols-[1.4fr_1fr] lg:gap-10">
             <div>
               <SectionEyebrow>Galeria histórica</SectionEyebrow>
-              <motion.h1
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              <RevealText
+                as="h1"
+                trigger="mount"
+                delay={0.1}
+                text="Relógios que atravessaram *gerações.*"
                 className="mt-6 font-serif text-[clamp(2.4rem,min(calc(8vw+1rem),15svh),5.5rem)] leading-[0.95] tracking-tight md:mt-8"
-              >
-                Relógios que atravessaram <em className="text-[#8A6624]">gerações</em>.
-              </motion.h1>
+              />
             </div>
             <motion.p
               initial={{ opacity: 0, y: 16 }}
@@ -228,13 +228,20 @@ function VintageGalleryPage() {
                   setIndex(null);
                 }}
                 aria-pressed={group === item}
-                className={`h-10 shrink-0 rounded-full border px-4 text-sm transition-colors ${
+                className={`relative h-10 shrink-0 rounded-full border px-4 text-sm transition-colors duration-300 ${
                   group === item
-                    ? "border-[#1C1917] bg-[#1C1917] text-white"
+                    ? "border-[#1C1917] text-white"
                     : "border-[#1C1917]/15 text-[#1C1917]/70 hover:border-[#1C1917]/40 hover:text-[#1C1917]"
                 }`}
               >
-                {item}
+                {group === item && (
+                  <motion.span
+                    layoutId="filtro-ativo"
+                    transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                    className="absolute inset-0 -m-px rounded-full bg-[#1C1917]"
+                  />
+                )}
+                <span className="relative">{item}</span>
               </button>
             ))}
           </div>
@@ -243,62 +250,70 @@ function VintageGalleryPage() {
         {/* Grade de fotos */}
         <section className="px-5 pt-10 pb-24 sm:px-6 md:px-8 md:pt-14 md:pb-32">
           <div className="mx-auto grid max-w-7xl grid-cols-1 gap-x-6 gap-y-10 min-[480px]:grid-cols-2 lg:grid-cols-3">
-            {photos.map((photo, i) => (
-              <motion.article
-                key={photo.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.6, delay: (i % 3) * 0.06 }}
-                className="group"
-              >
-                <button
-                  type="button"
-                  onClick={() => {
-                    setShot(0);
-                    setIndex(i);
+            <AnimatePresence mode="popLayout" initial={false}>
+              {photos.map((photo, i) => (
+                <motion.article
+                  key={photo.id}
+                  layout
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.25 } }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{
+                    duration: 0.6,
+                    delay: (i % 3) * 0.06,
+                    layout: { type: "spring", stiffness: 260, damping: 30 },
                   }}
-                  aria-label={`Ampliar foto: ${photo.caption}`}
-                  className="block aspect-[4/5] w-full overflow-hidden rounded-2xl bg-[#FAF7F0] focus-visible:ring-2 focus-visible:ring-[#C5A059] focus-visible:outline-none"
+                  className="group"
                 >
-                  {failed.has(photo.id) ? (
-                    <PhotoPlaceholder />
-                  ) : (
-                    <img
-                      src={photo.src}
-                      alt={photo.caption}
-                      loading="lazy"
-                      decoding="async"
-                      onError={() => markFailed(photo.id)}
-                      // Se a foto falhou antes da hidratação, o onError não dispara: confere aqui.
-                      ref={(el) => {
-                        if (el?.complete && el.naturalWidth === 0) markFailed(photo.id);
-                      }}
-                      className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                    />
-                  )}
-                </button>
-
-                <div className="mt-4 flex items-start justify-between gap-4">
-                  <div className="min-w-0">
-                    <p className="text-xs text-[#8A6624]">{photo.era}</p>
-                    <p className="mt-1 leading-snug text-[#1C1917]/85">{photo.caption}</p>
-                  </div>
                   <button
                     type="button"
-                    onClick={() =>
-                      openWhatsApp(
-                        `Olá! Gostaria de saber mais sobre este relógio: ${photo.caption} (${photo.era}).`,
-                      )
-                    }
-                    aria-label={`Perguntar no WhatsApp sobre: ${photo.caption}`}
-                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#1C1917]/15 transition-colors hover:border-[#C5A059] hover:bg-[#C5A059] hover:text-[#14110D]"
+                    onClick={() => {
+                      setShot(0);
+                      setIndex(i);
+                    }}
+                    aria-label={`Ampliar foto: ${photo.caption}`}
+                    className="block aspect-[4/5] w-full overflow-hidden rounded-2xl bg-[#FAF7F0] focus-visible:ring-2 focus-visible:ring-[#C5A059] focus-visible:outline-none"
                   >
-                    <ArrowUpRight size={18} />
+                    {failed.has(photo.id) ? (
+                      <PhotoPlaceholder />
+                    ) : (
+                      <img
+                        src={photo.src}
+                        alt={photo.caption}
+                        loading="lazy"
+                        decoding="async"
+                        onError={() => markFailed(photo.id)}
+                        // Se a foto falhou antes da hidratação, o onError não dispara: confere aqui.
+                        ref={(el) => {
+                          if (el?.complete && el.naturalWidth === 0) markFailed(photo.id);
+                        }}
+                        className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      />
+                    )}
                   </button>
-                </div>
-              </motion.article>
-            ))}
+
+                  <div className="mt-4 flex items-start justify-between gap-4">
+                    <div className="min-w-0">
+                      <p className="text-xs text-[#8A6624]">{photo.era}</p>
+                      <p className="mt-1 leading-snug text-[#1C1917]/85">{photo.caption}</p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        openWhatsApp(
+                          `Olá! Gostaria de saber mais sobre este relógio: ${photo.caption} (${photo.era}).`,
+                        )
+                      }
+                      aria-label={`Perguntar no WhatsApp sobre: ${photo.caption}`}
+                      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#1C1917]/15 transition-colors hover:border-[#C5A059] hover:bg-[#C5A059] hover:text-[#14110D]"
+                    >
+                      <ArrowUpRight size={18} />
+                    </button>
+                  </div>
+                </motion.article>
+              ))}
+            </AnimatePresence>
           </div>
 
           <div className="mx-auto mt-20 flex max-w-7xl flex-col items-start justify-between gap-6 border-y border-[#1C1917]/10 py-12 md:mt-28 md:flex-row md:items-center">
