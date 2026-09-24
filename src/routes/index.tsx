@@ -22,12 +22,14 @@ const HERO_IMAGE_URL = "/images/hero-movado.jpg";
 /** Relógios desmontando e montando, tocados em sequência na seção de relógios antigos. */
 const WATCH_CLIPS: readonly WatchClip[] = [
   {
-    src: "/videos/relogio-desmontando.mp4",
+    src: "/videos/relogio-pulso.mp4",
+    poster: "/videos/relogio-pulso-capa.jpg",
     title: "Relógio de pulso",
     label: "Relógio de pulso sendo desmontado e montado novamente",
   },
   {
-    src: "/videos/relogio-parede-desmontando.mp4",
+    src: "/videos/relogio-parede.mp4",
+    poster: "/videos/relogio-parede-capa.jpg",
     title: "Relógio de parede",
     label: "Relógio de parede de madeira sendo desmontado e montado novamente",
   },
