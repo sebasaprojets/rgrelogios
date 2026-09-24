@@ -99,7 +99,7 @@ function RestorationsPage() {
   const [selected, setSelected] = useState<Restoration | null>(null);
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-['Inter'] selection:bg-primary selection:text-primary-foreground">
+    <div className="min-h-screen bg-background text-foreground font-sans">
       <SiteHeader />
 
       <main>
@@ -119,7 +119,7 @@ function RestorationsPage() {
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-4xl md:text-6xl font-serif text-primary"
+              className="text-4xl md:text-6xl font-serif text-foreground"
             >
               Restaurando histórias, detalhe por detalhe
             </motion.h1>
@@ -145,7 +145,7 @@ function RestorationsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
-                className="bg-secondary border border-primary/15 rounded-lg overflow-hidden hover:border-primary/40 transition-all duration-500 flex flex-col"
+                className="bg-card border border-border rounded-lg overflow-hidden shadow-sm hover:shadow-md hover:border-primary/40 transition-all duration-500 flex flex-col"
               >
                 <BeforeAfterSlider
                   beforeSrc={item.before}
@@ -156,7 +156,7 @@ function RestorationsPage() {
 
                 <div className="p-8 space-y-4 flex-1 flex flex-col">
                   <div>
-                    <h2 className="text-2xl font-serif text-primary">{item.title}</h2>
+                    <h2 className="text-2xl font-serif text-foreground">{item.title}</h2>
                     <p className="text-xs text-muted-foreground/80 mt-1">
                       {item.period} · {item.service}
                     </p>
@@ -190,7 +190,7 @@ function RestorationsPage() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-20 space-y-4">
               <SectionEyebrow>Método de trabalho</SectionEyebrow>
-              <h2 className="text-4xl md:text-5xl font-serif text-primary">Nosso processo</h2>
+              <h2 className="text-4xl md:text-5xl font-serif text-foreground">Nosso processo</h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -201,7 +201,7 @@ function RestorationsPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.05 }}
-                  className="bg-background border border-primary/15 rounded-lg p-8 space-y-4 hover:border-primary/40 transition-all duration-500"
+                  className="bg-card border border-border rounded-lg p-8 space-y-4 shadow-sm hover:shadow-md hover:border-primary/40 transition-all duration-500"
                 >
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-bold tracking-[0.4em] text-primary">{step.number}</span>
@@ -218,7 +218,7 @@ function RestorationsPage() {
         {/* CTA final */}
         <section className="py-32 px-8 bg-background">
           <div className="max-w-4xl mx-auto text-center space-y-8 border border-primary/20 rounded-lg p-12 bg-secondary">
-            <h2 className="text-3xl md:text-5xl font-serif text-primary">
+            <h2 className="text-3xl md:text-5xl font-serif text-foreground">
               Seu relógio também pode ganhar uma nova história.
             </h2>
             <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto">
@@ -268,7 +268,7 @@ function RestorationModal({ item, onClose }: { item: Restoration; onClose: () =>
         initial={{ opacity: 0, scale: 0.95, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 20 }}
-        className="relative w-full max-w-3xl my-12 bg-secondary border border-primary/30 rounded-2xl overflow-hidden shadow-2xl"
+        className="relative w-full max-w-3xl my-12 bg-card border border-primary/30 rounded-lg overflow-hidden shadow-lg"
       >
         <button
           onClick={onClose}
@@ -280,7 +280,7 @@ function RestorationModal({ item, onClose }: { item: Restoration; onClose: () =>
 
         <div className="p-8 space-y-8">
           <div>
-            <h2 className="text-3xl font-serif text-primary">{item.title}</h2>
+            <h2 className="text-3xl font-serif text-foreground">{item.title}</h2>
             <p className="text-sm text-muted-foreground/80 mt-1">
               {item.period} · {item.service}
             </p>

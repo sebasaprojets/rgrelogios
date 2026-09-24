@@ -135,7 +135,7 @@ function AdminPanel() {
                       <th className="px-6 py-4">Data</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-[#C5A059]/5">
+                  <tbody className="divide-y divide-border/70">
                     {requests.slice(0, 5).map((request: any) => (
                       <tr key={request.id} className="hover:bg-primary/5 transition-colors">
                         <td className="px-6 py-4 font-medium">{request.customer_name}</td>
@@ -179,7 +179,7 @@ function AdminPanel() {
                       <th className="px-6 py-4">Status</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-[#C5A059]/5">
+                  <tbody className="divide-y divide-border/70">
                     {orders.slice(0, 5).map((order: any) => (
                       <tr key={order.id} className="hover:bg-primary/5 transition-colors">
                         <td className="px-6 py-4 font-mono text-[10px]">{order.id.slice(0, 8)}...</td>
@@ -225,7 +225,7 @@ function AdminPanel() {
                     <th className="px-6 py-4">Status</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#C5A059]/5">
+                <tbody className="divide-y divide-border/70">
                   {products.map((product) => (
                     <tr key={product.id} className="hover:bg-primary/5 transition-colors">
                       <td className="px-6 py-4 flex items-center gap-3">

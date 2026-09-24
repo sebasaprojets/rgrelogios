@@ -219,7 +219,7 @@ function Index() {
         <section id="antigos" className="relative py-32 px-8 bg-secondary overflow-hidden">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-6">
-              <h3 className="text-4xl sm:text-5xl font-serif text-primary">Relógios que carregam histórias</h3>
+              <h3 className="text-4xl sm:text-5xl font-serif text-foreground">Relógios que carregam histórias</h3>
               <p className="text-muted-foreground leading-relaxed">
                 Peças antigas restauradas com respeito à sua origem, mantendo o mecanismo original sempre que possível.
               </p>
@@ -286,7 +286,7 @@ function Index() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="text-4xl md:text-6xl font-serif text-primary"
+                className="text-4xl md:text-6xl font-serif text-foreground"
               >
                 Nossos Serviços Especializados
               </motion.h2>
@@ -376,7 +376,7 @@ function Index() {
                       <div className="w-10 h-10 rounded-full border border-primary/40 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
                         <service.icon size={20} />
                       </div>
-                      <h4 className="text-2xl font-serif text-primary">{service.title}</h4>
+                       <h4 className="text-2xl font-serif text-foreground">{service.title}</h4>
                     </div>
                     
                     <p className="text-sm text-muted-foreground leading-relaxed mb-6 flex-1">
@@ -499,7 +499,7 @@ function Index() {
         <section id="contato" className="py-32 px-8 bg-secondary">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div>
-              <h3 className="text-4xl font-serif text-primary mb-8">Visite nossa loja</h3>
+              <h3 className="text-4xl font-serif text-foreground mb-8">Visite nossa loja</h3>
               <div className="space-y-8 text-foreground/80">
                 <div className="flex gap-4">
                   <MapPin className="text-primary shrink-0" />
@@ -542,7 +542,7 @@ function Index() {
             </div>
 
             <div className="bg-background p-10 rounded-xl border border-primary/20">
-              <h3 className="text-3xl font-serif text-primary mb-8">Envie uma mensagem</h3>
+              <h3 className="text-3xl font-serif text-foreground mb-8">Envie uma mensagem</h3>
               <form className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <input type="text" placeholder="Nome" className="w-full p-4 bg-secondary border border-primary/20 rounded text-foreground placeholder:text-muted-foreground/60 outline-none focus:border-primary" />
@@ -557,7 +557,7 @@ function Index() {
         </section>
 
         {/* Footer */}
-        <footer className="py-20 px-8 bg-background border-t border-primary/15">
+        <footer className="py-20 px-6 sm:px-8 bg-warm text-warm-foreground border-t border-border">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
               <div className="col-span-1 md:col-span-2">

@@ -194,7 +194,7 @@ function VintageGalleryPage() {
   }, [index, photos.length]);
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-['Inter'] selection:bg-primary selection:text-primary-foreground">
+    <div className="min-h-screen bg-background text-foreground font-sans">
       <SiteHeader />
 
       <main>
@@ -214,7 +214,7 @@ function VintageGalleryPage() {
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-4xl md:text-6xl font-serif text-primary"
+              className="text-4xl md:text-6xl font-serif text-foreground"
             >
               Relógios que atravessaram gerações
             </motion.h1>
@@ -279,13 +279,13 @@ function VintageGalleryPage() {
                     loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/10 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/10 to-transparent" />
                 </button>
 
                 <div className="absolute bottom-0 left-0 right-0 p-6 space-y-3 pointer-events-none">
                   <div className="space-y-1">
                     <p className="text-[10px] font-bold uppercase tracking-widest text-primary">{photo.era}</p>
-                    <p className="text-sm text-background/90 font-light">{photo.caption}</p>
+                    <p className="text-sm text-background font-light">{photo.caption}</p>
                   </div>
                   <button
                     type="button"
@@ -369,11 +369,11 @@ function VintageGalleryPage() {
               )}
 
               <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div className="text-center sm:text-left">
+                <div className="text-center sm:text-left text-background">
                   <p className="text-[10px] font-bold uppercase tracking-widest text-primary">
                     {current.era}
                   </p>
-                  <p className="text-foreground/80 font-light">{current.caption}</p>
+                  <p className="text-background/80 font-light">{current.caption}</p>
                 </div>
 
                 <div className="flex items-center gap-3">

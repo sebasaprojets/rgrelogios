@@ -75,7 +75,7 @@ function ProductDetail() {
             animate={{ opacity: 1, x: 0 }}
             className="space-y-6"
           >
-            <div className="aspect-square bg-secondary rounded-xl overflow-hidden border border-primary/20 shadow-2xl">
+            <div className="aspect-square bg-card rounded-lg overflow-hidden border border-border shadow-lg">
               <img 
                 src={product.images?.[0] || 'https://images.unsplash.com/photo-1524592094714-0f0654e20314'} 
                 alt={product.name}
