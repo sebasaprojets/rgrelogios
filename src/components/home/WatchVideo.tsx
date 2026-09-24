@@ -1,9 +1,8 @@
-import { useEffect, useRef, useState } from "react";
-import { Play } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export interface WatchClip {
   readonly src: string;
-  /** Primeiro quadro do vídeo; aparece enquanto carrega ou se o aparelho bloquear o autoplay. */
+  /** Primeiro quadro do vídeo; aparece enquanto carrega. */
   readonly poster: string;
   /** Nome curto mostrado na barra de progresso (ex.: "Relógio de pulso"). */
   readonly title: string;
@@ -18,24 +17,26 @@ interface WatchVideoProps {
 /**
  * Vídeos de relógios desmontando e montando, tocados um depois do outro no
  * mesmo quadro, com transição suave e barra de progresso por vídeo.
- * Se o aparelho bloquear o autoplay (economia de bateria/dados) ou pedir
- * "reduzir movimento", fica a capa com um botão para assistir.
+ * Tocam sozinhos: se o navegador interromper o play, tenta de novo quando o
+ * vídeo estiver pronto; se o aparelho proibir autoplay (ex.: economia de
+ * bateria do iPhone), começa no primeiro toque em qualquer lugar da página.
  */
 export function WatchVideo({ clips }: WatchVideoProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const activeRef = useRef(0);
   const [active, setActive] = useState(0);
   const [progress, setProgress] = useState(0);
-  const [blocked, setBlocked] = useState(false);
 
-  const playActive = (index: number) => {
-    const video = videoRefs.current[index];
-    if (!video) return;
+  const playActive = useCallback(() => {
+    const video = videoRefs.current[activeRef.current];
+    if (!video || !video.paused) return;
     video.muted = true;
-    video
-      .play()
-      .then(() => setBlocked(false))
-      .catch(() => setBlocked(true));
-  };
+    video.play().catch(() => {
+      // Play interrompido enquanto carregava: tenta de novo quando der para tocar.
+      video.addEventListener("canplay", () => void video.play().catch(() => {}), { once: true });
+    });
+  }, []);
 
   useEffect(() => {
     // O React não renderiza o atributo `muted` no HTML do servidor, e o
@@ -43,19 +44,37 @@ export function WatchVideo({ clips }: WatchVideoProps) {
     videoRefs.current.forEach((video) => {
       if (video) video.muted = true;
     });
-  }, []);
+
+    // Aparelhos que só liberam vídeo após uma interação: qualquer toque, clique
+    // ou tecla na página dá o play. Também retoma ao voltar para a aba.
+    const events = ["pointerdown", "touchend", "click", "keydown"] as const;
+    events.forEach((event) => window.addEventListener(event, playActive, { passive: true }));
+    const onVisibility = () => {
+      if (document.visibilityState === "visible") playActive();
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+
+    // Alguns navegadores pausam vídeos fora da tela; retoma quando o quadro aparece.
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry?.isIntersecting) playActive();
+    });
+    if (containerRef.current) observer.observe(containerRef.current);
+
+    return () => {
+      events.forEach((event) => window.removeEventListener(event, playActive));
+      document.removeEventListener("visibilitychange", onVisibility);
+      observer.disconnect();
+    };
+  }, [playActive]);
 
   useEffect(() => {
+    activeRef.current = active;
     const video = videoRefs.current[active];
     if (!video) return;
     setProgress(0);
     video.currentTime = 0;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches && active === 0) {
-      setBlocked(true);
-      return;
-    }
-    playActive(active);
-  }, [active]);
+    playActive();
+  }, [active, playActive]);
 
   const handleTimeUpdate = (index: number) => {
     const video = videoRefs.current[index];
@@ -68,7 +87,7 @@ export function WatchVideo({ clips }: WatchVideoProps) {
   };
 
   return (
-    <div className="relative h-full w-full">
+    <div ref={containerRef} className="relative h-full w-full">
       {clips.map((clip, index) => (
         <video
           key={clip.src}
@@ -77,6 +96,7 @@ export function WatchVideo({ clips }: WatchVideoProps) {
           }}
           src={clip.src}
           poster={clip.poster}
+          autoPlay={index === 0}
           muted
           loop={clips.length === 1}
           playsInline
@@ -91,19 +111,6 @@ export function WatchVideo({ clips }: WatchVideoProps) {
           }`}
         />
       ))}
-
-      {blocked && (
-        <button
-          type="button"
-          onClick={() => playActive(active)}
-          aria-label={`Assistir: ${clips[active]?.label ?? "vídeo"}`}
-          className="absolute inset-0 flex items-center justify-center"
-        >
-          <span className="flex h-16 w-16 items-center justify-center rounded-full bg-[#14110D]/70 text-white shadow-[0_10px_30px_-10px_rgba(0,0,0,0.6)] backdrop-blur-sm transition-transform duration-300 hover:scale-105">
-            <Play size={26} className="ml-1" fill="currentColor" />
-          </span>
-        </button>
-      )}
 
       {clips.length > 1 && (
         <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/45 to-transparent px-5 pt-10 pb-4 sm:px-6 sm:pb-5">
