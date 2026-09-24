@@ -15,7 +15,7 @@ import { WatchVideo } from "@/components/home/WatchVideo";
 const STOREFRONT_URL = "/images/loja-rg.jpg";
 const HERO_IMAGE_URL = "/images/hero-movado.jpg";
 /** Relógio desmontando e montando, na seção de relógios antigos. */
-const WATCH_VIDEO_URL = "/videos/relogio-montagem.mp4";
+const WATCH_VIDEO_URL = "/videos/relogio-desmontando.mp4";
 const MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=RG+Relógios+R.+João+Antônio+Xavier+420+Água+Verde+Curitiba+PR";
 
