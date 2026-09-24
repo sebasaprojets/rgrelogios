@@ -212,6 +212,18 @@
   .animate-marquee { animation: none; }
 }
 
+/* Segurança da cortina de abertura: some sozinha mesmo se o JS não carregar */
+@keyframes intro-fallback {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.intro-curtain {
+  animation: intro-fallback 0.5s ease-out 3s forwards;
+}
+
 /* Barra de progresso do autoplay dos depoimentos */
 @keyframes testimonial-progress {
   from { width: 0%; }

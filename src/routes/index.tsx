@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { getReviews } from "@/lib/api.functions";
@@ -11,6 +12,7 @@ import { Marquee } from "@/components/home/Marquee";
 import { CountUp } from "@/components/home/CountUp";
 import { Testimonials } from "@/components/home/Testimonials";
 import { WatchVideo, type WatchClip } from "@/components/home/WatchVideo";
+import { IntroCurtain, heroIntroDelay } from "@/components/home/IntroCurtain";
 
 const STOREFRONT_URL = "/images/loja-rg.jpg";
 const HERO_IMAGE_URL = "/images/hero-movado.jpg";
@@ -78,7 +80,20 @@ const fadeUp = {
   transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
 } as const;
 
+/** Linhas do título do hero; `accent` marca a palavra em dourado itálico. */
+const HERO_LINES: readonly (readonly { word: string; accent?: boolean }[])[] = [
+  [{ word: "Cuidamos" }, { word: "do" }, { word: "tempo" }],
+  [{ word: "que" }, { word: "passa", accent: true }, { word: "pelas" }],
+  [{ word: "suas" }, { word: "mãos." }],
+];
+
 function Index() {
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  // Parallax: a foto desce mais devagar que a página e o texto some suavemente.
+  const heroImageY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
+  const heroContentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  const delay = heroIntroDelay();
   const fetchReviews = useServerFn(getReviews);
   const { data: reviews = [] } = useQuery({
     queryKey: ["reviews"],
@@ -97,53 +112,76 @@ function Index() {
 
   return (
     <div className="min-h-screen bg-white font-sans text-[#1C1917] antialiased selection:bg-[#C5A059] selection:text-[#14110D]">
+      <IntroCurtain />
       <SiteHeader />
 
       <main>
         {/* Hero */}
         <section
+          ref={heroRef}
           id="início"
           className="relative flex min-h-[100svh] items-center overflow-hidden px-5 pt-28 pb-16 sm:px-6 md:px-8 md:pt-40 md:pb-28"
         >
-          <div className="absolute inset-0" aria-hidden>
+          <motion.div className="absolute inset-0" style={{ y: heroImageY }} aria-hidden>
             <motion.img
               src={HERO_IMAGE_URL}
               alt=""
-              initial={{ scale: 1.08 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 2.4, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ scale: 1.15, filter: "blur(6px)" }}
+              animate={{ scale: 1, filter: "blur(0px)" }}
+              transition={{ duration: 2.6, delay: delay * 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="h-full w-full object-cover object-[72%_center]"
             />
             {/* Clareia o lado do texto sem cobrir o relógio */}
             <div className="absolute inset-0 bg-gradient-to-b from-white/95 via-white/85 to-white/55 lg:bg-gradient-to-r lg:from-white/90 lg:via-white/70 lg:to-transparent xl:via-white/50" />
             <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white to-transparent" />
-          </div>
-          <div className="relative mx-auto w-full max-w-7xl">
+          </motion.div>
+          <motion.div
+            className="relative mx-auto w-full max-w-7xl"
+            style={{ opacity: heroContentOpacity }}
+          >
             <div className="max-w-2xl">
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.6, delay }}
               >
                 <OpenStatus />
               </motion.div>
 
-              <motion.h1
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              <h1
+                aria-label="Cuidamos do tempo que passa pelas suas mãos."
                 className="mt-6 font-serif text-[clamp(2.4rem,min(calc(8vw+1rem),15svh),5.5rem)] leading-[0.95] tracking-tight sm:mt-8"
               >
-                Cuidamos do tempo <br className="hidden sm:block" />
-                que <em className="text-[#8A6624]">passa</em> pelas{" "}
-                <br className="hidden sm:block" />
-                suas mãos.
-              </motion.h1>
+                {HERO_LINES.map((line, lineIndex) => (
+                  <span key={lineIndex} aria-hidden className="sm:block">
+                    {line.map(({ word, accent }, wordIndex) => {
+                      const order = HERO_LINES.slice(0, lineIndex).flat().length + wordIndex;
+                      return (
+                        <motion.span
+                          key={word}
+                          initial={{ opacity: 0, y: "0.35em", filter: "blur(10px)" }}
+                          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                          transition={{
+                            duration: 0.9,
+                            delay: delay + 0.1 + order * 0.07,
+                            ease: [0.16, 1, 0.3, 1],
+                          }}
+                          className={`mr-[0.2em] inline-block ${wordIndex === line.length - 1 ? "sm:mr-0" : ""} ${
+                            accent ? "font-serif italic text-[#8A6624]" : ""
+                          }`}
+                        >
+                          {word}
+                        </motion.span>
+                      );
+                    })}
+                  </span>
+                ))}
+              </h1>
 
               <motion.p
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.25 }}
+                transition={{ duration: 0.8, delay: delay + 0.75 }}
                 className="mt-6 max-w-md text-base leading-relaxed text-[#1C1917]/65 sm:mt-8 sm:text-lg"
               >
                 Venda, manutenção e restauração de relógios clássicos, antigos e contemporâneos no
@@ -153,7 +191,7 @@ function Index() {
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.35 }}
+                transition={{ duration: 0.8, delay: delay + 0.9 }}
                 className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center"
               >
                 <a
@@ -177,7 +215,7 @@ function Index() {
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
+                transition={{ duration: 0.8, delay: delay + 1.05 }}
                 className="mt-10 flex items-center gap-3 text-sm text-[#1C1917]/65 sm:mt-14 sm:gap-4"
               >
                 <div className="flex text-[#C5A059]">
@@ -191,7 +229,7 @@ function Index() {
                 </span>
               </motion.div>
             </div>
-          </div>
+          </motion.div>
         </section>
 
         <Marquee items={MARQUEE_ITEMS} />
