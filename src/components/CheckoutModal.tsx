@@ -67,30 +67,30 @@ export function CheckoutModal({ isOpen, onClose, product }: CheckoutModalProps) 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="absolute inset-0 bg-foreground/80 backdrop-blur-sm"
+          className="absolute inset-0 bg-black/80 backdrop-blur-sm"
           onClick={onClose}
         />
         <motion.div 
           initial={{ opacity: 0, scale: 0.9, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 20 }}
-          className="relative w-full max-w-xl bg-card border border-primary/30 rounded-lg overflow-hidden shadow-lg"
+          className="relative w-full max-w-xl bg-[#FAF7F0] border border-[#C5A059]/30 rounded-2xl overflow-hidden shadow-2xl"
         >
           <button 
             onClick={onClose}
-            className="absolute top-4 right-4 text-muted-foreground/70 hover:text-primary z-10"
+            className="absolute top-4 right-4 text-[#1C1917]/40 hover:text-[#8A6624] z-10"
           >
             <X size={24} />
           </button>
 
           <div className="p-8">
             <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+              <div className="w-10 h-10 rounded-full bg-[#C5A059]/10 flex items-center justify-center text-[#8A6624]">
                 <ShoppingBag size={20} />
               </div>
               <div>
-                <h3 className="text-xl font-serif text-foreground">Finalizar Compra</h3>
-                <p className="text-xs text-muted-foreground/70 uppercase tracking-widest font-bold">Checkout Seguro</p>
+                <h3 className="text-xl font-serif text-[#1C1917]">Finalizar Compra</h3>
+                <p className="text-xs text-[#1C1917]/40 uppercase tracking-widest font-bold">Checkout Seguro</p>
               </div>
             </div>
 
@@ -98,53 +98,53 @@ export function CheckoutModal({ isOpen, onClose, product }: CheckoutModalProps) 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label className="text-[10px] font-bold text-primary uppercase tracking-widest">Nome Completo</label>
+                    <label className="text-[10px] font-bold text-[#8A6624] uppercase tracking-widest">Nome Completo</label>
                     <input 
                       required
-                      className="w-full bg-background border border-primary/20 rounded p-3 text-sm focus:border-primary outline-none transition-colors"
+                      className="w-full bg-[#FFFFFF] border border-[#C5A059]/20 rounded p-3 text-sm focus:border-[#C5A059] outline-none transition-colors"
                       value={formData.name}
                       onChange={(e) => setFormData({...formData, name: e.target.value})}
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-[10px] font-bold text-primary uppercase tracking-widest">WhatsApp</label>
+                    <label className="text-[10px] font-bold text-[#8A6624] uppercase tracking-widest">WhatsApp</label>
                     <input 
                       required
                       placeholder="(41) 99999-9999"
-                      className="w-full bg-background border border-primary/20 rounded p-3 text-sm focus:border-primary outline-none transition-colors"
+                      className="w-full bg-[#FFFFFF] border border-[#C5A059]/20 rounded p-3 text-sm focus:border-[#C5A059] outline-none transition-colors"
                       value={formData.whatsapp}
                       onChange={(e) => setFormData({...formData, whatsapp: e.target.value})}
                     />
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-[10px] font-bold text-primary uppercase tracking-widest">E-mail</label>
+                  <label className="text-[10px] font-bold text-[#8A6624] uppercase tracking-widest">E-mail</label>
                   <input 
                     required
                     type="email"
-                    className="w-full bg-background border border-primary/20 rounded p-3 text-sm focus:border-primary outline-none transition-colors"
+                    className="w-full bg-[#FFFFFF] border border-[#C5A059]/20 rounded p-3 text-sm focus:border-[#C5A059] outline-none transition-colors"
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-[10px] font-bold text-primary uppercase tracking-widest">Endereço de Entrega</label>
+                  <label className="text-[10px] font-bold text-[#8A6624] uppercase tracking-widest">Endereço de Entrega</label>
                   <textarea 
                     required
-                    className="w-full bg-background border border-primary/20 rounded p-3 text-sm focus:border-primary outline-none transition-colors h-24 resize-none"
+                    className="w-full bg-[#FFFFFF] border border-[#C5A059]/20 rounded p-3 text-sm focus:border-[#C5A059] outline-none transition-colors h-24 resize-none"
                     value={formData.address}
                     onChange={(e) => setFormData({...formData, address: e.target.value})}
                   />
                 </div>
                 
-                <div className="pt-4 border-t border-primary/15">
+                <div className="pt-4 border-t border-[#C5A059]/10">
                   <div className="flex justify-between items-center mb-6">
-                    <span className="text-sm text-muted-foreground">Total a pagar:</span>
-                    <span className="text-xl font-bold text-primary">R$ {product.price?.toLocaleString()}</span>
+                    <span className="text-sm text-[#1C1917]/60">Total a pagar:</span>
+                    <span className="text-xl font-bold text-[#8A6624]">R$ {product.price?.toLocaleString()}</span>
                   </div>
                   <button 
                     type="submit"
-                    className="w-full bg-primary text-primary-foreground py-4 rounded font-bold hover:bg-primary/85 transition-all uppercase text-sm tracking-widest"
+                    className="w-full bg-[#C5A059] text-[#14110D] shadow-[0_10px_30px_-10px_rgba(197,160,89,0.7)] py-4 rounded font-bold hover:bg-[#D4B473] transition-all uppercase text-sm tracking-widest"
                   >
                     Continuar para Pagamento
                   </button>
@@ -158,25 +158,25 @@ export function CheckoutModal({ isOpen, onClose, product }: CheckoutModalProps) 
                   <button 
                     type="button"
                     onClick={() => setFormData({...formData, paymentMethod: 'pix'})}
-                    className={`p-6 rounded-xl border flex flex-col items-center gap-3 transition-all ${formData.paymentMethod === 'pix' ? 'bg-primary/10 border-primary' : 'bg-background border-primary/15'}`}
+                    className={`p-6 rounded-xl border flex flex-col items-center gap-3 transition-all ${formData.paymentMethod === 'pix' ? 'bg-[#C5A059]/10 border-[#C5A059]' : 'bg-[#FFFFFF] border-[#C5A059]/10'}`}
                   >
-                    <QrCode size={32} className={formData.paymentMethod === 'pix' ? 'text-primary' : 'text-muted-foreground/50'} />
+                    <QrCode size={32} className={formData.paymentMethod === 'pix' ? 'text-[#C5A059]' : 'text-[#1C1917]/20'} />
                     <span className="text-xs font-bold uppercase tracking-widest">PIX</span>
                   </button>
                   <button 
                     type="button"
                     onClick={() => setFormData({...formData, paymentMethod: 'card'})}
-                    className={`p-6 rounded-xl border flex flex-col items-center gap-3 transition-all ${formData.paymentMethod === 'card' ? 'bg-primary/10 border-primary' : 'bg-background border-primary/15'}`}
+                    className={`p-6 rounded-xl border flex flex-col items-center gap-3 transition-all ${formData.paymentMethod === 'card' ? 'bg-[#C5A059]/10 border-[#C5A059]' : 'bg-[#FFFFFF] border-[#C5A059]/10'}`}
                   >
-                    <CreditCard size={32} className={formData.paymentMethod === 'card' ? 'text-primary' : 'text-muted-foreground/50'} />
+                    <CreditCard size={32} className={formData.paymentMethod === 'card' ? 'text-[#C5A059]' : 'text-[#1C1917]/20'} />
                     <span className="text-xs font-bold uppercase tracking-widest">Cartão</span>
                   </button>
                 </div>
 
-                <div className="bg-background p-6 rounded-xl border border-primary/15">
+                <div className="bg-[#FFFFFF] p-6 rounded-xl border border-[#C5A059]/10">
                   {formData.paymentMethod === 'pix' ? (
                     <div className="text-center space-y-4">
-                      <p className="text-sm text-muted-foreground italic">O QR Code para pagamento será gerado após a confirmação.</p>
+                      <p className="text-sm text-[#1C1917]/60 italic">O QR Code para pagamento será gerado após a confirmação.</p>
                       <div className="flex items-center justify-center gap-2 text-[10px] font-bold text-green-500 uppercase tracking-widest">
                         <Shield size={14} /> Desconto de 5% aplicado no PIX
                       </div>
@@ -184,35 +184,35 @@ export function CheckoutModal({ isOpen, onClose, product }: CheckoutModalProps) 
                   ) : (
                     <div className="space-y-4">
                       <div className="space-y-2">
-                        <label className="text-[10px] font-bold text-primary uppercase tracking-widest">Número do Cartão</label>
-                        <input className="w-full bg-secondary border border-primary/20 rounded p-3 text-sm outline-none" placeholder="0000 0000 0000 0000" />
+                        <label className="text-[10px] font-bold text-[#8A6624] uppercase tracking-widest">Número do Cartão</label>
+                        <input className="w-full bg-[#FAF7F0] border border-[#C5A059]/20 rounded p-3 text-sm outline-none" placeholder="0000 0000 0000 0000" />
                       </div>
                       <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-2">
-                          <label className="text-[10px] font-bold text-primary uppercase tracking-widest">Validade</label>
-                          <input className="w-full bg-secondary border border-primary/20 rounded p-3 text-sm outline-none" placeholder="MM/AA" />
+                          <label className="text-[10px] font-bold text-[#8A6624] uppercase tracking-widest">Validade</label>
+                          <input className="w-full bg-[#FAF7F0] border border-[#C5A059]/20 rounded p-3 text-sm outline-none" placeholder="MM/AA" />
                         </div>
                         <div className="space-y-2">
-                          <label className="text-[10px] font-bold text-primary uppercase tracking-widest">CVV</label>
-                          <input className="w-full bg-secondary border border-primary/20 rounded p-3 text-sm outline-none" placeholder="123" />
+                          <label className="text-[10px] font-bold text-[#8A6624] uppercase tracking-widest">CVV</label>
+                          <input className="w-full bg-[#FAF7F0] border border-[#C5A059]/20 rounded p-3 text-sm outline-none" placeholder="123" />
                         </div>
                       </div>
                     </div>
                   )}
                 </div>
 
-                <div className="pt-4 border-t border-primary/15 space-y-4">
+                <div className="pt-4 border-t border-[#C5A059]/10 space-y-4">
                   <button 
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-primary text-primary-foreground py-4 rounded font-bold hover:bg-primary/85 transition-all uppercase text-sm tracking-widest disabled:opacity-50"
+                    className="w-full bg-[#C5A059] text-[#14110D] shadow-[0_10px_30px_-10px_rgba(197,160,89,0.7)] py-4 rounded font-bold hover:bg-[#D4B473] transition-all uppercase text-sm tracking-widest disabled:opacity-50"
                   >
                     {isSubmitting ? 'Processando...' : 'Confirmar Pagamento'}
                   </button>
                   <button 
                     type="button"
                     onClick={() => setStep(1)}
-                    className="w-full text-center text-[10px] font-bold text-muted-foreground/70 hover:text-primary uppercase tracking-widest"
+                    className="w-full text-center text-[10px] font-bold text-[#1C1917]/40 hover:text-[#8A6624] uppercase tracking-widest"
                   >
                     Voltar para dados de entrega
                   </button>
@@ -226,12 +226,12 @@ export function CheckoutModal({ isOpen, onClose, product }: CheckoutModalProps) 
                   <Shield size={40} />
                 </div>
                 <div className="space-y-2">
-                  <h3 className="text-2xl font-serif text-foreground">Pedido Confirmado!</h3>
-                  <p className="text-muted-foreground text-sm">Obrigado pela sua compra. Entraremos em contato via WhatsApp em breve.</p>
+                  <h3 className="text-2xl font-serif text-[#1C1917]">Pedido Confirmado!</h3>
+                  <p className="text-[#1C1917]/60 text-sm">Obrigado pela sua compra. Entraremos em contato via WhatsApp em breve.</p>
                 </div>
                 <button 
                   onClick={onClose}
-                  className="bg-primary text-primary-foreground px-12 py-3 rounded font-bold uppercase text-xs tracking-widest"
+                  className="bg-[#C5A059] text-[#14110D] shadow-[0_10px_30px_-10px_rgba(197,160,89,0.7)] px-12 py-3 rounded font-bold uppercase text-xs tracking-widest"
                 >
                   Fechar
                 </button>
