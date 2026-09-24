@@ -122,7 +122,7 @@ function Index() {
                 className="mt-6 font-serif text-[clamp(2.4rem,min(calc(8vw+1rem),15svh),5.5rem)] leading-[0.95] tracking-tight sm:mt-8"
               >
                 Cuidamos do tempo <br className="hidden sm:block" />
-                que <em className="text-[#A67C2E]">passa</em> pelas{" "}
+                que <em className="text-[#8A6624]">passa</em> pelas{" "}
                 <br className="hidden sm:block" />
                 suas mãos.
               </motion.h1>
@@ -201,7 +201,7 @@ function Index() {
             <motion.div {...fadeUp}>
               <SectionEyebrow>Relógios antigos</SectionEyebrow>
               <h2 className="mt-6 font-serif text-[clamp(2.1rem,min(8vw,13svh),3.75rem)] leading-[1.02] tracking-tight">
-                Peças que carregam <em className="text-[#A67C2E]">histórias</em>.
+                Peças que carregam <em className="text-[#8A6624]">histórias</em>.
               </h2>
               <p className="mt-6 max-w-lg text-base leading-relaxed sm:text-lg text-[#1C1917]/60">
                 Restauramos relógios antigos com respeito à sua origem, mantendo o mecanismo
@@ -269,7 +269,7 @@ function Index() {
                         {String(i + 1).padStart(2, "0")}
                       </span>
                       <span>
-                        <span className="block font-serif text-[1.75rem] leading-tight transition-all duration-300 group-hover:text-[#A67C2E] sm:text-3xl md:text-4xl [@media(hover:hover)]:group-hover:translate-x-2">
+                        <span className="block font-serif text-[1.75rem] leading-tight transition-all duration-300 group-hover:text-[#8A6624] sm:text-3xl md:text-4xl [@media(hover:hover)]:group-hover:translate-x-2">
                           {service.title}
                         </span>
                         <span className="mt-2 block max-w-md text-[#1C1917]/60">
@@ -333,7 +333,7 @@ function Index() {
             <motion.div {...fadeUp}>
               <SectionEyebrow>Sobre a RG</SectionEyebrow>
               <h2 className="mt-6 font-serif text-[clamp(2.1rem,min(8vw,13svh),3.75rem)] leading-[1.02] tracking-tight">
-                Uma relojoaria de bairro, com <em className="text-[#A67C2E]">ofício</em> de alta
+                Uma relojoaria de bairro, com <em className="text-[#8A6624]">ofício</em> de alta
                 relojoaria.
               </h2>
               <p className="mt-6 max-w-lg text-base leading-relaxed text-[#1C1917]/60 sm:text-lg">
@@ -373,7 +373,7 @@ function Index() {
                   rel="noreferrer"
                   className="group flex items-start gap-4 py-5 sm:gap-5 sm:py-6"
                 >
-                  <MapPin size={20} className="mt-0.5 shrink-0 text-[#A67C2E]" />
+                  <MapPin size={20} className="mt-0.5 shrink-0 text-[#8A6624]" />
                   <span className="flex-1">
                     <span className="block font-medium">R. João Antônio Xavier, 420</span>
                     <span className="text-[#1C1917]/60">Água Verde, Curitiba – PR, 80620-360</span>
@@ -384,7 +384,7 @@ function Index() {
                   />
                 </a>
                 <div className="flex items-start gap-4 py-5 sm:gap-5 sm:py-6">
-                  <Clock size={20} className="mt-0.5 shrink-0 text-[#A67C2E]" />
+                  <Clock size={20} className="mt-0.5 shrink-0 text-[#8A6624]" />
                   <span>
                     <span className="block font-medium">Seg a Sex, 09h às 18h</span>
                     <span className="text-[#1C1917]/60">Sábado, 09h às 13h</span>
@@ -396,7 +396,7 @@ function Index() {
                   rel="noreferrer"
                   className="group flex items-start gap-4 py-5 sm:gap-5 sm:py-6"
                 >
-                  <Phone size={20} className="mt-0.5 shrink-0 text-[#A67C2E]" />
+                  <Phone size={20} className="mt-0.5 shrink-0 text-[#8A6624]" />
                   <span className="flex-1">
                     <span className="block font-medium">+55 41 99239-9650</span>
                     <span className="text-[#1C1917]/60">WhatsApp e telefone</span>

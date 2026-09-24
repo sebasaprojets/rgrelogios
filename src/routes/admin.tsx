@@ -63,7 +63,7 @@ function AdminPanel() {
     <div className="min-h-screen bg-[#FFFFFF] text-[#1C1917] flex">
       {/* Sidebar */}
       <aside className="w-64 bg-[#FAF7F0] border-r border-[#C5A059]/20 p-6 hidden md:flex flex-col">
-        <h1 className="text-xl font-serif font-bold text-[#A67C2E] tracking-wider mb-10">
+        <h1 className="text-xl font-serif font-bold text-[#8A6624] tracking-wider mb-10">
           RG ADMIN
         </h1>
 
@@ -79,7 +79,7 @@ function AdminPanel() {
             <button
               key={item.label}
               onClick={() => setActiveTab(item.label)}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded text-sm font-medium transition-colors ${activeTab === item.label ? "bg-[#C5A059] text-[#14110D] shadow-[0_10px_30px_-10px_rgba(197,160,89,0.7)]" : "text-[#1C1917]/60 hover:text-[#A67C2E] hover:bg-[#C5A059]/5"}`}
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded text-sm font-medium transition-colors ${activeTab === item.label ? "bg-[#C5A059] text-[#14110D] shadow-[0_10px_30px_-10px_rgba(197,160,89,0.7)]" : "text-[#1C1917]/60 hover:text-[#8A6624] hover:bg-[#C5A059]/5"}`}
             >
               <item.icon size={18} />
               {item.label}
@@ -96,7 +96,7 @@ function AdminPanel() {
       <main className="flex-1 p-8 md:p-12 overflow-y-auto pt-32 md:pt-12">
         <header className="flex justify-between items-end mb-12">
           <div>
-            <h2 className="text-sm font-bold tracking-[0.3em] text-[#A67C2E] uppercase mb-2">
+            <h2 className="text-sm font-bold tracking-[0.3em] text-[#8A6624] uppercase mb-2">
               Visão Geral
             </h2>
             <h3 className="text-4xl font-serif text-[#1C1917]">Dashboard</h3>
@@ -105,7 +105,7 @@ function AdminPanel() {
             <p className="text-[#1C1917]/40 text-xs font-bold uppercase tracking-widest">
               Admin logado
             </p>
-            <p className="text-[#A67C2E] font-medium">Administrador Principal</p>
+            <p className="text-[#8A6624] font-medium">Administrador Principal</p>
           </div>
         </header>
 
@@ -123,7 +123,7 @@ function AdminPanel() {
               key={stat.label}
               className="bg-[#FAF7F0] p-8 rounded-xl border border-[#C5A059]/10"
             >
-              <stat.icon className="text-[#A67C2E] mb-4" size={24} />
+              <stat.icon className="text-[#8A6624] mb-4" size={24} />
               <p className="text-[#1C1917]/40 text-xs font-bold uppercase tracking-widest mb-1">
                 {stat.label}
               </p>
@@ -136,16 +136,16 @@ function AdminPanel() {
           <div className="space-y-8">
             <div className="bg-[#FAF7F0] rounded-xl border border-[#C5A059]/10 overflow-hidden">
               <div className="p-6 border-b border-[#C5A059]/10 flex justify-between items-center">
-                <h4 className="font-serif text-[#A67C2E] text-xl">
+                <h4 className="font-serif text-[#8A6624] text-xl">
                   Últimas Solicitações de Reparo
                 </h4>
-                <button className="text-xs font-bold uppercase tracking-widest text-[#1C1917]/40 hover:text-[#A67C2E]">
+                <button className="text-xs font-bold uppercase tracking-widest text-[#1C1917]/40 hover:text-[#8A6624]">
                   Ver Todas
                 </button>
               </div>
               <div className="p-0">
                 <table className="w-full text-left text-sm">
-                  <thead className="bg-[#FFFFFF] text-[#A67C2E]/60 font-bold uppercase tracking-widest text-[10px]">
+                  <thead className="bg-[#FFFFFF] text-[#8A6624]/60 font-bold uppercase tracking-widest text-[10px]">
                     <tr>
                       <th className="px-6 py-4">Cliente</th>
                       <th className="px-6 py-4">Serviço</th>
@@ -190,14 +190,14 @@ function AdminPanel() {
 
             <div className="bg-[#FAF7F0] rounded-xl border border-[#C5A059]/10 overflow-hidden">
               <div className="p-6 border-b border-[#C5A059]/10 flex justify-between items-center">
-                <h4 className="font-serif text-[#A67C2E] text-xl">Últimos Pedidos</h4>
-                <button className="text-xs font-bold uppercase tracking-widest text-[#1C1917]/40 hover:text-[#A67C2E]">
+                <h4 className="font-serif text-[#8A6624] text-xl">Últimos Pedidos</h4>
+                <button className="text-xs font-bold uppercase tracking-widest text-[#1C1917]/40 hover:text-[#8A6624]">
                   Ver Todos
                 </button>
               </div>
               <div className="p-0">
                 <table className="w-full text-left text-sm">
-                  <thead className="bg-[#FFFFFF] text-[#A67C2E]/60 font-bold uppercase tracking-widest text-[10px]">
+                  <thead className="bg-[#FFFFFF] text-[#8A6624]/60 font-bold uppercase tracking-widest text-[10px]">
                     <tr>
                       <th className="px-6 py-4">Pedido ID</th>
                       <th className="px-6 py-4">Cliente</th>
@@ -212,7 +212,7 @@ function AdminPanel() {
                           {order.id.slice(0, 8)}...
                         </td>
                         <td className="px-6 py-4 font-medium">{order.customer_name}</td>
-                        <td className="px-6 py-4 text-[#A67C2E] font-bold">
+                        <td className="px-6 py-4 text-[#8A6624] font-bold">
                           R$ {order.total_amount.toLocaleString()}
                         </td>
                         <td className="px-6 py-4">
@@ -249,11 +249,11 @@ function AdminPanel() {
             <NewProductForm />
             <div className="bg-[#FAF7F0] rounded-xl border border-[#C5A059]/10 overflow-hidden">
               <div className="p-6 border-b border-[#C5A059]/10 flex justify-between items-center">
-                <h4 className="font-serif text-[#A67C2E] text-xl">Catálogo de Produtos</h4>
+                <h4 className="font-serif text-[#8A6624] text-xl">Catálogo de Produtos</h4>
               </div>
               <div className="p-0">
                 <table className="w-full text-left text-sm">
-                  <thead className="bg-[#FFFFFF] text-[#A67C2E]/60 font-bold uppercase tracking-widest text-[10px]">
+                  <thead className="bg-[#FFFFFF] text-[#8A6624]/60 font-bold uppercase tracking-widest text-[10px]">
                     <tr>
                       <th className="px-6 py-4">Produto</th>
                       <th className="px-6 py-4">Marca/Modelo</th>
@@ -277,7 +277,7 @@ function AdminPanel() {
                         <td className="px-6 py-4">
                           {product.brand} {product.model}
                         </td>
-                        <td className="px-6 py-4 text-[#A67C2E]">
+                        <td className="px-6 py-4 text-[#8A6624]">
                           R$ {product.price?.toLocaleString()}
                         </td>
                         <td className="px-6 py-4">
@@ -400,7 +400,7 @@ function NewProductForm() {
       className="bg-[#FAF7F0] rounded-xl border border-[#C5A059]/10 p-6 space-y-6"
     >
       <div>
-        <h4 className="font-serif text-[#A67C2E] text-xl">Adicionar relógio ao catálogo</h4>
+        <h4 className="font-serif text-[#8A6624] text-xl">Adicionar relógio ao catálogo</h4>
         <p className="text-xs text-[#1C1917]/40 mt-1">
           Escolha a categoria para o relógio aparecer em "Relógios Antigos" ou "Relógios de Mão".
         </p>

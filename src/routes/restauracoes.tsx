@@ -123,7 +123,7 @@ function RestorationsPage() {
                 transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
                 className="mt-8 font-serif text-[clamp(2.4rem,min(calc(8vw+1rem),15svh),5.5rem)] leading-[0.95] tracking-tight"
               >
-                Restaurando histórias, <em className="text-[#A67C2E]">detalhe</em> por detalhe.
+                Restaurando histórias, <em className="text-[#8A6624]">detalhe</em> por detalhe.
               </motion.h1>
             </div>
             <motion.p
@@ -165,7 +165,7 @@ function RestorationsPage() {
                   <h2 className="mt-4 font-serif text-[clamp(2rem,7vw,3rem)] leading-[1.05] tracking-tight">
                     {item.title}
                   </h2>
-                  <p className="mt-2 text-sm text-[#A67C2E]">{item.service}</p>
+                  <p className="mt-2 text-sm text-[#8A6624]">{item.service}</p>
                   <p className="mt-6 text-base leading-relaxed text-[#1C1917]/60 md:text-lg">
                     {item.summary}
                   </p>
@@ -191,7 +191,7 @@ function RestorationsPage() {
                         key={service}
                         className="flex items-start gap-3 text-sm text-[#1C1917]/70"
                       >
-                        <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#FAF7F0] text-[#A67C2E]">
+                        <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#FAF7F0] text-[#8A6624]">
                           <Check size={12} strokeWidth={2.5} />
                         </span>
                         {service}
@@ -237,7 +237,7 @@ function RestorationsPage() {
                   transition={{ ...fadeUp.transition, delay: index * 0.05 }}
                   className="bg-white p-6 sm:p-8 md:p-10"
                 >
-                  <span className="font-mono text-xs text-[#A67C2E]">
+                  <span className="font-mono text-xs text-[#8A6624]">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <h3 className="mt-6 font-serif text-3xl">{step.title}</h3>
@@ -255,7 +255,7 @@ function RestorationsPage() {
             className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 border-y border-[#1C1917]/10 py-12 md:gap-10 md:py-16 lg:flex-row lg:items-end"
           >
             <h2 className="max-w-2xl font-serif text-[clamp(2.1rem,min(8vw,13svh),3.75rem)] leading-[1.02] tracking-tight">
-              Seu relógio também pode ganhar uma <em className="text-[#A67C2E]">nova história</em>.
+              Seu relógio também pode ganhar uma <em className="text-[#8A6624]">nova história</em>.
             </h2>
             <button
               onClick={() =>

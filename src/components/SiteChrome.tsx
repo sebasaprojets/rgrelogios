@@ -152,7 +152,7 @@ export function SiteFooter() {
                 <li key={item.label}>
                   <a
                     href={item.href}
-                    className="inline-block py-1.5 transition-colors hover:text-[#A67C2E]"
+                    className="inline-block py-1.5 transition-colors hover:text-[#8A6624]"
                   >
                     {item.label}
                   </a>
@@ -171,7 +171,7 @@ export function SiteFooter() {
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="-my-1.5 inline-block py-1.5 transition-colors hover:text-[#A67C2E]"
+                  className="-my-1.5 inline-block py-1.5 transition-colors hover:text-[#8A6624]"
                 >
                   +55 41 99239-9650
                 </a>
@@ -194,7 +194,7 @@ export function SiteFooter() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noreferrer"
-              className="inline-block py-2 hover:text-[#A67C2E]"
+              className="inline-block py-2 hover:text-[#8A6624]"
             >
               WhatsApp
             </a>
@@ -202,7 +202,7 @@ export function SiteFooter() {
               href="https://www.google.com/maps/search/?api=1&query=RG+Relógios+R.+João+Antônio+Xavier+420+Água+Verde+Curitiba+PR"
               target="_blank"
               rel="noreferrer"
-              className="inline-block py-2 hover:text-[#A67C2E]"
+              className="inline-block py-2 hover:text-[#8A6624]"
             >
               Google Maps
             </a>
