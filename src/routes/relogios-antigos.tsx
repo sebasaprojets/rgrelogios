@@ -188,7 +188,7 @@ function VintageGalleryPage() {
                 transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
                 className="mt-6 font-serif text-[clamp(2.4rem,min(calc(8vw+1rem),15svh),5.5rem)] leading-[0.95] tracking-tight md:mt-8"
               >
-                Relógios que atravessaram <em className="text-[#A67C2E]">gerações</em>.
+                Relógios que atravessaram <em className="text-[#8A6624]">gerações</em>.
               </motion.h1>
             </div>
             <motion.p
@@ -267,7 +267,7 @@ function VintageGalleryPage() {
 
                 <div className="mt-4 flex items-start justify-between gap-4">
                   <div className="min-w-0">
-                    <p className="text-xs text-[#A67C2E]">{photo.era}</p>
+                    <p className="text-xs text-[#8A6624]">{photo.era}</p>
                     <p className="mt-1 leading-snug text-[#1C1917]/85">{photo.caption}</p>
                   </div>
                   <button
@@ -455,7 +455,7 @@ function PhotoPlaceholder({ dark = false }: { dark?: boolean }) {
     >
       <span
         className={`flex h-14 w-14 items-center justify-center rounded-full border ${
-          dark ? "border-white/15 text-[#D4B473]" : "border-[#C5A059]/40 text-[#A67C2E]"
+          dark ? "border-white/15 text-[#D4B473]" : "border-[#C5A059]/40 text-[#8A6624]"
         }`}
       >
         <Watch size={24} strokeWidth={1.5} />

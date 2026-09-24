@@ -91,7 +91,7 @@ export function BeforeAfterSlider({
         className="absolute top-0 bottom-0 w-px bg-white shadow-[0_0_0_1px_rgba(197,160,89,0.6)]"
         style={{ left: `${position}%` }}
       >
-        <div className="absolute top-1/2 left-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[#C5A059] bg-white text-[#A67C2E] shadow-[0_8px_24px_-8px_rgba(28,25,23,0.4)]">
+        <div className="absolute top-1/2 left-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[#C5A059] bg-white text-[#8A6624] shadow-[0_8px_24px_-8px_rgba(28,25,23,0.4)]">
           <MoveHorizontal size={18} />
         </div>
       </div>

@@ -37,7 +37,7 @@ function ProductDetail() {
     return (
       <div className="min-h-screen bg-[#FFFFFF] text-[#1C1917] flex flex-col items-center justify-center p-8">
         <h2 className="text-4xl font-serif mb-4">Relógio não encontrado</h2>
-        <a href="/" className="text-[#A67C2E] hover:underline">
+        <a href="/" className="text-[#8A6624] hover:underline">
           Voltar para o início
         </a>
       </div>
@@ -61,7 +61,7 @@ function ProductDetail() {
       <div className="max-w-7xl mx-auto">
         <a
           href="/#relógios"
-          className="inline-flex items-center gap-2 text-[#A67C2E] hover:text-[#8A6624] transition-colors mb-12 uppercase text-xs font-bold tracking-widest"
+          className="inline-flex items-center gap-2 text-[#8A6624] hover:text-[#1C1917] transition-colors mb-12 uppercase text-xs font-bold tracking-widest"
         >
           <ChevronLeft size={16} /> Voltar
         </a>
@@ -105,7 +105,7 @@ function ProductDetail() {
             animate={{ opacity: 1, x: 0 }}
             className="flex flex-col"
           >
-            <h1 className="text-[#A67C2E] text-sm font-bold tracking-[0.3em] uppercase mb-2">
+            <h1 className="text-[#8A6624] text-sm font-bold tracking-[0.3em] uppercase mb-2">
               {product.brand}
             </h1>
             <h2 className="text-4xl md:text-6xl font-serif text-[#1C1917] mb-6 leading-tight">
@@ -113,10 +113,10 @@ function ProductDetail() {
             </h2>
 
             <div className="flex items-center gap-6 mb-8 pb-8 border-b border-[#C5A059]/10">
-              <span className="text-3xl font-bold text-[#A67C2E]">
+              <span className="text-3xl font-bold text-[#8A6624]">
                 {product.price ? `R$ ${product.price.toLocaleString()}` : "Sob Consulta"}
               </span>
-              <span className="bg-[#C5A059]/10 text-[#A67C2E] px-3 py-1 rounded text-[10px] font-bold uppercase tracking-widest border border-[#C5A059]/20">
+              <span className="bg-[#C5A059]/10 text-[#8A6624] px-3 py-1 rounded text-[10px] font-bold uppercase tracking-widest border border-[#C5A059]/20">
                 {product.condition}
               </span>
             </div>
@@ -129,25 +129,25 @@ function ProductDetail() {
 
               <div className="grid grid-cols-2 gap-8 py-6 border-y border-[#C5A059]/10">
                 <div>
-                  <h4 className="text-[10px] font-bold text-[#A67C2E] uppercase tracking-widest mb-2">
+                  <h4 className="text-[10px] font-bold text-[#8A6624] uppercase tracking-widest mb-2">
                     Marca
                   </h4>
                   <p className="text-sm font-medium">{product.brand}</p>
                 </div>
                 <div>
-                  <h4 className="text-[10px] font-bold text-[#A67C2E] uppercase tracking-widest mb-2">
+                  <h4 className="text-[10px] font-bold text-[#8A6624] uppercase tracking-widest mb-2">
                     Modelo
                   </h4>
                   <p className="text-sm font-medium">{product.model}</p>
                 </div>
                 <div>
-                  <h4 className="text-[10px] font-bold text-[#A67C2E] uppercase tracking-widest mb-2">
+                  <h4 className="text-[10px] font-bold text-[#8A6624] uppercase tracking-widest mb-2">
                     Ano
                   </h4>
                   <p className="text-sm font-medium">{product.year || "Não especificado"}</p>
                 </div>
                 <div>
-                  <h4 className="text-[10px] font-bold text-[#A67C2E] uppercase tracking-widest mb-2">
+                  <h4 className="text-[10px] font-bold text-[#8A6624] uppercase tracking-widest mb-2">
                     Categoria
                   </h4>
                   <p className="text-sm font-medium">{product.category}</p>
@@ -162,24 +162,24 @@ function ProductDetail() {
               >
                 <ShoppingCart size={18} /> Comprar Agora
               </button>
-              <button className="flex-1 border border-[#C5A059] text-[#A67C2E] py-4 rounded font-bold hover:bg-[#C5A059]/10 transition-all uppercase text-sm tracking-widest">
+              <button className="flex-1 border border-[#C5A059] text-[#8A6624] py-4 rounded font-bold hover:bg-[#C5A059]/10 transition-all uppercase text-sm tracking-widest">
                 Falar com Especialista
               </button>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-10 border-t border-[#C5A059]/10">
               <div className="flex items-center gap-3">
-                <Shield size={20} className="text-[#A67C2E]" />
+                <Shield size={20} className="text-[#8A6624]" />
                 <span className="text-[10px] font-bold uppercase tracking-widest">
                   Compra Protegida
                 </span>
               </div>
               <div className="flex items-center gap-3">
-                <Award size={20} className="text-[#A67C2E]" />
+                <Award size={20} className="text-[#8A6624]" />
                 <span className="text-[10px] font-bold uppercase tracking-widest">Certificado</span>
               </div>
               <div className="flex items-center gap-3">
-                <Clock size={20} className="text-[#A67C2E]" />
+                <Clock size={20} className="text-[#8A6624]" />
                 <span className="text-[10px] font-bold uppercase tracking-widest">
                   Entrega Segura
                 </span>

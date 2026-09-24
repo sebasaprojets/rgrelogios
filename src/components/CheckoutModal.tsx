@@ -78,14 +78,14 @@ export function CheckoutModal({ isOpen, onClose, product }: CheckoutModalProps) 
         >
           <button 
             onClick={onClose}
-            className="absolute top-4 right-4 text-[#1C1917]/40 hover:text-[#A67C2E] z-10"
+            className="absolute top-4 right-4 text-[#1C1917]/40 hover:text-[#8A6624] z-10"
           >
             <X size={24} />
           </button>
 
           <div className="p-8">
             <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 rounded-full bg-[#C5A059]/10 flex items-center justify-center text-[#A67C2E]">
+              <div className="w-10 h-10 rounded-full bg-[#C5A059]/10 flex items-center justify-center text-[#8A6624]">
                 <ShoppingBag size={20} />
               </div>
               <div>
@@ -98,7 +98,7 @@ export function CheckoutModal({ isOpen, onClose, product }: CheckoutModalProps) 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label className="text-[10px] font-bold text-[#A67C2E] uppercase tracking-widest">Nome Completo</label>
+                    <label className="text-[10px] font-bold text-[#8A6624] uppercase tracking-widest">Nome Completo</label>
                     <input 
                       required
                       className="w-full bg-[#FFFFFF] border border-[#C5A059]/20 rounded p-3 text-sm focus:border-[#C5A059] outline-none transition-colors"
@@ -107,7 +107,7 @@ export function CheckoutModal({ isOpen, onClose, product }: CheckoutModalProps) 
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-[10px] font-bold text-[#A67C2E] uppercase tracking-widest">WhatsApp</label>
+                    <label className="text-[10px] font-bold text-[#8A6624] uppercase tracking-widest">WhatsApp</label>
                     <input 
                       required
                       placeholder="(41) 99999-9999"
@@ -118,7 +118,7 @@ export function CheckoutModal({ isOpen, onClose, product }: CheckoutModalProps) 
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-[10px] font-bold text-[#A67C2E] uppercase tracking-widest">E-mail</label>
+                  <label className="text-[10px] font-bold text-[#8A6624] uppercase tracking-widest">E-mail</label>
                   <input 
                     required
                     type="email"
@@ -128,7 +128,7 @@ export function CheckoutModal({ isOpen, onClose, product }: CheckoutModalProps) 
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-[10px] font-bold text-[#A67C2E] uppercase tracking-widest">Endereço de Entrega</label>
+                  <label className="text-[10px] font-bold text-[#8A6624] uppercase tracking-widest">Endereço de Entrega</label>
                   <textarea 
                     required
                     className="w-full bg-[#FFFFFF] border border-[#C5A059]/20 rounded p-3 text-sm focus:border-[#C5A059] outline-none transition-colors h-24 resize-none"
@@ -140,7 +140,7 @@ export function CheckoutModal({ isOpen, onClose, product }: CheckoutModalProps) 
                 <div className="pt-4 border-t border-[#C5A059]/10">
                   <div className="flex justify-between items-center mb-6">
                     <span className="text-sm text-[#1C1917]/60">Total a pagar:</span>
-                    <span className="text-xl font-bold text-[#A67C2E]">R$ {product.price?.toLocaleString()}</span>
+                    <span className="text-xl font-bold text-[#8A6624]">R$ {product.price?.toLocaleString()}</span>
                   </div>
                   <button 
                     type="submit"
@@ -184,16 +184,16 @@ export function CheckoutModal({ isOpen, onClose, product }: CheckoutModalProps) 
                   ) : (
                     <div className="space-y-4">
                       <div className="space-y-2">
-                        <label className="text-[10px] font-bold text-[#A67C2E] uppercase tracking-widest">Número do Cartão</label>
+                        <label className="text-[10px] font-bold text-[#8A6624] uppercase tracking-widest">Número do Cartão</label>
                         <input className="w-full bg-[#FAF7F0] border border-[#C5A059]/20 rounded p-3 text-sm outline-none" placeholder="0000 0000 0000 0000" />
                       </div>
                       <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-2">
-                          <label className="text-[10px] font-bold text-[#A67C2E] uppercase tracking-widest">Validade</label>
+                          <label className="text-[10px] font-bold text-[#8A6624] uppercase tracking-widest">Validade</label>
                           <input className="w-full bg-[#FAF7F0] border border-[#C5A059]/20 rounded p-3 text-sm outline-none" placeholder="MM/AA" />
                         </div>
                         <div className="space-y-2">
-                          <label className="text-[10px] font-bold text-[#A67C2E] uppercase tracking-widest">CVV</label>
+                          <label className="text-[10px] font-bold text-[#8A6624] uppercase tracking-widest">CVV</label>
                           <input className="w-full bg-[#FAF7F0] border border-[#C5A059]/20 rounded p-3 text-sm outline-none" placeholder="123" />
                         </div>
                       </div>
@@ -212,7 +212,7 @@ export function CheckoutModal({ isOpen, onClose, product }: CheckoutModalProps) 
                   <button 
                     type="button"
                     onClick={() => setStep(1)}
-                    className="w-full text-center text-[10px] font-bold text-[#1C1917]/40 hover:text-[#A67C2E] uppercase tracking-widest"
+                    className="w-full text-center text-[10px] font-bold text-[#1C1917]/40 hover:text-[#8A6624] uppercase tracking-widest"
                   >
                     Voltar para dados de entrega
                   </button>
