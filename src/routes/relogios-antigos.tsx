@@ -42,21 +42,21 @@ const ANTIQUE = "Antigos";
 const PHOTOS: readonly GalleryPhoto[] = [
   {
     id: "casio-edifice",
-    src: "/images/galeria/casio-edifice-pedra3.jpg",
+    src: "/images/galeria/casio-edifice-pedestal.jpg",
     caption: "Casio Edifice — mostrador azul e pulseira de aço",
     era: "Relógio de pulso",
     group: "Pulso",
   },
   {
     id: "orient-chronograph",
-    src: "/images/galeria/orient-chronograph-pedra3.jpg",
+    src: "/images/galeria/orient-chronograph-pedestal.jpg",
     caption: "Orient Chronograph — mostrador azul e pulseira de couro",
     era: "Relógio de pulso",
     group: "Pulso",
   },
   {
     id: "p4",
-    src: "/images/galeria/emporio-armani-pedra2.jpg",
+    src: "/images/galeria/cronografo-vintage-pedestal.jpg",
     caption: "Coroa e lateral polidas à mão",
     era: "Década de 1940",
     group: "Pulso",
