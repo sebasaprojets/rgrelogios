@@ -10,12 +10,23 @@ import { OpenStatus } from "@/components/home/LiveClock";
 import { Marquee } from "@/components/home/Marquee";
 import { CountUp } from "@/components/home/CountUp";
 import { Testimonials } from "@/components/home/Testimonials";
-import { WatchVideo } from "@/components/home/WatchVideo";
+import { WatchVideo, type WatchClip } from "@/components/home/WatchVideo";
 
 const STOREFRONT_URL = "/images/loja-rg.jpg";
 const HERO_IMAGE_URL = "/images/hero-movado.jpg";
-/** Relógio desmontando e montando, na seção de relógios antigos. */
-const WATCH_VIDEO_URL = "/videos/relogio-desmontando.mp4";
+/** Relógios desmontando e montando, tocados em sequência na seção de relógios antigos. */
+const WATCH_CLIPS: readonly WatchClip[] = [
+  {
+    src: "/videos/relogio-desmontando.mp4",
+    title: "Relógio de pulso",
+    label: "Relógio de pulso sendo desmontado e montado novamente",
+  },
+  {
+    src: "/videos/relogio-parede-desmontando.mp4",
+    title: "Relógio de parede",
+    label: "Relógio de parede de madeira sendo desmontado e montado novamente",
+  },
+];
 const MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=RG+Relógios+R.+João+Antônio+Xavier+420+Água+Verde+Curitiba+PR";
 
@@ -192,10 +203,7 @@ function Index() {
               {...fadeUp}
               className="group relative aspect-[4/5] overflow-hidden rounded-2xl md:aspect-[4/3] lg:aspect-[4/5] border border-[#1C1917]/10 bg-[#14110D]"
             >
-              <WatchVideo
-                src={WATCH_VIDEO_URL}
-                label="Cronógrafo de mostrador azul e caixa dourada sendo desmontado e montado novamente"
-              />
+              <WatchVideo clips={WATCH_CLIPS} />
             </motion.div>
 
             <motion.div {...fadeUp}>
