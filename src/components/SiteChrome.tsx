@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import { ScrollProgress } from "@/components/motion/ScrollProgress";
 
 const LOGO_URL = "/images/logo-rg.webp";
 
@@ -35,93 +36,100 @@ export function SiteHeader() {
   }, []);
 
   return (
-    <header
-      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
-        scrolled || isMenuOpen
-          ? "border-b border-[#1C1917]/10 bg-white/85 backdrop-blur-xl"
-          : "border-b border-transparent bg-transparent"
-      }`}
-      style={{ paddingTop: "env(safe-area-inset-top)" }}
-    >
-      <div
-        className={`mx-auto flex max-w-7xl items-center justify-between px-5 transition-all duration-300 sm:px-6 md:px-8 ${scrolled ? "py-3" : "py-5"}`}
+    <>
+      <ScrollProgress />
+      <header
+        className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+          scrolled || isMenuOpen
+            ? "border-b border-[#1C1917]/10 bg-white/85 backdrop-blur-xl"
+            : "border-b border-transparent bg-transparent"
+        }`}
+        style={{ paddingTop: "env(safe-area-inset-top)" }}
       >
-        <Link to="/" className="flex items-center gap-3">
-          <img src={LOGO_URL} alt="RG Relógios" className="h-11 w-auto rounded-md object-contain" />
-          <span className="hidden font-serif text-2xl text-[#1C1917] sm:inline">RG Relógios</span>
-        </Link>
-
-        <nav className="hidden items-center gap-8 text-sm text-[#1C1917]/70 lg:flex">
-          {NAV_ITEMS.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="group relative py-1 transition-colors hover:text-[#1C1917]"
-            >
-              {item.label}
-              <span className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-[#C5A059] transition-transform duration-300 group-hover:scale-x-100" />
-            </a>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-3">
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="group hidden items-center gap-1.5 rounded-full bg-[#1C1917] px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#C5A059] hover:text-[#14110D] sm:inline-flex"
-          >
-            Fale conosco
-            <ArrowUpRight
-              size={16}
-              className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+        <div
+          className={`mx-auto flex max-w-7xl items-center justify-between px-5 transition-all duration-300 sm:px-6 md:px-8 ${scrolled ? "py-3" : "py-5"}`}
+        >
+          <Link to="/" className="flex items-center gap-3">
+            <img
+              src={LOGO_URL}
+              alt="RG Relógios"
+              className="h-11 w-auto rounded-md object-contain"
             />
-          </a>
+            <span className="hidden font-serif text-2xl text-[#1C1917] sm:inline">RG Relógios</span>
+          </Link>
 
-          <button
-            className="-mr-2 flex h-11 w-11 items-center justify-center text-[#1C1917] lg:hidden"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
-            aria-expanded={isMenuOpen}
-          >
-            {isMenuOpen ? <X size={26} /> : <Menu size={26} />}
-          </button>
-        </div>
-      </div>
-
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="max-h-[calc(100svh-68px)] overflow-y-auto border-t border-[#1C1917]/10 bg-white lg:hidden"
-          >
-            <div className="flex flex-col px-5 py-4 sm:px-6">
-              {NAV_ITEMS.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="border-b border-[#1C1917]/5 py-3.5 font-serif text-2xl text-[#1C1917] last:border-0"
-                >
-                  {item.label}
-                </a>
-              ))}
+          <nav className="hidden items-center gap-8 text-sm text-[#1C1917]/70 lg:flex">
+            {NAV_ITEMS.map((item) => (
               <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-4 inline-flex items-center justify-center gap-2 rounded-full bg-[#1C1917] py-3.5 font-medium text-white"
+                key={item.label}
+                href={item.href}
+                className="group relative py-1 transition-colors hover:text-[#1C1917]"
               >
-                Fale conosco no WhatsApp
-                <ArrowUpRight size={16} />
+                {item.label}
+                <span className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-[#C5A059] transition-transform duration-300 group-hover:scale-x-100" />
               </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </header>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-3">
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="group hidden items-center gap-1.5 rounded-full bg-[#1C1917] px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#C5A059] hover:text-[#14110D] sm:inline-flex"
+            >
+              Fale conosco
+              <ArrowUpRight
+                size={16}
+                className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              />
+            </a>
+
+            <button
+              className="-mr-2 flex h-11 w-11 items-center justify-center text-[#1C1917] lg:hidden"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
+              aria-expanded={isMenuOpen}
+            >
+              {isMenuOpen ? <X size={26} /> : <Menu size={26} />}
+            </button>
+          </div>
+        </div>
+
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="max-h-[calc(100svh-68px)] overflow-y-auto border-t border-[#1C1917]/10 bg-white lg:hidden"
+            >
+              <div className="flex flex-col px-5 py-4 sm:px-6">
+                {NAV_ITEMS.map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="border-b border-[#1C1917]/5 py-3.5 font-serif text-2xl text-[#1C1917] last:border-0"
+                  >
+                    {item.label}
+                  </a>
+                ))}
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-4 inline-flex items-center justify-center gap-2 rounded-full bg-[#1C1917] py-3.5 font-medium text-white"
+                >
+                  Fale conosco no WhatsApp
+                  <ArrowUpRight size={16} />
+                </a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </header>
+    </>
   );
 }
 

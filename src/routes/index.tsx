@@ -13,6 +13,9 @@ import { CountUp } from "@/components/home/CountUp";
 import { Testimonials } from "@/components/home/Testimonials";
 import { WatchVideo, type WatchClip } from "@/components/home/WatchVideo";
 import { IntroCurtain, heroIntroDelay } from "@/components/home/IntroCurtain";
+import { RevealText } from "@/components/motion/RevealText";
+import { MaskReveal } from "@/components/motion/MaskReveal";
+import { Magnetic } from "@/components/motion/Magnetic";
 
 const STOREFRONT_URL = "/images/loja-rg.jpg";
 const HERO_IMAGE_URL = "/images/hero-movado.jpg";
@@ -194,16 +197,18 @@ function Index() {
                 transition={{ duration: 0.8, delay: delay + 0.9 }}
                 className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center"
               >
-                <a
-                  href="#serviços"
-                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#C5A059] px-7 py-3.5 font-medium text-[#14110D] shadow-[0_10px_30px_-10px_rgba(197,160,89,0.7)] transition-colors hover:bg-[#D4B473]"
-                >
-                  Solicitar orçamento
-                  <ArrowRight
-                    size={18}
-                    className="transition-transform group-hover:translate-x-1"
-                  />
-                </a>
+                <Magnetic className="flex sm:inline-flex">
+                  <a
+                    href="#serviços"
+                    className="group inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-[#C5A059] px-7 py-3.5 font-medium text-[#14110D] shadow-[0_10px_30px_-10px_rgba(197,160,89,0.7)] transition-colors hover:bg-[#D4B473]"
+                  >
+                    Solicitar orçamento
+                    <ArrowRight
+                      size={18}
+                      className="transition-transform group-hover:translate-x-1"
+                    />
+                  </a>
+                </Magnetic>
                 <a
                   href="/restauracoes"
                   className="inline-flex items-center justify-center gap-2 rounded-full border border-[#1C1917]/15 bg-white/60 px-7 py-3.5 font-medium backdrop-blur transition-colors hover:border-[#1C1917]/40"
@@ -237,18 +242,16 @@ function Index() {
         {/* Relógios antigos */}
         <section id="antigos" className="px-5 py-20 sm:px-6 md:px-8 md:py-32">
           <div className="mx-auto grid max-w-7xl items-center gap-10 md:gap-14 lg:grid-cols-2">
-            <motion.div
-              {...fadeUp}
-              className="group relative aspect-[4/5] overflow-hidden rounded-2xl md:aspect-[4/3] lg:aspect-[4/5] border border-[#1C1917]/10 bg-[#14110D]"
-            >
+            <MaskReveal className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-[#1C1917]/10 bg-[#14110D] md:aspect-[4/3] lg:aspect-[4/5]">
               <WatchVideo clips={WATCH_CLIPS} />
-            </motion.div>
+            </MaskReveal>
 
             <motion.div {...fadeUp}>
               <SectionEyebrow>Relógios antigos</SectionEyebrow>
-              <h2 className="mt-6 font-serif text-[clamp(2.1rem,min(8vw,13svh),3.75rem)] leading-[1.02] tracking-tight">
-                Peças que carregam <em className="text-[#8A6624]">histórias</em>.
-              </h2>
+              <RevealText
+                text="Peças que carregam *histórias.*"
+                className="mt-6 font-serif text-[clamp(2.1rem,min(8vw,13svh),3.75rem)] leading-[1.02] tracking-tight"
+              />
               <p className="mt-6 max-w-lg text-base leading-relaxed sm:text-lg text-[#1C1917]/60">
                 Restauramos relógios antigos com respeito à sua origem, mantendo o mecanismo
                 original sempre que possível.
@@ -287,9 +290,10 @@ function Index() {
             <div className="grid gap-8 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
               <motion.div {...fadeUp} className="lg:sticky lg:top-32 lg:self-start">
                 <SectionEyebrow>Serviços</SectionEyebrow>
-                <h2 className="mt-6 font-serif text-[clamp(2.1rem,min(8vw,13svh),3.75rem)] leading-[1.02] tracking-tight">
-                  Da troca de bateria à restauração completa.
-                </h2>
+                <RevealText
+                  text="Da troca de bateria à restauração completa."
+                  className="mt-6 font-serif text-[clamp(2.1rem,min(8vw,13svh),3.75rem)] leading-[1.02] tracking-tight"
+                />
                 <p className="mt-6 max-w-sm leading-relaxed text-[#1C1917]/60">
                   Todo serviço sai da bancada com garantia. Mande uma foto pelo WhatsApp e receba
                   uma estimativa.
@@ -365,11 +369,13 @@ function Index() {
         <section id="sobre" className="bg-[#FAF7F0] px-5 py-20 sm:px-6 md:px-8 md:py-32">
           <div className="mx-auto grid max-w-7xl items-center gap-14 md:gap-16 lg:grid-cols-2">
             <motion.div {...fadeUp} className="relative">
-              <img
-                src={STOREFRONT_URL}
-                alt="Fachada da RG Relógios no Água Verde, Curitiba"
-                className="h-[360px] w-full rounded-2xl object-cover sm:h-[480px] md:h-[560px]"
-              />
+              <MaskReveal className="h-[360px] w-full overflow-hidden rounded-2xl sm:h-[480px] md:h-[560px]">
+                <img
+                  src={STOREFRONT_URL}
+                  alt="Fachada da RG Relógios no Água Verde, Curitiba"
+                  className="h-full w-full object-cover"
+                />
+              </MaskReveal>
               <div className="absolute -bottom-6 left-6 rounded-2xl border border-[#1C1917]/10 bg-white px-6 py-5 shadow-[0_20px_50px_-20px_rgba(28,25,23,0.3)] md:-right-6 md:left-auto">
                 <p className="font-serif text-5xl leading-none">25+</p>
                 <p className="mt-1 text-xs text-[#1C1917]/60">anos de experiência</p>
@@ -378,10 +384,10 @@ function Index() {
 
             <motion.div {...fadeUp}>
               <SectionEyebrow>Sobre a RG</SectionEyebrow>
-              <h2 className="mt-6 font-serif text-[clamp(2.1rem,min(8vw,13svh),3.75rem)] leading-[1.02] tracking-tight">
-                Uma relojoaria de bairro, com <em className="text-[#8A6624]">ofício</em> de alta
-                relojoaria.
-              </h2>
+              <RevealText
+                text="Uma relojoaria de bairro, com *ofício* de alta relojoaria."
+                className="mt-6 font-serif text-[clamp(2.1rem,min(8vw,13svh),3.75rem)] leading-[1.02] tracking-tight"
+              />
               <p className="mt-6 max-w-lg text-base leading-relaxed text-[#1C1917]/60 sm:text-lg">
                 No Água Verde, em Curitiba, a RG Relógios atende quem valoriza o próprio relógio, do
                 modelo do dia a dia à peça de família.
@@ -408,9 +414,10 @@ function Index() {
           <div className="mx-auto grid max-w-7xl gap-12 md:gap-16 lg:grid-cols-2">
             <motion.div {...fadeUp}>
               <SectionEyebrow>Contato</SectionEyebrow>
-              <h2 className="mt-6 font-serif text-[clamp(2.1rem,min(8vw,13svh),3.75rem)] leading-[1.02] tracking-tight">
-                Traga seu relógio.
-              </h2>
+              <RevealText
+                text="Traga seu relógio."
+                className="mt-6 font-serif text-[clamp(2.1rem,min(8vw,13svh),3.75rem)] leading-[1.02] tracking-tight"
+              />
 
               <div className="mt-10 divide-y md:mt-12 divide-[#1C1917]/10 border-y border-[#1C1917]/10">
                 <a
